@@ -1,3 +1,5 @@
+# Problem: https://projecteuler.net/problem=49
+
 from itertools import permutations
 from sympy import isprime
 

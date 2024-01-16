@@ -1,3 +1,4 @@
+# Problem: https://projecteuler.net/problem=7
 from sympy import isprime
 
 def nth_prime(n):

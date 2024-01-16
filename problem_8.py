@@ -1,3 +1,5 @@
+# Problem: https://projecteuler.net/problem=8
+
 def largest_product_in_series(n, k):
     series = (
         "73167176531330624919225119674426574742355349194934"

@@ -1,3 +1,5 @@
+# Problem: https://projecteuler.net/problem=3
+
 LPF = 600851475143
 
 def largest_prime_factor(n):
