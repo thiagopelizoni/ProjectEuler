@@ -11,4 +11,5 @@ Just some Python coding for problems of [Project Euler](https://projecteuler.net
 * [Problem 5](https://projecteuler.net/problem=5)
 * [Problem 6](https://projecteuler.net/problem=6)
 * [Problem 7](https://projecteuler.net/problem=7)
+* [Problem 8](https://projecteuler.net/problem=8)
 * [Problem 49](https://projecteuler.net/problem=49)
