@@ -28,5 +28,6 @@ Just some Python coding for problems of [Project Euler](https://projecteuler.net
 * [Problem 24](https://projecteuler.net/problem=24)
 * [Problem 25](https://projecteuler.net/problem=25)
 * [Problem 26](https://projecteuler.net/problem=26)
+* [Problem 27](https://projecteuler.net/problem=27)
 * [Problem 44](https://projecteuler.net/problem=44)
 * [Problem 49](https://projecteuler.net/problem=49)
