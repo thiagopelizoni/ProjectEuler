@@ -1,3 +1,4 @@
+# Problem: https://projecteuler.net/problem=38
 def is_pandigital(s):
     return len(s) == 9 and not '0' in s and len(set(s)) == 9
 
