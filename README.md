@@ -36,5 +36,6 @@ Just some Python coding for problems of [Project Euler](https://projecteuler.net
 * [Problem 32](https://projecteuler.net/problem=32)
 * [Problem 33](https://projecteuler.net/problem=33)
 * [Problem 34](https://projecteuler.net/problem=34)
+* [Problem 35](https://projecteuler.net/problem=35)
 * [Problem 44](https://projecteuler.net/problem=44)
 * [Problem 49](https://projecteuler.net/problem=49)
