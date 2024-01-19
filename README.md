@@ -1,6 +1,6 @@
-# Project Euler Python solutions
+# ProjectEuler.net Python solutions
 
-Just some Python coding for problems of [Project Euler](https://projecteuler.net/).
+Answering [Project Euler](https://projecteuler.net/) problems in Python.
 
 # Problems solved
 
