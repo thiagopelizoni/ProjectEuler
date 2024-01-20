@@ -1,4 +1,4 @@
-# Problem: https://projecteuler.net/problem=59
+# Problem: https://projecteuler.net/problem=60
 # Failed attempt to silve this problem
 from sympy import primerange
 from itertools import permutations
