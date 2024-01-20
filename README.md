@@ -51,3 +51,4 @@
 * [Problem 50](https://projecteuler.net/problem=50) | [Solution](src/problem_050.py)
 * [Problem 51](https://projecteuler.net/problem=51) | [Solution](src/problem_051.py)
 * [Problem 52](https://projecteuler.net/problem=52) | [Solution](src/problem_052.py)
+* [Problem 53](https://projecteuler.net/problem=53) | [Solution](src/problem_053.py)
