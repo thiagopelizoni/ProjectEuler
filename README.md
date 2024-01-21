@@ -72,3 +72,4 @@
 * [Problem 72](https://projecteuler.net/problem=72) | [Solution](src/problem_072.py)
 * [Problem 73](https://projecteuler.net/problem=73) | [Solution](src/problem_073.py)
 * [Problem 74](https://projecteuler.net/problem=74) | [Solution](src/problem_074.py)
+* [Problem 75](https://projecteuler.net/problem=75) | [Solution](src/problem_075.py)

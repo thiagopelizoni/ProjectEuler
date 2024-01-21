@@ -1,4 +1,4 @@
-# Correcting the implementation to efficiently calculate the count
+# Problem: https://projecteuler.net/problem=73
 from math import gcd
 
 def count_fractions_in_range(min_n, max_n, d_max):

@@ -1,3 +1,4 @@
+# Problem: https://projecteuler.net/problem=74
 from math import factorial
 
 def sum_factorial_digits(n):
