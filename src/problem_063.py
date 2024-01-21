@@ -1,4 +1,4 @@
-# Problem: https://projecteuler.net/problem=62
+# Problem: https://projecteuler.net/problem=63
 def main():
     count = 0
       # The base ranges from 1 to 9
