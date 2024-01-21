@@ -60,3 +60,4 @@
 * [Problem 59](https://projecteuler.net/problem=59) | [Solution](src/problem_059.py)
 * [Problem 61](https://projecteuler.net/problem=61) | [Solution](src/problem_061.py)
 * [Problem 62](https://projecteuler.net/problem=62) | [Solution](src/problem_062.py)
+* [Problem 63](https://projecteuler.net/problem=63) | [Solution](src/problem_063.py)
