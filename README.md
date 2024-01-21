@@ -68,3 +68,4 @@
 * [Problem 68](https://projecteuler.net/problem=68) | [Solution](src/problem_068.py)
 * [Problem 69](https://projecteuler.net/problem=69) | [Solution](src/problem_069.py)
 * [Problem 70](https://projecteuler.net/problem=70) | [Solution](src/problem_070.py)
+* [Problem 71](https://projecteuler.net/problem=71) | [Solution](src/problem_071.py)
