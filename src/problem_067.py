@@ -1,3 +1,4 @@
+# Problem: https://projecteuler.net/problem=67
 import requests
 
 def get_triangle():
