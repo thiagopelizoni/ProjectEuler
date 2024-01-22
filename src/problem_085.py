@@ -7,7 +7,6 @@ def rectangles_in_grid(w, h):
 closest_area = 0
 closest_difference = float('inf')
 
-
 limit = int(TARGET_RECTANGLES**0.5) + 1
 
 for w in range(1, limit):
