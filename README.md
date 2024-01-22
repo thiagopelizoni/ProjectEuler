@@ -1,4 +1,4 @@
-# [Project Euler](https://projecteuler.net/) problems solved in Python
+# [ProjectEuler.net](https://projecteuler.net/) problems solved in Python
 
 * [Problem 1](https://projecteuler.net/problem=1) | [Solution](src/problem_001.py)
 * [Problem 2](https://projecteuler.net/problem=2) | [Solution](src/problem_002.py)
@@ -75,3 +75,4 @@
 * [Problem 75](https://projecteuler.net/problem=75) | [Solution](src/problem_075.py)
 * [Problem 76](https://projecteuler.net/problem=76) | [Solution](src/problem_076.py)
 * [Problem 77](https://projecteuler.net/problem=77) | [Solution](src/problem_077.py)
+* [Problem 78](https://projecteuler.net/problem=78) | [Solution](src/problem_078.py)
