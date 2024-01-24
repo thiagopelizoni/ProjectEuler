@@ -5,13 +5,10 @@ def get_triangles():
     url = "https://projecteuler.net/resources/documents/0102_triangles.txt"
 
     response = requests.get(url)
-
     if response.status_code != 200:
         raise Exception(f"Failed to fetch {url}")
 
-    file_data = response.text
-
-    return [data.split(",") for data in file_data.split("\n")]
+    return [data.split(",") for data in response.text.split("\n")]
 
 def sign(p1, p2, p3):
     return (p1[0] - p3[0]) * (p2[1] - p3[1]) - (p2[0] - p3[0]) * (p1[1] - p3[1])
