@@ -10,6 +10,7 @@
 * [Problem 8](https://projecteuler.net/problem=8) | [Solution](src/problem_008.py)
 * [Problem 9](https://projecteuler.net/problem=9) | [Solution](src/problem_009.py)
 * [Problem 10](https://projecteuler.net/problem=10) | [Solution](src/problem_010.py)
+* [Problem 11](https://projecteuler.net/problem=11) | [Solution](src/problem_011.py)
 * [Problem 12](https://projecteuler.net/problem=12) | [Solution](src/problem_012.py)
 * [Problem 13](https://projecteuler.net/problem=13) | [Solution](src/problem_013.py)
 * [Problem 14](https://projecteuler.net/problem=14) | [Solution](src/problem_014.py)
