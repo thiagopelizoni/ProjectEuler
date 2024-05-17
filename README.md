@@ -115,3 +115,4 @@
 * [Problem 120](https://projecteuler.net/problem=120) | [Solution](src/problem_120.py)
 * [Problem 121](https://projecteuler.net/problem=121) | [Solution](src/problem_121.py)
 * [Problem 123](https://projecteuler.net/problem=123) | [Solution](src/problem_123.py)
+* [Problem 124](https://projecteuler.net/problem=124) | [Solution](src/problem_124.py)
