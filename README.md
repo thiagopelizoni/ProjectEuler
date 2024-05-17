@@ -1,5 +1,7 @@
 # [ProjectEuler.net](https://projecteuler.net/) problems solved in Python
 
+![Badge](https://projecteuler.net/profile/ThiagoPelizoni.png)
+
 * [Problem 1](https://projecteuler.net/problem=1) | [Solution](src/problem_001.py)
 * [Problem 2](https://projecteuler.net/problem=2) | [Solution](src/problem_002.py)
 * [Problem 3](https://projecteuler.net/problem=3) | [Solution](src/problem_003.py)
