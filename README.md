@@ -1,4 +1,4 @@
-# [ProjectEuler.net](https://projecteuler.net/) problems solved in Python
+# [ProjectEuler.net](https://projecteuler.net/) challenges solved in Python
 
 ![Badge](https://projecteuler.net/profile/ThiagoPelizoni.png)
 
