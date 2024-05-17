@@ -88,6 +88,7 @@
 * [Problem 89](https://projecteuler.net/problem=89) | [Solution](src/problem_089.py)
 * [Problem 90](https://projecteuler.net/problem=90) | [Solution](src/problem_090.py)
 * [Problem 91](https://projecteuler.net/problem=91) | [Solution](src/problem_091.py)
+* [Problem 92](https://projecteuler.net/problem=92) | [Solution](src/problem_092.py)
 * [Problem 94](https://projecteuler.net/problem=94) | [Solution](src/problem_094.py)
 * [Problem 95](https://projecteuler.net/problem=95) | [Solution](src/problem_095.py)
 * [Problem 97](https://projecteuler.net/problem=97) | [Solution](src/problem_097.py)
