@@ -92,6 +92,7 @@
 * [Problem 93](https://projecteuler.net/problem=93) | [Solution](src/problem_093.py)
 * [Problem 94](https://projecteuler.net/problem=94) | [Solution](src/problem_094.py)
 * [Problem 95](https://projecteuler.net/problem=95) | [Solution](src/problem_095.py)
+* [Problem 96](https://projecteuler.net/problem=96) | [Solution](src/problem_096.py)
 * [Problem 97](https://projecteuler.net/problem=97) | [Solution](src/problem_097.py)
 * [Problem 98](https://projecteuler.net/problem=98) | [Solution](src/problem_098.py)
 * [Problem 99](https://projecteuler.net/problem=99) | [Solution](src/problem_099.py)
