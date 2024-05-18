@@ -1,4 +1,4 @@
-# Problem: https://projecteuler.net/problem=140
+// Problem: https://projecteuler.net/problem=140
 package main
 
 import (
