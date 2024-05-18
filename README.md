@@ -115,6 +115,7 @@
 * [Problem 115](https://projecteuler.net/problem=115) | [Solution](src/problem_115.py)
 * [Problem 116](https://projecteuler.net/problem=116) | [Solution](src/problem_116.py)
 * [Problem 117](https://projecteuler.net/problem=117) | [Solution](src/problem_117.py)
+* [Problem 118](https://projecteuler.net/problem=118) | [Solution](src/problem_118.py)
 * [Problem 119](https://projecteuler.net/problem=119) | [Solution](src/problem_119.py)
 * [Problem 120](https://projecteuler.net/problem=120) | [Solution](src/problem_120.py)
 * [Problem 121](https://projecteuler.net/problem=121) | [Solution](src/problem_121.py)
