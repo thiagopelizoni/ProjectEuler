@@ -140,3 +140,4 @@
 * [Problem 140](https://projecteuler.net/problem=140) | [Solution](src/problem_140.go)
 * [Problem 142](https://projecteuler.net/problem=142) | [Solution](src/problem_142.go)
 * [Problem 144](https://projecteuler.net/problem=144) | [Solution](src/problem_144.go)
+* [Problem 145](https://projecteuler.net/problem=145) | [Solution](src/problem_145.go)
