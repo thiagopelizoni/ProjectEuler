@@ -138,7 +138,7 @@
 * [Problem 136](https://projecteuler.net/problem=136) | [Solution](src/problem_136.py)
 * [Problem 138](https://projecteuler.net/problem=138) | [Solution](src/problem_138.py)
 * [Problem 139](https://projecteuler.net/problem=139) | [Solution](src/problem_139.py)
-* [Problem 140](https://projecteuler.net/problem=140) | [Solution](src/problem_140.go)
+* [Problem 140](https://projecteuler.net/problem=140) | [Solution](src/problem_140.py)
 * [Problem 142](https://projecteuler.net/problem=142) | [Solution](src/problem_142.go)
 * [Problem 143](https://projecteuler.net/problem=143) | [Solution](src/problem_143.py)
 * [Problem 144](https://projecteuler.net/problem=144) | [Solution](src/problem_144.go)
