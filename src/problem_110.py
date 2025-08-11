@@ -1,56 +1,65 @@
-# Problem: https://projecteuler.net/problem=110
-from sympy import primerange, Integer
+from sympy import primerange
+from gmpy2 import mpz
 
-lid = 12
-target = 4000000
-top = 4
 
-def evaluate(factors):
-    result = Integer(1)
-    for prime, exponent in factors:
-        if exponent > 0:
-            result *= prime ** exponent
-    return result
+best_number = None
 
-def solns(factors):
-    total = 1
-    for _, exponent in factors:
-        total *= 1 + (2 * exponent)
-    return total // 2 + 1
+
+def depth_first_search(prime_list, prime_index, previous_exponent, current_number, current_divisors, required_divisors):
+    global best_number
+
+    if current_divisors > required_divisors:
+        if best_number is None or current_number < best_number:
+            best_number = current_number
+        return
+
+    if prime_index >= len(prime_list):
+        return
+
+    prime_value = mpz(prime_list[prime_index])
+    temporary_number = mpz(current_number)
+
+    for exponent in range(1, previous_exponent + 1):
+        temporary_number *= prime_value
+
+        if best_number is not None and temporary_number >= best_number:
+            break
+
+        new_divisors = current_divisors * (2 * exponent + 1)
+        depth_first_search(
+            prime_list,
+            prime_index + 1,
+            exponent,
+            temporary_number,
+            new_divisors,
+            required_divisors,
+        )
+
+
+def minimal_n_with_solutions(target_solutions):
+    global best_number
+
+    required_divisors = 2 * target_solutions - 1
+    prime_list = list(primerange(2, 100))
+    best_number = None
+
+    depth_first_search(
+        prime_list=prime_list,
+        prime_index=0,
+        previous_exponent=64,
+        current_number=mpz(1),
+        current_divisors=1,
+        required_divisors=required_divisors,
+    )
+
+    return int(best_number)
+
 
 def main():
-    primes = list(primerange(1, 100))
-    factors = [(primes[i], 0) for i in range(lid)]
-    smallest = Integer('9999999999999999')
+    target_solutions = 4_000_000
+    result = minimal_n_with_solutions(target_solutions)
+    print(result)
 
-    for i in range(top):
-        factors[0] = (primes[0], i)
-        for j in range(i + 1):
-            factors[1] = (primes[1], j)
-            for k in range(j + 1):
-                factors[2] = (primes[2], k)
-                for l in range(k + 1):
-                    factors[3] = (primes[3], l)
-                    for m in range(l + 1):
-                        factors[4] = (primes[4], m)
-                        for n in range(m + 1):
-                            factors[5] = (primes[5], n)
-                            for o in range(n + 1):
-                                factors[6] = (primes[6], o)
-                                for p in range(o + 1):
-                                    factors[7] = (primes[7], p)
-                                    for q in range(p + 1):
-                                        factors[8] = (primes[8], q)
-                                        for r in range(q + 1):
-                                            factors[9] = (primes[9], r)
-                                            for s in range(r + 1):
-                                                factors[10] = (primes[10], s)
-                                                for t in range(s + 1):
-                                                    factors[11] = (primes[11], t)
-                                                    if solns(factors) > target and smallest > evaluate(factors):
-                                                        smallest = evaluate(factors)
-
-    print(smallest)
 
 if __name__ == "__main__":
     main()
