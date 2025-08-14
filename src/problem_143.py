@@ -1,93 +1,101 @@
 # Problem: https://projecteuler.net/problem=143
-from math import isqrt
-from gmpy2 import gcd
-
-
-def generate_pairs(limit_sum):
-    pair_exists = set()
-    neighbor_map = {}
-
-    max_m = int((limit_sum * 3) ** 0.5) + 2
-
-    for m in range(2, max_m):
-        m_squared = m * m
-
-        for n in range(1, m):
-            if gcd(m, n) != 1:
-                continue
-
-            if (m - n) % 3 == 0:
-                continue
-
-            n_squared = n * n
-            u0 = m_squared - n_squared
-            v0 = 2 * m * n + n_squared
-
-            if u0 <= 0:
-                continue
-
-            if u0 > limit_sum and v0 > limit_sum:
-                break
-
-            max_k = min(limit_sum // u0, limit_sum // v0)
-
-            for k in range(1, max_k + 1):
-                u = k * u0
-                v = k * v0
-
-                if u <= limit_sum and v <= limit_sum:
-                    a = u
-                    b = v
-
-                    if a not in neighbor_map:
-                        neighbor_map[a] = []
-                    if b not in neighbor_map:
-                        neighbor_map[b] = []
-
-                    neighbor_map[a].append(b)
-                    neighbor_map[b].append(a)
-
-                    if a < b:
-                        pair_exists.add((a, b))
-                    else:
-                        pair_exists.add((b, a))
-
-    return neighbor_map, pair_exists
-
-
-def find_distinct_sums(limit_sum, neighbor_map, pair_exists):
-    distinct_sums = set()
-
-    for shared_leg, neighbors in neighbor_map.items():
-        sorted_neighbors = sorted(neighbors)
-
-        for i in range(len(sorted_neighbors)):
-            first_leg = sorted_neighbors[i]
-
-            if shared_leg + first_leg >= limit_sum:
-                break
-
-            for j in range(i + 1, len(sorted_neighbors)):
-                second_leg = sorted_neighbors[j]
-                total_length = shared_leg + first_leg + second_leg
-
-                if total_length > limit_sum:
-                    break
-
-                key_pair = (first_leg, second_leg) if first_leg < second_leg else (second_leg, first_leg)
-
-                if key_pair in pair_exists:
-                    distinct_sums.add(total_length)
-
-    return sum(distinct_sums)
-
+import math
+import collections
+from math import gcd, isqrt
 
 def main():
-    limit_sum = 120000
-    neighbor_map, pair_exists = generate_pairs(limit_sum)
-    result = find_distinct_sums(limit_sum, neighbor_map, pair_exists)
-    print(result)
+    maximum_possible_sum = 120000
 
+    pairs_grouped_by_smaller = collections.defaultdict(list)
+
+    maximum_u_value = 400
+
+    for u_value in range(1, maximum_u_value + 1):
+        for v_value in range(1, u_value):
+            if gcd(u_value, v_value) != 1:
+                continue
+
+            if (u_value - v_value) % 3 == 0:
+                continue
+
+            a_value = 2 * u_value * v_value + v_value * v_value
+
+            b_value = u_value * u_value - v_value * v_value
+
+            smaller_pair = min(a_value, b_value)
+
+            larger_pair = max(a_value, b_value)
+
+            scale_factor = 1
+
+            while True:
+                scaled_smaller = scale_factor * smaller_pair
+
+                scaled_larger = scale_factor * larger_pair
+
+                if scaled_smaller + scaled_larger > maximum_possible_sum:
+                    break
+
+                pairs_grouped_by_smaller[scaled_smaller].append(scaled_larger)
+
+                scale_factor += 1
+
+    for smaller_key in pairs_grouped_by_smaller:
+        pairs_grouped_by_smaller[smaller_key] = sorted(set(pairs_grouped_by_smaller[smaller_key]))
+
+    unique_sum_values = set()
+
+    for smaller_value in pairs_grouped_by_smaller:
+        larger_values_list = pairs_grouped_by_smaller[smaller_value]
+
+        for first_index in range(len(larger_values_list)):
+            first_larger_value = larger_values_list[first_index]
+
+            for second_index in range(first_index + 1, len(larger_values_list)):
+                second_larger_value = larger_values_list[second_index]
+
+                if first_larger_value in pairs_grouped_by_smaller and second_larger_value in pairs_grouped_by_smaller[first_larger_value]:
+                    p_value = smaller_value
+
+                    q_value = first_larger_value
+
+                    r_value = second_larger_value
+
+                    current_total = p_value + q_value + r_value
+
+                    if current_total > maximum_possible_sum:
+                        continue
+
+                    a_squared_value = q_value**2 + r_value**2 + q_value * r_value
+
+                    b_squared_value = p_value**2 + r_value**2 + p_value * r_value
+
+                    c_squared_value = p_value**2 + q_value**2 + p_value * q_value
+
+                    side_a_length = isqrt(a_squared_value)
+
+                    side_b_length = isqrt(b_squared_value)
+
+                    side_c_length = isqrt(c_squared_value)
+
+                    if side_a_length**2 != a_squared_value or side_b_length**2 != b_squared_value or side_c_length**2 != c_squared_value:
+                        continue
+
+                    if side_a_length + side_b_length <= side_c_length or side_a_length + side_c_length <= side_b_length or side_b_length + side_c_length <= side_a_length:
+                        continue
+
+                    if a_squared_value >= b_squared_value + c_squared_value + side_b_length * side_c_length:
+                        continue
+
+                    if b_squared_value >= a_squared_value + c_squared_value + side_a_length * side_c_length:
+                        continue
+
+                    if c_squared_value >= a_squared_value + b_squared_value + side_a_length * side_b_length:
+                        continue
+
+                    unique_sum_values.add(current_total)
+
+    return sum(unique_sum_values)
 
 if __name__ == "__main__":
-    main()
+    print(main())
