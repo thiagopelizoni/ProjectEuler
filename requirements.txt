@@ -11,3 +11,5 @@ pkgutil
 random
 requests
 sympy
+tqdm
+numba
