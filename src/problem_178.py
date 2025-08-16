@@ -1,31 +1,50 @@
 # Problem: https://projecteuler.net/problem=178
 from tqdm import tqdm
 
-NUM_DIGITS = 10
-FULL_MASK = (1 << NUM_DIGITS) - 1
-MAX_LENGTH = 40
 
-dp = [[[0 for _ in range(1 << NUM_DIGITS)] for _ in range(NUM_DIGITS)] for _ in range(MAX_LENGTH + 1)]
+number_of_digits = 10
+full_digit_mask = (1 << number_of_digits) - 1
+max_length = 40
 
-for first_digit in range(1, NUM_DIGITS):
-    mask_for_first = 1 << first_digit
-    dp[1][first_digit][mask_for_first] = 1
 
-for current_length in tqdm(range(1, MAX_LENGTH)):
-    for last_digit in range(NUM_DIGITS):
-        for used_mask in range(1 << NUM_DIGITS):
-            ways_so_far = dp[current_length][last_digit][used_mask]
-            if ways_so_far == 0:
+count_paths = [
+    [
+        [0 for _ in range(1 << number_of_digits)]
+        for _ in range(number_of_digits)
+    ]
+    for _ in range(max_length + 1)
+]
+
+
+for first_digit in range(1, number_of_digits):
+    initial_mask = 1 << first_digit
+    count_paths[1][first_digit][initial_mask] = 1
+
+
+for current_length in tqdm(range(1, max_length)):
+    for ending_digit in range(number_of_digits):
+        for used_digits_mask in range(1 << number_of_digits):
+            path_count = count_paths[current_length][ending_digit][
+                used_digits_mask
+            ]
+            if path_count == 0:
                 continue
-            for delta in [-1, 1]:
-                next_digit = last_digit + delta
-                if 0 <= next_digit < NUM_DIGITS:
-                    new_used_mask = used_mask | (1 << next_digit)
-                    dp[current_length + 1][next_digit][new_used_mask] += ways_so_far
+            for step_direction in (-1, 1):
+                next_digit = ending_digit + step_direction
+                if 0 <= next_digit < number_of_digits:
+                    new_used_digits_mask = used_digits_mask | (1 << next_digit)
+                    count_paths[current_length + 1][next_digit][
+                        new_used_digits_mask
+                    ] += path_count
+
 
 total_pandigital_step_numbers = 0
-for length in range(NUM_DIGITS, MAX_LENGTH + 1):
-    for last_digit in range(NUM_DIGITS):
-        total_pandigital_step_numbers += dp[length][last_digit][FULL_MASK]
+
+for length_value in range(number_of_digits, max_length + 1):
+    for ending_digit in range(number_of_digits):
+        total_pandigital_step_numbers += count_paths[length_value][
+            ending_digit
+        ][full_digit_mask]
+
 
 print(total_pandigital_step_numbers)
