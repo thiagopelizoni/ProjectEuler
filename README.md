@@ -190,3 +190,4 @@
 * [Problem 190](https://projecteuler.net/problem=190) | [Solution](src/problem_190.py)
 * [Problem 190](https://projecteuler.net/problem=190) | [Solution](src/problem_190.py)
 * [Problem 190](https://projecteuler.net/problem=190) | [Solution](src/problem_190.py)
+* [Problem 192](https://projecteuler.net/problem=192) | [Solution](src/problem_192.py)
