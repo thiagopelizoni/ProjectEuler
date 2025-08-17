@@ -1,22 +1,44 @@
 # Problem: https://projecteuler.net/problem=190
-import math
+import numpy as np
 from tqdm import tqdm
 
-maximum_m_value = 15
-minimum_m_value = 2
-number_of_colors = 3
-total_sum_of_floor_values = 0
+total_number_of_days = 30
+maximum_late_days_allowed = 2
+maximum_consecutive_absents_allowed = 3
 
-progress_bar = tqdm(range(minimum_m_value, maximum_m_value + 1), desc="Calculating for each m")
+attendance_ways_array = np.zeros(
+    (total_number_of_days + 1, maximum_late_days_allowed, maximum_consecutive_absents_allowed),
+    dtype=object
+)
+attendance_ways_array[0][0][0] = 1
 
-for current_m in progress_bar:
-    exponent_sum_s = current_m * (current_m + 1) // 2
-    numerator_value = pow(2, exponent_sum_s)
-    for current_k in range(1, current_m + 1):
-        numerator_value *= pow(current_k, current_k)
+for current_day_number in tqdm(range(1, total_number_of_days + 1)):
+    for previous_late_count in range(maximum_late_days_allowed):
+        for previous_consecutive_absents in range(maximum_consecutive_absents_allowed):
+            current_ways = attendance_ways_array[current_day_number - 1][previous_late_count][previous_consecutive_absents]
+            if current_ways == 0:
+                continue
 
-    denominator_value = pow(current_m + 1, exponent_sum_s)
-    floor_of_p_m = numerator_value // denominator_value
-    total_sum_of_floor_values += floor_of_p_m
+            # On time choice
+            new_late_count = previous_late_count
+            new_consecutive_absents = 0
+            attendance_ways_array[current_day_number][new_late_count][new_consecutive_absents] += current_ways
 
-print(total_sum_of_floor_values)
+            # Absent choice
+            new_late_count = previous_late_count
+            new_consecutive_absents = previous_consecutive_absents + 1
+            if new_consecutive_absents < maximum_consecutive_absents_allowed:
+                attendance_ways_array[current_day_number][new_late_count][new_consecutive_absents] += current_ways
+
+            # Late choice
+            new_late_count = previous_late_count + 1
+            if new_late_count < maximum_late_days_allowed:
+                new_consecutive_absents = 0
+                attendance_ways_array[current_day_number][new_late_count][new_consecutive_absents] += current_ways
+
+total_prize_strings = 0
+for late_count in range(maximum_late_days_allowed):
+    for consecutive_absents in range(maximum_consecutive_absents_allowed):
+        total_prize_strings += attendance_ways_array[total_number_of_days][late_count][consecutive_absents]
+
+print(total_prize_strings)
