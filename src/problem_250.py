@@ -1,129 +1,129 @@
 # Problem: https://projecteuler.net/problem=250
-from os import cpu_count
-from concurrent.futures import ProcessPoolExecutor
-from itertools import islice
+import os
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from tqdm import tqdm
+from typing import List, Tuple
 
-
-MOD_SUM = 250
-LIMIT = 250250
-MOD_VALUE = 10 ** 16
-
-
-def circular_convolution(polynomial_a, polynomial_b, mod_value):
-    size = len(polynomial_a)
-    result_polynomial = [0] * size
-
-    for index_a in range(size):
-        value_a = polynomial_a[index_a]
-        if value_a == 0:
+def modular_polynomial_multiply(
+    poly_a: List[int], poly_b: List[int], modulus: int
+) -> List[int]:
+    size = len(poly_a)
+    result = [0] * size
+    for i in range(size):
+        coeff_a = poly_a[i]
+        if coeff_a == 0:
             continue
-
-        for index_b in range(size):
-            value_b = polynomial_b[index_b]
-            if value_b == 0:
+        for j in range(size):
+            coeff_b = poly_b[j]
+            if coeff_b == 0:
                 continue
+            k = (i + j) % size
+            term = coeff_a * coeff_b
+            result[k] = (result[k] + term) % modulus
+    return result
 
-            result_index = (index_a + index_b) % size
-            term = value_a * value_b
-            result_polynomial[result_index] = (result_polynomial[result_index] + term) % mod_value
-
-    return result_polynomial
-
-
-def polynomial_power_monomial(residue, exponent, mod_value):
-    size = MOD_SUM
-    result_polynomial = [0] * size
-    result_polynomial[0] = 1
-
-    base_polynomial = [0] * size
-    base_polynomial[0] = 1
-    base_polynomial[residue % size] = 1
-
+def compute_monomial_power(
+    residue: int, exponent: int, size: int, modulus: int
+) -> List[int]:
+    result = [0] * size
+    result[0] = 1
+    base = [0] * size
+    base[0] = 1
+    base[residue] += 1
     current_exponent = exponent
     while current_exponent > 0:
         if current_exponent % 2 == 1:
-            result_polynomial = circular_convolution(result_polynomial, base_polynomial, mod_value)
-        
-        base_polynomial = circular_convolution(base_polynomial, base_polynomial, mod_value)
+            result = modular_polynomial_multiply(result, base, modulus)
+        base = modular_polynomial_multiply(base, base, modulus)
         current_exponent //= 2
+    return result
 
-    return result_polynomial
-
-
-def count_residue_chunk(bounds):
+def count_residues_in_range(bounds: Tuple[int, int], residue_mod: int) -> List[int]:
     start, end = bounds
-    counts = [0] * MOD_SUM
-
-    for number in range(start, end + 1):
-        residue = pow(number, number, MOD_SUM)
+    counts = [0] * residue_mod
+    for num in range(start, end + 1):
+        residue = pow(num, num, residue_mod)
         counts[residue] += 1
-        
     return counts
 
-
-def compute_poly_for_residue(task):
-    residue, frequency, mod_value = task
-
+def compute_residue_polynomial(
+    task: Tuple[int, int, int]
+) -> Tuple[int, List[int] | None]:
+    residue, frequency, modulus = task
     if frequency == 0:
         return residue, None
+    size = 250
+    if residue == 0:
+        poly = [0] * size
+        poly[0] = pow(2, frequency, modulus)
+        return residue, poly
+    poly = compute_monomial_power(residue, frequency, size, modulus)
+    return residue, poly
 
-    if residue % MOD_SUM == 0:
-        polynomial = [0] * MOD_SUM
-        polynomial[0] = pow(2, frequency, mod_value)
-        return residue, polynomial
-
-    polynomial = polynomial_power_monomial(residue, frequency, mod_value)
-    return residue, polynomial
-
-
-def chunk_ranges(start, stop, step):
+def generate_chunk_ranges(start: int, stop: int, chunk_size: int):
     current = start
     while current <= stop:
-        end = min(current + step - 1, stop)
+        end = min(current + chunk_size - 1, stop)
         yield current, end
         current = end + 1
 
+def main() -> None:
+    """
+    Purpose: Computes the number of non-empty subsets of {1^1, 2^2, ..., 250250^{250250}} whose sum is divisible by
+    250, modulo 10^{16}.
 
-def solve():
-    workers = max(1, cpu_count() or 1)
-    chunk_size = 2500
-    ranges = list(chunk_ranges(1, LIMIT, chunk_size))
+    Args: None
 
-    residue_counts = [0] * MOD_SUM
+    Returns: None; prints the result as a 16-digit string.
+
+    Method / Math Rationale: Counts frequencies of i^i mod 250 for i from 1 to 250250. Constructs generating function
+    product over residues r of (1 + x^r)^{count_r} in the ring Z/(10^{16})Z[x] / (x^{250} - 1) using exponentiation
+    by squaring and modular polynomial multiplication via circular convolution. Handles r=0 separately as a scalar
+    2^{count_0}. The constant term minus 1 yields the count of non-empty subsets with sum ≡ 0 mod 250.
+
+    Complexity: Time O(M^2 * log L * D + L) where M=250, L=250250, D≈M; space O(M).
+
+    References: https://projecteuler.net/problem=250
+    Generating functions modulo cyclotomic polynomial.
+    """
+    residue_mod: int = 250
+    sequence_length: int = 250250
+    result_mod: int = 10**16
+    chunk_size: int = 2500
+    workers: int = max(1, os.cpu_count() or 1)
+    ranges = list(generate_chunk_ranges(1, sequence_length, chunk_size))
+    residue_counts: List[int] = [0] * residue_mod
     with ProcessPoolExecutor(max_workers=workers) as executor:
-        iterator = executor.map(count_residue_chunk, ranges)
-        for counts in tqdm(iterator, total=len(ranges), desc="Counting residues"):
-            for i in range(MOD_SUM):
+        futures = [executor.submit(count_residues_in_range, r, residue_mod)
+                   for r in ranges]
+        for future in tqdm(as_completed(futures), total=len(ranges),
+                           desc="Counting residues"):
+            counts = future.result()
+            for i in range(residue_mod):
                 residue_counts[i] += counts[i]
-
-    tasks = [(r, residue_counts[r], MOD_VALUE) for r in range(MOD_SUM) if residue_counts[r] > 0]
-
-    polynomials = []
-    scalar_factor = 1
+    tasks = [(r, residue_counts[r], result_mod)
+             for r in range(residue_mod) if residue_counts[r] > 0]
+    polynomials: List[List[int]] = []
+    scalar: int = 1
     with ProcessPoolExecutor(max_workers=workers) as executor:
-        iterator = executor.map(compute_poly_for_residue, tasks)
-        for residue, polynomial in tqdm(iterator, total=len(tasks), desc="Computing polynomials"):
-            if polynomial is None:
+        futures = [executor.submit(compute_residue_polynomial, t) for t in tasks]
+        for future in tqdm(as_completed(futures), total=len(tasks),
+                           desc="Computing polynomials"):
+            res, poly = future.result()
+            if poly is None:
                 continue
-            
-            if residue == 0:
-                scalar_factor = (scalar_factor * polynomial[0]) % MOD_VALUE
+            if res == 0:
+                scalar = (scalar * poly[0]) % result_mod
             else:
-                polynomials.append(polynomial)
-
-    final_polynomial = [0] * MOD_SUM
-    final_polynomial[0] = 1
-
-    for polynomial in tqdm(polynomials, total=len(polynomials), desc="Performing convolutions"):
-        final_polynomial = circular_convolution(final_polynomial, polynomial, MOD_VALUE)
-
-    if scalar_factor != 1:
-        final_polynomial = [(x * scalar_factor) % MOD_VALUE for x in final_polynomial]
-
-    answer = (final_polynomial[0] - 1) % MOD_VALUE
+                polynomials.append(poly)
+    final_poly: List[int] = [0] * residue_mod
+    final_poly[0] = 1
+    for poly in tqdm(polynomials, desc="Performing convolutions"):
+        final_poly = modular_polynomial_multiply(final_poly, poly, result_mod)
+    if scalar != 1:
+        final_poly = [(x * scalar) % result_mod for x in final_poly]
+    answer = (final_poly[0] - 1) % result_mod
     print(str(answer).zfill(16))
 
-
 if __name__ == "__main__":
-    solve()
+    main()
