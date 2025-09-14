@@ -297,3 +297,4 @@
 * [Problem 309](https://projecteuler.net/problem=309) | [Solution](src/problem_309.py)
 * [Problem 310](https://projecteuler.net/problem=310) | [Solution](src/problem_310.py)
 * [Problem 312](https://projecteuler.net/problem=312) | [Solution](src/problem_312.py)
+* [Problem 313](https://projecteuler.net/problem=313) | [Solution](src/problem_313.py)
