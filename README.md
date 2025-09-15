@@ -299,3 +299,4 @@
 * [Problem 312](https://projecteuler.net/problem=312) | [Solution](src/problem_312.py)
 * [Problem 313](https://projecteuler.net/problem=313) | [Solution](src/problem_313.py)
 * [Problem 314](https://projecteuler.net/problem=314) | [Solution](src/problem_314.py)
+* [Problem 316](https://projecteuler.net/problem=316) | [Solution](src/problem_316.py)
