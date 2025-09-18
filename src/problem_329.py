@@ -33,8 +33,7 @@ def emit_prob(i, c, is_prime):
     is_p = is_prime[i]
     if c == 'P':
         return Fraction(2, 3) if is_p else Fraction(1, 3)
-    else:
-        return Fraction(1, 3) if is_p else Fraction(2, 3)
+    return Fraction(1, 3) if is_p else Fraction(2, 3)
 
 
 def main():
