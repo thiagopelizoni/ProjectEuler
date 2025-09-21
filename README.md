@@ -319,3 +319,4 @@
 * [Problem 335](https://projecteuler.net/problem=335) | [Solution](src/problem_335.py)
 * [Problem 336](https://projecteuler.net/problem=336) | [Solution](src/problem_336.py)
 * [Problem 337](https://projecteuler.net/problem=337) | [Solution](src/problem_337.py)
+* [Problem 340](https://projecteuler.net/problem=340) | [Solution](src/problem_340.py)
