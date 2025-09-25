@@ -1,116 +1,113 @@
 # Problem: https://projecteuler.net/problem=353
-import numpy as np
+import math
+from heapq import heappush, heappop
+import numba
 from numba import njit
-from math import sqrt, acos, pi
-from tqdm import tqdm
+import numpy as np
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from sympy import divisors
+from tqdm import tqdm
 
 @njit
-def get_points_for_z(z, r):
+def update_dist(d, w, dist, V):
+    updated = numba.typed.List()
+    for v in range(V):
+        new_d = d + w[v]
+        if new_d < dist[v]:
+            dist[v] = new_d
+            updated.append(v)
+    return updated
+
+def get_points_chunk(start_x, end_x, r2):
     points = []
-    m = r * r - z * z
-    if m < 0:
-        return points
-    sm = int(sqrt(m) + 0.0001)
-    for x in range(-sm, sm + 1):
-        yy = m - x * x
-        if yy < 0:
-            continue
-        y = int(sqrt(yy) + 0.0001)
-        if y * y == yy:
-            points.append(np.array([x, y, z]))
-            if y != 0:
-                points.append(np.array([x, -y, z]))
+    for x in range(start_x, end_x):
+        xx = x * x
+        max_y = math.isqrt(r2 - xx)
+        for y in range(-max_y, max_y + 1):
+            yy = y * y
+            z2 = r2 - xx - yy
+            if z2 >= 0:
+                z = math.isqrt(z2)
+                if z * z == z2:
+                    points.append((x, y, z))
+                    if z2 > 0:
+                        points.append((x, y, -z))
     return points
 
-@njit
-def dijkstra(points, r, start, goal):
-    V = points.shape[0]
-    inf = np.inf
-    dist = np.full(V, inf)
-    dist[start] = 0.0
-    visited = np.full(V, False)
-    r2 = float(r * r)
-    for _ in range(V):
-        min_d = inf
-        u = -1
-        for i in range(V):
-            if not visited[i] and dist[i] < min_d:
-                min_d = dist[i]
-                u = i
-        if u == -1:
-            break
-        visited[u] = True
-        pu = points[u]
-        for v in range(V):
-            if visited[v]:
-                continue
-            pv = points[v]
-            dot = pu[0] * pv[0] + pu[1] * pv[1] + pu[2] * pv[2]
-            cos = dot / r2
-            if cos > 1.0:
-                cos = 1.0
-            if cos < -1.0:
-                cos = -1.0
-            theta = acos(cos)
-            w = (theta / pi) ** 2
-            new_dist = dist[u] + w
-            if new_dist < dist[v]:
-                dist[v] = new_dist
-    return dist[goal]
-
-def compute_m(n):
-    r = (1 << n) - 1
-    points = []
-    future_to_z = {}
+def get_points(r):
+    r2 = r * r
     with ProcessPoolExecutor() as executor:
-        for z in range(r + 1):
-            future_to_z[executor.submit(get_points_for_z, z, r)] = z
-        for future in tqdm(as_completed(future_to_z), total=len(future_to_z)):
-            z = future_to_z[future]
-            pos_points = future.result()
-            points.extend(pos_points)
-            if z > 0:
-                neg_points = [p.copy() for p in pos_points]
-                for p in neg_points:
-                    p[2] = -p[2]
-                points.extend(neg_points)
-    points_arr = np.array(points)
-    V = points_arr.shape[0]
-    N_idx = None
-    S_idx = None
-    for i in range(V):
-        if points_arr[i, 0] == 0 and points_arr[i, 1] == 0 and points_arr[i, 2] == r:
-            N_idx = i
-        if points_arr[i, 0] == 0 and points_arr[i, 1] == 0 and points_arr[i, 2] == -r:
-            S_idx = i
-    m = dijkstra(points_arr, r, N_idx, S_idx)
-    return m
+        num_cpus = executor._max_workers
+        chunk_size = (2 * r + 1) // num_cpus + 1
+        futures = []
+        start = -r
+        for i in range(num_cpus):
+            end = min(start + chunk_size, r + 1)
+            if start >= end:
+                break
+            futures.append(executor.submit(get_points_chunk, start, end, r2))
+            start = end
+        points = []
+        for future in as_completed(futures):
+            points.extend(future.result())
+    return points
+
+def compute_m(r, points):
+    V = len(points)
+    points_np = np.array(points, dtype=np.float64)
+    r2 = np.float64(r * r)
+    N = next(i for i, p in enumerate(points) if p[2] == r and p[0] == 0 and p[1] == 0)
+    S = next(i for i, p in enumerate(points) if p[2] == -r and p[0] == 0 and p[1] == 0)
+    dist = np.full(V, np.inf, dtype=np.float64)
+    dist[N] = 0.0
+    pq = []
+    heappush(pq, (0.0, N))
+    visited = np.full(V, False, dtype=np.bool_)
+    pbar = tqdm(total=V, desc=f"Dijkstra for r={r}")
+    while pq:
+        d, u = heappop(pq)
+        if visited[u]:
+            continue
+        visited[u] = True
+        pbar.update(1)
+        if u == S:
+            pbar.close()
+            return d
+        dots = np.dot(points_np, points_np[u])
+        cos_theta = dots / r2
+        cos_theta = np.clip(cos_theta, -1.0, 1.0)
+        theta = np.arccos(cos_theta)
+        w = (theta / math.pi) ** 2
+        w[u] = np.inf  # skip self
+        updated = update_dist(d, w, dist, V)
+        for v in updated:
+            heappush(pq, (dist[v], v))
+    pbar.close()
+    return dist[S]
 
 def main():
     """
     Purpose
-    --------
-    Solves Project Euler problem 353 by computing the sum of minimal risks M(r) for r = 2^n - 1, n=1 to 15, rounded to 10 decimal places.
+    -------
+    Computes the sum of M(r) for r = 2^n - 1 where n ranges from 1 to 15, with M(r) being the minimal risk of a journey from the North Pole station to the South Pole station on the sphere C(r).
 
     Method / Math Rationale
     -----------------------
-    For each r, enumerate integer points on the sphere x^2 + y^2 + z^2 = r^2. Model as a complete graph with edge weights (acos(dot(P, Q) / r^2) / π)^2. Compute shortest path from North Pole (0,0,r) to South Pole (0,0,-r) using Dijkstra's algorithm. Sum M(r) over specified n.
+    For each r, generate all integer lattice points on the sphere x^2 + y^2 + z^2 = r^2. Construct a complete graph where the weight between two points is (acos(dot product / r^2) / pi)^2. Use Dijkstra's algorithm to find the minimal risk path from the North Pole to the South Pole.
 
     Complexity
     ----------
-    O(V^2) per r where V ≤ 1.7e5, parallelized over n=1 to 15.
+    O(15 * (r^2 + V^2 log V)) where V ~ O(r) and r up to 32767, feasible with optimizations.
 
     References
     ----------
     https://projecteuler.net/problem=353
     """
     sum_m = 0.0
-    with ProcessPoolExecutor() as executor:
-        futures = [executor.submit(compute_m, n) for n in range(1, 16)]
-        for future in tqdm(as_completed(futures), total=15):
-            sum_m += future.result()
+    for n in range(1, 16):
+        r = (1 << n) - 1
+        points = get_points(r)
+        m = compute_m(r, points)
+        sum_m += m
     print(f"{sum_m:.10f}")
 
 if __name__ == "__main__":
