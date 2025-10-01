@@ -346,3 +346,4 @@
 * [Problem 371](https://projecteuler.net/problem=371) | [Solution](src/problem_371.py)
 * [Problem 374](https://projecteuler.net/problem=374) | [Solution](src/problem_374.py)
 * [Problem 375](https://projecteuler.net/problem=375) | [Solution](src/problem_375.py)
+* [Problem 376](https://projecteuler.net/problem=376) | [Solution](src/problem_376.py)
