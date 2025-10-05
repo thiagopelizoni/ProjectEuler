@@ -361,3 +361,4 @@
 * [Problem 388](https://projecteuler.net/problem=388) | [Solution](src/problem_388.py)
 * [Problem 389](https://projecteuler.net/problem=389) | [Solution](src/problem_389.py)
 * [Problem 393](https://projecteuler.net/problem=393) | [Solution](src/problem_393.py)
+* [Problem 394](https://projecteuler.net/problem=394) | [Solution](src/problem_394.py)
