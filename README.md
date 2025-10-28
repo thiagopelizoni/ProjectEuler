@@ -411,3 +411,4 @@
 * [Problem 457](https://projecteuler.net/problem=457) | [Solution](src/problem_457.py)
 * [Problem 458](https://projecteuler.net/problem=458) | [Solution](src/problem_458.py)
 * [Problem 461](https://projecteuler.net/problem=461) | [Solution](src/problem_461.py)
+* [Problem 462](https://projecteuler.net/problem=462) | [Solution](src/problem_462.py)
