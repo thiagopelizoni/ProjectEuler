@@ -422,3 +422,4 @@
 * [Problem 474](https://projecteuler.net/problem=474) | [Solution](src/problem_474.py)
 * [Problem 475](https://projecteuler.net/problem=475) | [Solution](src/problem_475.py)
 * [Problem 477](https://projecteuler.net/problem=477) | [Solution](src/problem_477.py)
+* [Problem 479](https://projecteuler.net/problem=479) | [Solution](src/problem_479.py)
