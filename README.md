@@ -441,3 +441,4 @@
 * [Problem 501](https://projecteuler.net/problem=501) | [Solution](src/problem_501.py)
 * [Problem 503](https://projecteuler.net/problem=503) | [Solution](src/problem_503.py)
 * [Problem 504](https://projecteuler.net/problem=504) | [Solution](src/problem_504.py)
+* [Problem 506](https://projecteuler.net/problem=506) | [Solution](src/problem_506.py)
