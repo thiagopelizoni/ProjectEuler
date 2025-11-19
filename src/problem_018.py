@@ -1,4 +1,4 @@
-# Problem: https://projecteuler.net/problem=15
+# Problem: https://projecteuler.net/problem=18
 
 # Triangle as given in Project Euler Problem 18
 triangle = [
