@@ -47,22 +47,6 @@ def compute_min_cost(s, r):
     return dists[end]
 
 def main():
-    """
-    Purpose
-    Solve Project Euler problem 314: Find the maximum enclosed-area/wall-length ratio for a wall on the moon grid.
-
-    Method / Math Rationale
-    Use binary search on the ratio r. For each candidate r, check if there is an s such that the max A - r P >=0, by
-    computing for each s the min cap_A + r path_L for the corner path using Dijkstra on a graph of grid points near
-    the ideal arc, with edge costs area contrib + r length.
-
-    Complexity
-    O(number iterations * number s * (nodes + edges) log nodes), with nodes ~1k, edges ~300k, s~250, iterations~50,
-    but parallel on s.
-
-    References
-    https://projecteuler.net/problem=314
-    """
     low = 125.0
     high = 132.54
     for _ in range(50):

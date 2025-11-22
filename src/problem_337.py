@@ -26,30 +26,6 @@ def compute_phi(n: int) -> np.ndarray:
     return phi
 
 def main():
-    """
-    Purpose
-    Compute S(20,000,000) mod 10^8, where S(N) is the number of totient stairstep sequences with a_n <= N.
-
-    Args
-    None
-
-    Returns
-    None
-
-    Method / Math Rationale
-    Precompute Euler's totient function for all numbers up to N using a sieve.
-    Use dynamic programming: dp[m] = sum of dp[k] over valid predecessors k, plus 1 if m=6.
-    To efficiently compute the sums, process numbers in order of increasing phi[m], grouping by phi value to handle
-    equal phi correctly.
-    Use a Fenwick tree (binary indexed tree) for range sum queries and updates to accumulate the dp values modulo 10^8.
-
-    Complexity
-    Time: O(N log N) due to sorting and Fenwick tree operations.
-    Space: O(N)
-
-    References
-    https://projecteuler.net/problem=337
-    """
     N = 20000000
     MOD = 100000000
     phi = compute_phi(N)

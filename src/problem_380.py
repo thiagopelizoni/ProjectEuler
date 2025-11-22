@@ -3,29 +3,6 @@ from tqdm import tqdm
 import math
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 380: compute the number of distinct 100 x 500 mazes, which is the number
-    of spanning trees in a 100 x 500 grid graph, and print it in scientific notation rounded to 5
-    significant digits.
-
-    Method / Math Rationale
-    ------------------------
-    Uses the Matrix-Tree Theorem for the grid graph, which is the Cartesian product of two path graphs.
-    The number of spanning trees is (1 / (m * n)) times the product of the nonzero eigenvalues of the
-    Laplacian matrix. The eigenvalues are λ_p + μ_q where λ_p = 2 - 2 * cos(π * (p-1) / m) for p = 1
-    to m, and similarly for μ_q. Compute the product using sum of log10 to handle large numbers, then
-    convert to scientific notation.
-
-    Complexity
-    ----------
-    O(m * n) time for the double loop to sum the logarithms, O(1) space.
-
-    References
-    ----------
-    https://projecteuler.net/problem=380
-    """
     m = 100
     n = 500
     sum_log10 = 0.0

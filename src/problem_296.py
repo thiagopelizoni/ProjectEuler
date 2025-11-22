@@ -23,24 +23,6 @@ def count_for_a(a: int, N: int) -> int:
     return total
 
 def main():
-    """
-    Purpose:
-    Solves Project Euler problem 296: Counts the number of integer-sided triangles ABC with sides a=BC, b=AC, c=AB where
-    a <= b <= c, perimeter a + b + c <= 100000, and the length BE is an integer, where BE is defined as per the problem
-    involving the angular bisector and tangent.
-
-    Method / Math Rationale:
-    For each possible a and b (with a <= b), compute g = gcd(a, b), e = (a + b) // g. Then, c must be a multiple of e in
-    the range [b, min(a + b - 1, 100000 - a - b)]. The condition BE = a * c / (a + b) being integer is equivalent to e
-    dividing c. Count such c for each a, b using ceiling and floor to find the number of multiples.
-
-    Complexity:
-    O(M * K) where M ~ 33333, K ~ 25000 on average, leading to ~8.5e8 operations, parallelized over available CPUs for
-    efficiency.
-
-    References:
-    https://projecteuler.net/problem=296
-    """
     N = 100000
     max_a = N // 3
     a_values = list(range(1, max_a + 1))

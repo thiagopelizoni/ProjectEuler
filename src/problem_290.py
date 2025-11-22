@@ -9,22 +9,6 @@ def sum_digits(num):
     return s
 
 def main():
-    """
-    Purpose
-    Compute the number of integers 0 <= n < 10^18 such that the digit sum of n equals the digit sum of 137*n.
-
-    Method / Math Rationale
-    Uses digit DP from LSB to MSB over 18 digits (leading zeros allowed). Tracks position, carry from multiplication by 137,
-    and running difference (sum_digits_n - sum_digits_m so far). After all digits, subtracts sum of digits from remaining
-    carry to update difference. Counts ways where final difference is zero.
-
-    Complexity
-    Time: O(18 * 137 * 401 * 10) ≈ 10^7 operations.
-    Space: O(19 * 137 * 401) ≈ 10^6 integers.
-
-    References
-    https://projecteuler.net/problem=290
-    """
     DIGITS = 18
     MAX_CARRY = 136
     MIN_DIFF = -200

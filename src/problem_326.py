@@ -23,30 +23,6 @@ def formula_S(n: int) -> int:
 
 
 def main() -> None:
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 326: compute f(10^12, 10^6), the number of subarrays
-    with sum congruent to 0 modulo 10^6.
-
-    Method / Math Rationale
-    -----------------------
-    The sequence a_n has closed-form expressions per n mod 6, leading to quadratic
-    S_n = sum_{k=1}^n a_k. The residues S_k mod M are computed via S_k % M.
-    The sequence of residues has period P = lcm(6, M) = 3*10^6, but with class-
-    dependent shifts (0 or M/2) for positions based on k mod 6. Group positions by
-    mod 6 into shifting (rems 0,1,3,4) and non-shifting (2,5) classes. Full periods
-    contribute via scaled base counts, adjusted for parity-induced shifts in shifting
-    classes. Remainder computed by direct shifted residues.
-
-    Complexity
-    ----------
-    O(P + M) = O(10^6)
-
-    References
-    ----------
-    https://projecteuler.net/problem=326
-    """
     N = 10**12
     M = 10**6
     P = 3 * M

@@ -49,29 +49,6 @@ def compute_sum_for_s(s, G, L, h_np, mod):
     return result
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 350 by computing the number of lists of size 10^18 with GCD >= 10^6
-    and LCM <= 10^12, modulo 101^4.
-
-    Method / Math Rationale
-    -----------------------
-    For a sequence of length N=10^18, count sequences with GCD >= G=10^6 and LCM <= L=10^12.
-    Using Mobius inversion, transform to count sequences with GCD=1 and LCM <= k for k up to L/G.
-    Compute h(k) as the number of sequences with GCD=1 and LCM=k using the divisor function and
-    Mobius function. Sum contributions over square-free s using segmented sums for efficiency,
-    optimized with Numba for fast arithmetic.
-
-    Complexity
-    ----------
-    O(M log M + sum square-free s sqrt(L / s)) ~ O(10^6 log 10^6 + 10^6 * 10^3) = O(10^9)
-    operations, with Numba optimization for numerical loops.
-
-    References
-    ----------
-    https://projecteuler.net/problem=350
-    """
     N = 10**18
     G = 10**6
     L = 10**12

@@ -40,43 +40,6 @@ def compute_count(mask: int, length: int) -> int:
     return sign * count
 
 def main() -> None:
-    """
-    Purpose: Computes Z(10^16), the number of positive integers n not exceeding
-    10^16 for which the polynomial P_n, formed by the digits of n as coefficients,
-    has at least one integer root.
-
-    Args:
-        None
-
-    Returns:
-        None (prints the result to stdout)
-
-    Method / Math Rationale:
-        Possible integer roots are limited to -1 through -9, as positive roots yield
-        positive values, roots with |r| >= 10 are impossible due to the leading term
-        dominating (bounds show the sum of other terms cannot cancel it), and r=0
-        is adjusted via the +1 for n=10^16.
-        Employs inclusion-exclusion to count n with at least one such root for
-        exactly 16-digit numbers.
-        For each subset S, a backward digit DP computes the count where P_n(-k)=0
-        for all k in S, maintaining a state tuple of scaled partial Horner scheme
-        values to ensure final zero evaluation; leading digit non-zero enforced.
-        The formula total - (number of 16-digit n with no root) +1 accounts for
-        smaller n (assumed no negative roots or adjusted implicitly) and the
-        boundary n=10^16 with root 0.
-        Correctness verified by matching example Z(10^5)=14696 and known solution.
-
-    Complexity:
-        Time: O(2^9 * length * 10 * max_states), where max_states is the maximum
-        number of DP states over subsets, product of per-k state ranges (grows with
-        length but feasible for length=16).
-        Space: O(max_states) per process.
-
-    References:
-        https://projecteuler.net/problem=269
-        Inclusion-exclusion principle
-        Digit dynamic programming for constrained counting
-    """
     length = 16
     total = 10 ** length - 1
     no_roots = 0

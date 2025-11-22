@@ -30,26 +30,6 @@ def backtrack(binary_sequence: list[int], current_suffix_mask: int, substring_us
     return total
 
 def main() -> None:
-    """
-    Purpose: Solves Project Euler problem 265, computing the sum of all 2^5-bit binary numbers starting with 5 zeros
-    such that the circular arrangement has all unique 5-bit substrings.
-
-    Args: None
-
-    Returns: None; the computed sum is printed to standard output.
-
-    Method / Math Rationale: Employs backtracking to extend the binary sequence from an initial string of N zeros,
-    ensuring each new N-bit substring is unique by tracking usage. This simulates traversing unused edges in the
-    de Bruijn graph for binary strings of length N. Upon reaching full length 2^N, verifies the N-1 wrapping
-    substrings do not conflict with used ones, ensuring the circle covers all 2^N unique substrings via pigeonhole
-    principle, as 2^N - (N - 1) linear substrings are already distinct.
-
-    Complexity: Time O(2^{2^N / 2}) worst-case due to backtracking with pruning (feasible for N=5); space O(2^N)
-    for tracking used substrings and the sequence.
-
-    References: https://projecteuler.net/problem=265
-    de Bruijn sequences and Eulerian cycles in directed graphs.
-    """
     n = 5
     sequence_length = 1 << n
     full_mask = (1 << n) - 1

@@ -37,28 +37,6 @@ def compute(triple, n, k, p_to_data):
     return x
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 365 by computing the sum of binom(10^18, 10^9) mod (p*q*r) over all primes
-    1000 < p < q < r < 5000.
-
-    Method / Math Rationale
-    -----------------------
-    Uses Lucas' theorem to compute binom(n, k) mod prime s as the product of binomials on base s digits.
-    Precomputes factorial and inverse factorial mod each prime for fast modular binomial coefficients.
-    For each triple of primes, computes the binomial mod each prime, then combines using the Chinese
-    Remainder Theorem to get mod pqr. Uses sequential computation with progress bar for visibility.
-
-    Complexity
-    ----------
-    O( (number of primes choose 3) * (log n / log min_prime) ) for main computations, approximately
-    O(500^3 * 6) ~ 4e8 operations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=365
-    """
     n = 10**18
     k = 10**9
     primes = list(primerange(1001, 5000))

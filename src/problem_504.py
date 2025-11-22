@@ -145,43 +145,6 @@ def count_quadrilaterals_pure_python(limit, is_square, gcd_table):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 504, "Square on the Inside", for m = 100.
-
-    Method / Math Rationale
-    ----------------------
-    Uses Pick's theorem A = i + b/2 - 1 for lattice polygons with integer vertices, where A
-    is the area, i is the number of interior lattice points and b is the number of boundary
-    lattice points. For quadrilateral ABCD with vertices (a, 0), (0, b), (-c, 0), (0, -d) and
-    1 <= a, b, c, d <= m, the area is A = (a + c)(b + d) / 2 and the number of boundary
-    points is b = gcd(a, b) + gcd(b, c) + gcd(c, d) + gcd(a, d). Hence the number of
-    interior points is
-        i(a, b, c, d) =
-            ((a + c) * (b + d) - (gcd(a, b) + gcd(b, c) + gcd(c, d) + gcd(a, d))) // 2 + 1.
-    The program precomputes a table of gcd values and evaluates i on a 100 x 100 grid of
-    (c, d) pairs for each fixed (a, b) using vectorised NumPy operations. A boolean lookup
-    table flags which integers up to the maximum possible interior count are perfect squares,
-    so counting quadrilaterals reduces to testing i(a, b, c, d) against this table. The most
-    expensive loop over a is wrapped by tqdm to expose progress. If NumPy is not available
-    the code falls back to a pure-Python implementation that parallelises over a with
-    ProcessPoolExecutor.
-
-    Complexity
-    ----------
-    Let m be the upper bound on a, b, c and d. The vectorised algorithm performs Θ(m^4)
-    arithmetic operations overall but keeps the inner two dimensions in compiled NumPy
-    code, resulting in practical runtimes for m = 100. It requires Θ(m^2) additional memory
-    for the gcd and helper grids. The pure-Python fallback also has Θ(m^4) time complexity
-    but parallelises over all available CPU cores.
-
-    References
-    Project Euler problem 504, "Square on the Inside":
-    https://projecteuler.net/problem=504
-    Pick's theorem:
-    https://en.wikipedia.org/wiki/Pick%27s_theorem
-    """
     limit = 100
     max_interior = 2 * limit * limit
     use_numpy = np is not None

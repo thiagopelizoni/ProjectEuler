@@ -49,30 +49,6 @@ def get_total(current):
     return total
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 376 by counting the number of distinct unordered sets of three six-sided dice
-    with faces numbered from 1 to 30 that form a nontransitive set, where for any die chosen first, the second
-    player can choose another with >1/2 probability of winning.
-
-    Method / Math Rationale
-    ------------------------
-    Uses dynamic programming over the pip values from 1 to N=30, tracking the remaining faces to assign for each
-    die (A, B, C) and the cumulative strict win counts for A over B, B over C, C over A. At each pip value,
-    assigns counts to each die and updates win counts based on prefix cumulatives. At the end, sums the ways
-    where all win counts >18 (corresponding to >1/2 probability), dividing by 3 for unordered sets. The
-    conditions ensure distinct dice.
-
-    Complexity
-    ----------
-    O(N * 7^3 * 37^3 * 7^3) in the worst case due to state space and transitions, but accelerated with Numba JIT
-    compilation for performance.
-
-    References
-    ----------
-    https://projecteuler.net/problem=376
-    """
     N = 30
     R = 7
     W = 37

@@ -65,25 +65,6 @@ def compute_chunk_sum(
     return total
 
 def main() -> None:
-    """
-    Purpose: Computes the average number of iterations required to find the rounded square root using the specified
-    iterative method for all 14-digit numbers from 10^13 to 10^14 - 1.
-
-    Args: None
-
-    Returns: None; prints the average rounded to 10 decimal places.
-
-    Method / Math Rationale: Recursively partitions the number range based on the ceiling of n divided by the current
-    guess in the adapted Heron's method, accumulating iterations multiplied by subrange sizes when the guess
-    stabilizes. Pairs consecutive initial ceiling values since they yield the same next guess due to the even initial
-    guess and parity, enabling efficient counting without enumerating each number individually.
-
-    Complexity: Time O(sqrt(U) * D) with U ≈ 10^14, D ≈ 10 average iterations, parallelized over ~10^7 pairs; space
-    O(1) per process.
-
-    References: https://projecteuler.net/problem=255
-    Heron's method for square roots.
-    """
     lower_bound: int = 10**13
     upper_bound: int = 10**14 - 1
     initial_guess: int = 7 * 10**6

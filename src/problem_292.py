@@ -73,19 +73,6 @@ def gao(x, y, len_, ind):
     return res
 
 def main():
-    """
-    Purpose
-    Computes the number of distinct Pythagorean polygons with perimeter <= 120 as defined in Project Euler problem 292.
-
-    Method / Math Rationale
-    Uses dynamic programming with memoization to count convex lattice polygons with integer edge lengths up to translation. Directions are precomputed and sorted by angle to canonicalize rotations by enforcing strictly increasing direction indices. Convexity is maintained by left turns and skipping 180-degree turns. Pruning uses squared distance check against remaining perimeter. Counts exact perimeters for even values and accumulates for <= 120.
-
-    Complexity
-    O(number of visited states * number of directions * max_k), optimized by pruning and canonical ordering.
-
-    References
-    https://projecteuler.net/problem=292
-    """
     total = 0
     for perim in tqdm(range(4, 121, 2)):
         buf = gao(max_coordinate, max_coordinate, perim, 0)

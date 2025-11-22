@@ -124,40 +124,6 @@ def even_compute(N):
     return base - 2 * diff_black
 
 def compute_T(N: int) -> int:
-    """
-    Purpose
-    -------
-    Computes T(N), the minimal number of turns to finish the game starting from
-    configuration C_N, or 0 if unsolvable.
-
-    Args
-    ----
-    N: int
-        The size of the N x N board.
-
-    Returns
-    -------
-    int
-        T(N).
-
-    Method / Math Rationale
-    -----------------------
-    Model the problem as a system over GF(2) where flipping at (k, l) affects
-    the cross including the center once. The solution involves solving for row
-    and column parities and finding the minimum weight matrix satisfying the
-    parities. For efficiency, distinguish even and odd N cases, using integer
-    arithmetic to count lattice points in the quarter annulus and compute
-    necessary parities and counts without floating-point issues.
-
-    Complexity
-    ----------
-    Time: O(N) per call due to loops over board size.
-    Space: O(N) for even N to store parities.
-
-    References
-    ----------
-    https://projecteuler.net/problem=331
-    """
     N64 = int64(N)
     if N % 2 == 1:
         return odd_compute(N64)
@@ -165,25 +131,6 @@ def compute_T(N: int) -> int:
         return even_compute(N64)
 
 def main() -> None:
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 331 by computing the required sum.
-
-    Method / Math Rationale
-    -----------------------
-    Computes T(2^i - i) for i from 3 to 31 using the specialized even/odd N
-    methods, then sums the results.
-
-    Complexity
-    ----------
-    Time: O(sum_{i=3}^{31} (2^i - i)) = O(2^{32}).
-    Space: O(2^{30}) in worst case for largest even N.
-
-    References
-    ----------
-    https://projecteuler.net/problem=331
-    """
     total = 0
     for i in tqdm(range(3, 32), desc="Computing sum", file=sys.stderr):
         N = (1 << i) - i

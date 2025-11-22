@@ -56,27 +56,6 @@ def S(M):
     return res
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 496 by computing F(10^9), the sum of BC for all integer sided triangles
-    satisfying the condition with BC <= 10^9.
-
-    Method / Math Rationale
-    ----------------------
-    The condition leads to the parametrization where the sides are b = t * l^2, a = t * l * s,
-    c = t * (s^2 - l^2) with 1 <= l, l+1 <= s <= 2*l - 1, t square free, a <= L.
-    Then F(L) = sum t * l * s over those with t * l * s <= L.
-    Using directory trick for floor functions and inclusion-exclusion for sum of square free * t.
-
-    Complexity
-    ----------
-    O(sqrt(L) * sqrt(L)) = O(L) ~10^9 operations, optimized with numba for speed.
-
-    References
-    ----------
-    https://projecteuler.net/problem=496
-    """
     L = 10**9
     segments = []
     i = 1

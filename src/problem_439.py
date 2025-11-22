@@ -4,27 +4,6 @@ from math import isqrt
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Compute S(10^11) mod 10^9, where S(N) = sum_{i=1}^N sum_{j=1}^N d(i*j) and d(k) is the sum of divisors of k.
-
-    Method / Math Rationale
-    -----------------------
-    Use Mobius inversion to derive S(n) = sum_{e=1}^n mu(e) * e * H(floor(n/e))^2, where H(m) = sum_{g=1}^m g * floor(m/g).
-    Compute H(m) in O(sqrt(m)) time using segment summation. Compute the prefix sum P(m) = sum_{k=1}^m mu(k)*k using
-    recursive memoization based on the identity sum_{d=1}^m d * P(floor(m/d)) = 1, with precomputation for small m using sieve.
-    Iterate over segments where floor(n/e) is constant to group contributions. Computations are performed modulo 10^9,
-    handling negative values appropriately.
-
-    Complexity
-    ----------
-    O(N^{3/4}) time for the recursion with memoization and segment summations, which is feasible for N=10^11.
-
-    References
-    
-    https://projecteuler.net/problem=439
-    """
     MOD = 10**9
     N = 10**11
     LIMIT = 10**6

@@ -5,26 +5,6 @@ from tqdm import tqdm
 from typing import List, Set, Tuple
 
 def main() -> None:
-    """
-    Purpose
-    Computes C(30) mod 10^8, where C(N) is the number of ways to maximally
-    cut an N x N square with integer coordinate cuts between points on
-    different sides, without crossings, counting rotations and reflections
-    as distinct.
-
-    Method / Math Rationale
-    Models the problem as counting non-degenerate triangulations of 4N
-    boundary points where diagonals only connect points with disjoint side
-    assignments. Uses DP where dp[i][j] is the number of valid
-    triangulations of the sub-polygon from vertex i to j, with splits only
-    on allowed diagonals and non-collinear triangles.
-
-    Complexity
-    Time: O((4N)^3) = O(N^3), Space: O((4N)^2) = O(N^2)
-
-    References
-    https://projecteuler.net/problem=270
-    """
     N: int = 30
     V: int = 4 * N
     MOD: int = 10**8

@@ -35,20 +35,6 @@ def to_base14(num: int) -> str:
     return s
 
 def main() -> None:
-    """
-    Purpose
-    Computes the sum of the decimal values of the digits of all n-digit steady squares in base 14 for 1 <= n <= 10000, then prints the sum in base 14 using lowercase letters.
-
-    Method / Math Rationale
-    Builds two non-trivial steady square sequences by appending digits determined by a linear congruence modulo 14. Skips additions when the new digit is 0 to avoid leading zeros. Updates the number and the quotient k without recomputing the square each time. Adds the digit sum for each valid steady square per n, including the trivial '1' for n=1.
-
-    Complexity
-    Time: O(10000^2) for big integer operations across the loop iterations.
-    Space: O(10000) for storing big integers a and k.
-
-    References
-    https://projecteuler.net/problem=284
-    """
     total: int = 1
     type7: SteadyType = SteadyType(7)
     type8: SteadyType = SteadyType(8)

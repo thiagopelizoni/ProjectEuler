@@ -71,35 +71,6 @@ def search(root3, factors):
     return result
 
 def main():
-    """
-    Purpose
-    -------
-    Compute f(43!) as defined in Project Euler problem 418, which is the sum a + b + c 
-    for the unique factorization triple (a, b, c) of 43! with 1 <= a <= b <= c and 
-    a * b * c = 43! that minimizes c / a.
-    No parameters.
-    Prints the sum a + b + c.
-    
-    Method / Math Rationale
-    -----------------------
-    Factorize 43! into its prime exponents. Approximate the cube root of 43! using 
-    high-precision logarithms. Generate all divisors within a narrow range around 
-    the cube root using recursive enumeration with pruning. For each pair of 
-    candidates a below and c above the cube root, compute b from remaining 
-    exponents, validate the triple, and track the one with minimal c / a using 
-    exact integer comparisons to avoid floating-point precision issues.
-    
-    Complexity
-    ----------
-    Generating candidates: Recursive over 14 primes, pruned to ~1000 candidates 
-    by tight bounds, effectively O(1) for fixed input.
-    Searching: O(number of candidates^2) in worst case, but early termination 
-    reduces it significantly; for ~1000 candidates, feasible.
-    
-    References
-    ----------
-    https://projecteuler.net/problem=418
-    """
     limit = 43
     delta = 0.0002
     mp.dps = 100

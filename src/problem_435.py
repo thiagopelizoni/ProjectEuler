@@ -28,32 +28,6 @@ def fib(n, mod):
     return powered[0][0]
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of F_n(x) for x from 0 to 100, where F_n(x) is the polynomial
-    sum_{i=0}^n f_i x^i with Fibonacci numbers f_i (f_0=0, f_1=1, ...), for
-    n=10^15, modulo 1307674368000 (15!).
-
-    Method / Math Rationale
-    -----------------------
-    Uses the closed-form expression for F_n(x) = (f_n x^{n+2} + f_{n+1} x^{n+1} - x)
-    / (x^2 + x - 1).
-    To compute modulo m, calculates the numerator modulo m * |denominator|, then
-    performs integer division by |denominator|, and adjusts sign if necessary.
-    Fibonacci numbers are computed using matrix exponentiation modulo the large
-    modulus. Powers are computed using built-in pow with modulus.
-
-    Complexity
-    ----------
-    Time: O(100 * log(n)) due to matrix exponentiations and modular powers for each x.
-    Space: O(1)
-
-    References
-    ----------
-    https://projecteuler.net/problem=435
-    https://bin.re/blog/project-euler-problem-435-polynomials-of-fibonacci-numbers/
-    """
     n = 10**15
     m = 1307674368000
     total = 0

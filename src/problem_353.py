@@ -85,23 +85,6 @@ def compute_m(r, points):
     return dist[S]
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of M(r) for r = 2^n - 1 where n ranges from 1 to 15, with M(r) being the minimal risk of a journey from the North Pole station to the South Pole station on the sphere C(r).
-
-    Method / Math Rationale
-    -----------------------
-    For each r, generate all integer lattice points on the sphere x^2 + y^2 + z^2 = r^2. Construct a complete graph where the weight between two points is (acos(dot product / r^2) / pi)^2. Use Dijkstra's algorithm to find the minimal risk path from the North Pole to the South Pole.
-
-    Complexity
-    ----------
-    O(15 * (r^2 + V^2 log V)) where V ~ O(r) and r up to 32767, feasible with optimizations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=353
-    """
     sum_m = 0.0
     for n in range(1, 16):
         r = (1 << n) - 1

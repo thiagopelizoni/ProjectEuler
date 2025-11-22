@@ -24,25 +24,6 @@ def poly_pow(base, exponent, deg=24):
     return result
 
 def main():
-    """
-    Purpose
-    Computes S(11**12) modulo 10**9, where S(n) is the number of positive integers k < 10**n with digit sum 23 and divisible by 23.
-
-    Args
-    None
-
-    Returns
-    None
-
-    Method / Math Rationale
-    Uses roots of unity filter to enforce the modulo 23 constraint. Groups positions into cycles of 22 due to the multiplicative order of 10 modulo 23. Computes truncated polynomial powers and products using high-precision complex numbers to extract the required coefficient, averages over roots, rounds to integer, and takes modulo 10**9.
-
-    Complexity
-    O(23 * log(M) * D**2) with D=24 and M approx 10**12, resulting in constant time in practice.
-
-    References
-    https://projecteuler.net/problem=294
-    """
     n = 11 ** 12
     period = 22
     m = n // period

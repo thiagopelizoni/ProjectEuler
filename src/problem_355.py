@@ -33,30 +33,6 @@ def find_for_p(p, n, primes_set, max_power_p, max_power):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 355: Find the maximal possible sum of a set of mutually co-prime elements
-    from {1, 2, ..., 200000}.
-
-    Method / Math Rationale
-    ---------------------
-    Compute the base sum as 1 plus the sum of maximal prime powers p^k <= 200000 for each prime p. Improve this
-    by identifying profitable combinations where a number m = p^a * q (with p < q primes) yields a gain
-    m - (max_p + max_q) > 0. Model these as edges in a bipartite graph between small and large primes with
-    weights as gains. Use integer linear programming to find the maximum weight matching, adding the total gain
-    to the base sum.
-
-    Complexity
-    ----------
-    - Time: O(S * Q * log_p N) for candidate generation (S ~90 small primes, Q ~18k primes, log ~20), plus ILP
-      solving time (feasible for 30k variables).
-    - Space: O(number of candidates) ~ O(30k).
-
-    References
-    ----------
-    https://projecteuler.net/problem=355
-    """
     n = 200000
 
     primes = list(primerange(2, n + 1))

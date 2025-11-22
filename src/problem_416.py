@@ -120,28 +120,6 @@ def chinese_remainder(a1, m1, a2, m2):
     return x
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 416: compute the last 9 digits of F(10, 10^12), where F(m, n) is the number of ways
-    a frog can make m round-trips on n squares with jumps of 1, 2, or 3, such that at most one square is unvisited.
-    No parameters.
-    Returns None, prints the integer answer.
-
-    Method / Math Rationale
-    -----------------------
-    Model the number of ways for a single leg as paths in a line graph with matrix exponentiation using tribonacci
-    recurrence. Use inclusion-exclusion over skipped positions, expanded via binomial theorem on effective transfer
-    matrices. Compute using Chinese Remainder Theorem for modulo 10^9 = 2^9 * 5^9, with matrix powers for large exponents.
-
-    Complexity
-    ----------
-    O(D^3 log n) where D = binom(22, 2) = 231, n = 10^12, log n ≈ 40, so approximately 480 million operations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=416
-    """
     n = 10**12
     MOD = 10**9
     m1 = 512

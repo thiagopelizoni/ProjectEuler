@@ -73,26 +73,6 @@ def chunk_func(ch):
     return compute_chunk(start, end, mu, H, the_N)
 
 def main():
-    """
-    Purpose
-    -------
-    Computes S(10^7) as defined in Project Euler problem 441 and prints it rounded to four decimal places.
-
-    Method / Math Rationale
-    -----------------------
-    Utilizes Mobius inversion to filter coprime pairs, precomputes the Mobius function using a linear sieve and
-    harmonic numbers via cumulative sums. Contributions are calculated by iterating over possible d values
-    (from Mobius inversion) and for each, summing over m to accumulate the weighted sums derived from the
-    reformulated expression of S(N) using piecewise harmonic sums for efficiency.
-
-    Complexity
-    ----------
-    O(N log N) time complexity, dominated by the nested loops over d and m, where the total iterations are
-    proportional to sum_{d=1}^N N/d ≈ N log N. Space is O(N) for precomputed arrays.
-
-    References
-    https://projecteuler.net/problem=441
-    """
     N = 10000000
     num_chunks = (os.cpu_count() or 8) * 5
     bounds = [1]

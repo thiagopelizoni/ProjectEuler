@@ -58,30 +58,6 @@ def process_state(state_cnt, num_quartets):
     return local_next
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 475: computes f(600) mod 1000000007, where f(12n) is the number of ways to
-    organize 4n trios from 12n musicians after forming 3n quartets, ensuring no trio contains musicians from
-    the same quartet.
-
-    Method / Math Rationale
-    ------------------------
-    Uses dynamic programming to count the ordered ways to form 200 trios by iteratively selecting players from
-    quartets, tracking the distribution of quartet sizes (0 to 4 players left) in a state tuple (n0, n1, n2,
-    n3, n4). Transitions account for selecting three players from different quartets based on their sizes,
-    updating counts combinatorially. The final count is divided by 200! (using modular inverse) to account
-    for indistinguishable trios.
-
-    Complexity
-    ----------
-    Time: O(200 * 100000 * 20) ~ 400M operations, feasible with parallelism.
-    Space: O(100000) for states.
-
-    References
-    ----------
-    https://projecteuler.net/problem=475
-    """
     num_quartets = 150
     num_trios = 200
     initial_state = (0, 0, 0, 0, num_quartets)

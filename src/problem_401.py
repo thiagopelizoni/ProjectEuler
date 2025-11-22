@@ -23,30 +23,6 @@ def sum_of_squares(n, mod):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Computes SIGMA2(10^15) modulo 10^9, where SIGMA2(n) is the summatory function
-    of the sum of squares of divisors, i.e., sum_{i=1}^n sum_{d|i} d^2.
-
-    Method / Math Rationale
-    -----------------------
-    SIGMA2(n) = sum_{d=1}^n d^2 * floor(n/d). This is computed efficiently by
-    grouping terms with the same floor(n/d) value using an O(sqrt(n)) loop over
-    segments [i, j-1]. For each segment, compute floor(n/d) * (sum_{k=1}^{j-1} k^2
-    - sum_{k=1}^{i-1} k^2) modulo 10^9, where sum of squares uses a closed-form
-    formula adjusted for modular arithmetic by pre-dividing factors to avoid large
-    intermediates.
-
-    Complexity
-    ----------
-    Time: O(sqrt(n)) ~ 3*10^7 operations for n=10^15
-    Space: O(1)
-
-    References
-    ----------
-    https://projecteuler.net/problem=401
-    """
     LIMIT = 10**15
     MOD = 10**9
     ans = 0

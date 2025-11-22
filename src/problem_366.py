@@ -1,28 +1,5 @@
 # Problem: https://projecteuler.net/problem=366
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 366 by computing the sum of M(n) for n <= 10^18 modulo 10^8, where M(n) is the
-    maximum number of stones the first player can take from a winning position or 0 otherwise.
-
-    Method / Math Rationale
-    -----------------------
-    Identifies losing positions as a shifted Fibonacci sequence L_k with L_1=1, L_2=2, L_k = L_{k-1} + L_{k-2}.
-    Defines intervals I_k between losing positions and sequences S_k of M(n) in each interval. Computes prefix
-    lengths p_k using the recurrence p_k = p_{k-1} + p_{k-2} + (0 if k % 3 == 2 else 1) for k >= 5, with base
-    values. Computes interval sums recursively using structural properties without constructing sequences,
-    handling the final partial interval directly since it falls within the prefix.
-
-    Complexity
-    ----------
-    O(log_phi N) time for generating Fibonacci numbers and computing sums, where phi is the golden ratio; O(1) space
-    beyond lists of size O(log_phi N) ~ 90.
-
-    References
-    ----------
-    https://projecteuler.net/problem=366
-    """
     N = 10**18
     MOD = 10**8
 

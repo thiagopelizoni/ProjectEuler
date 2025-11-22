@@ -1,26 +1,6 @@
 # Problem: https://projecteuler.net/problem=422
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 422: compute (a + b + c + d) mod 1000000007 where P_n = (a/b, c/d) in lowest terms
-    for n=11^14.
-
-    Method / Math Rationale
-    -----------------------
-    Parameterize the rational points using r such that x = 4r + 3/r, y = -3r + 4/r. The sequence satisfies
-    r_n = r_{n-2} / r_{n-1}, solved using matrix exponentiation for the exponents of 2 and 3 in r_n. Then express
-    a,b,c,d in terms of powers modulo M.
-
-    Complexity
-    ----------
-    O(log n) for matrix exponentiation.
-
-    References
-    ----------
-    https://projecteuler.net/problem=422
-    """
     M = 1000000007
     phi = M - 1
     n = 11 ** 14

@@ -14,38 +14,6 @@ def process_task(task):
 
 
 def main():
-    """
-    Purpose
-    -------
-    This function computes the sum S(10**7) for Project Euler problem 482, where S(P) is the sum of
-    L = p + IA + IB + IC over all integer-sided triangles with perimeter p <= P and integer lengths
-    IA, IB, IC from incenter to vertices.
-
-    Method / Math Rationale
-    ----------------------
-    Triangles with integer sides and integer inradius r are parameterized by positive integers x, y, z
-    with x <= y <= z, s = x + y + z, r^2 = (x y z) / s, sides a = y + z, b = z + x, c = x + y,
-    perimeter p = 2 s.
-
-    The condition for integer IA, IB, IC is that r^2 + x^2, r^2 + y^2, r^2 + z^2 are perfect squares.
-
-    Generate all Pythagorean triples using Euclid's formula, collect for each possible r the list of x
-    such that r^2 + x^2 is square.
-
-    Then, for each r, take combinations of three x <= y <= z from the list, check if x y z == r^2 *
-    (x + y + z), and if so, add L to the total if p <= 10**7.
-
-    Complexity
-    ----------
-    Time: O(number of Pythagorean triples up to ~10^7) ≈ O(10^7 log 10^7) for generation, practical ~
-    seconds.
-
-    Space: O(number of entries) ≈ O(10^7), acceptable.
-
-    References
-    ----------
-    https://projecteuler.net/problem=482
-    """
     P = 10**7
     max_leg = P // 2 + 1
     m_limit = int((2 * max_leg)**0.5) + 2

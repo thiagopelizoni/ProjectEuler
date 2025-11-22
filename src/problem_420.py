@@ -83,32 +83,6 @@ def process_n(n, N):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Computes F(N) for N=10^7, the number of 2x2 positive integer matrices with
-    trace less than N that can be expressed as the square of a positive integer
-    matrix in two different ways.
-
-    Method / Math Rationale
-
-    Parameterizes the two square roots R and S with traces m and n, det k and -k,
-    with m^2 - n^2 =4k, tau = (m^2 + n^2)/2. Enumerates pairs m > n same parity,
-    computes k, then finds congruent x for the top left of R, checks if f = x(m-x)-k
-    divisible by v^2 where v=n/gcd(m,n), then adds the number of divisors of f/v^2
-    if the conditions hold.
-
-    Complexity
-    ----------
-    O(sqrt(N)^3) roughly, optimized with congruence to reduce inner loops, using
-    Numba and parallel processing.
-
-    References
-    ----------
-    https://projecteuler.net/problem=420
-    https://math.stackexchange.com/questions/344148/project-euler-420
-    https://en.wikipedia.org/wiki/Square_root_of_a_2_by_2_matrix
-    """
     N = 10000000
     max_n = int(math.sqrt(2 * (N - 1))) + 1
     ns = list(range(2, max_n + 1))

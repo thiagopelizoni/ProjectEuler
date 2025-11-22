@@ -55,28 +55,6 @@ def get_sum(remaining_k, current_prod, current_min, current_accum, current_mult,
     return sumv % MOD
 
 def main():
-    """
-    Purpose
-    -------
-    Computes F(10^9, 10^9) mod 1234567891, where F(m, n) is the number of n-tuples of positive
-    integers with product at most m.
-
-    Method / Math Rationale
-    ------------------------
-    Only tuples with at most 30 non-1 entries contribute due to 2^30 ≈ 10^9. For each s (number of
-    non-1 entries), compute the weighted sum over valid multisets and add to total using modular
-    arithmetic. The sum 1 / ∏ mult_i! over multisets is computed recursively by building
-    non-decreasing sequences, accumulating inverse factorials, with pruning and closed-form
-    counting for large ranges in the last position.
-
-    Complexity
-    ----------
-    O(10^6 operations) due to recursion depth 30 and effective pruning reducing branches.
-
-    References
-    ----------
-    https://projecteuler.net/problem=452
-    """
 
     m = 10**9
     n = 10**9

@@ -11,27 +11,6 @@ def comb_mod(a, b, mod):
     return res
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 498 by computing C(10^13, 10^12, 10^4) mod 999999937, where C(n, m, d)
-    is the absolute value of the coefficient of x^d in the remainder of x^n divided by (x-1)^m.
-
-    Method / Math Rationale
-    -----------------------
-    The value is binom(n, d) * binom(n - d - 1, m - d - 1) mod 999999937.
-    The first binomial is computed directly using iterative multiplication and modular inverses since d is small.
-    The second uses Lucas' theorem since the arguments are large, decomposing into base-mod digits and
-    computing smaller binomials.
-
-    Complexity
-    ----------
-    O(d)
-
-    References
-    ----------
-    https://projecteuler.net/problem=498
-    """
     n = 10**13
     m = 10**12
     d = 10**4

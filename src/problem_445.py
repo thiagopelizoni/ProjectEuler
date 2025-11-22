@@ -64,31 +64,6 @@ class SegmentTree:
         return self.tree[1]
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 445: Compute sum_{k=1}^{9999999} R(bin(10000000, k)) mod 1000000007, where R(n) is the number of retractions for n.
-    No parameters.
-    Prints the result.
-
-    Method / Math Rationale
-    -----------------------
-    R(n) = prod_{p | n} (1 + p^{v_p(n)}) - n
-    The sum is sum F - (2^N -2) where F(k) = prod (1 + p^{v_p(bin(N, k))})
-    Split primes into small <= sqrt(N) and large >sqrt(N)
-    For small, compute for each k the F_small by calculating v_p for each small p using s_p function.
-    For large, use segment tree to perform range multiply updates for the bad ranges for each large p.
-    Then, the tree sum is the sum F_small * F_large mod MOD
-
-    Complexity
-    ----------
-    O(N * pi(sqrt(N)) * log N / average log p ) for computing F_small ~4e9 operations
-    O((sum large p floor(N/p)) * log N) for updates ~8e7 *20 =1.6e9 operations
-
-    References
-    ----------
-    https://projecteuler.net/problem=445
-    """
     N = 10000000
     MOD = 1000000007
     B = isqrt(N)

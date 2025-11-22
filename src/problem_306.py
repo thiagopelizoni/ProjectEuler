@@ -2,21 +2,6 @@
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    Solves Project Euler problem 306: counts the number of n from 1 to 1,000,000 where the first player can force a win in the paper-strip game.
-
-    Method / Math Rationale
-    The game is Dawson's Kayles, where Grundy numbers determine winning positions (g(n) != 0 for first-player win).
-    Compute Grundy numbers up to a point where periodicity of 34 is observed starting from n=70.
-    Count non-zero g(n) in initial segment (1-69), then in full periods of 34, and remainder.
-
-    Complexity
-    O(M^2) where M ~ 100 for precomputing Grundy numbers, constant time overall.
-
-    References
-    https://projecteuler.net/problem=306
-    """
     MAX_N = 1000000
     M = 103
     g = [0] * (M + 1)

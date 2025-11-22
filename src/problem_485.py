@@ -41,26 +41,6 @@ def compute_s(u, k, num_divisors):
     return result
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 485: Compute S(100000000, 100000), where S(u, k) is the sum of the maximum number
-    of divisors M(n, k) in each sliding window of size k over the divisor counts d(j) for j from 1 to u.
-
-    Method / Math Rationale
-    -----------------------
-    Compute d(n) using a sieve that updates the divisor count by processing multiples of primes and adjusting for
-    higher powers. Then, efficiently sum the sliding window maximums using a list that tracks the latest position
-    for each possible divisor count, maintaining the maximum by popping outdated high counts.
-
-    Complexity
-    ----------
-    O(u log log u) for generating primes and sieve updates; O(u) for the sliding window computation.
-    
-    References
-    ----------
-    https://projecteuler.net/problem=485
-    """
     u = 100000000
     k = 100000
     prime_limit = int(u**0.5) + 1

@@ -54,31 +54,6 @@ def compute_order10(m, spf):
     return ord_m
 
 def main():
-    """
-    Purpose
-    -------
-    Compute the sum of the lengths of the recurring cycles for unit fractions 1/n
-    from n=3 to n=100000000.
-
-    Method / Math Rationale
-    -----------------------
-    For each n, L(n) is the multiplicative order of 10 modulo the part of n
-    coprime to 10, if greater than 1; otherwise 0.
-    To efficiently compute the sum, precompute the smallest prime factor array
-    using a sieve. Then, collect all m from 2 to N where gcd(m,10)==1. Use
-    sequential processing to compute the order of 10 modulo each such m by
-    factoring m, computing orders modulo each prime power, and taking LCM.
-    Build a prefix sum array of these orders. Finally, sum the prefix values at
-    floor(N/k) for all k of the form 2^a * 5^b <= N.
-
-    Complexity
-    ----------
-    O(N log log N) for sieve + O(φ(10)/10 * N * log N) for computations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=417
-    """
     N = 100000000
     spf = build_spf(N)
     ms = [m for m in range(2, N + 1) if m % 2 != 0 and m % 5 != 0]

@@ -4,29 +4,6 @@ from decimal import Decimal, getcontext
 getcontext().prec = 20
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 371 by computing the expected number of
-    license plates needed until two are seen whose three-digit numbers sum
-    to 1000.
-
-    Method / Math Rationale
-    -----------------------
-    Models the problem using dynamic programming. States are defined by the
-    number of "open" complementary pairs (where one side has been seen but
-    not the other) and whether the number 500 has been seen once. Computes
-    the expected additional plates needed from each state, working backwards
-    from the maximum number of open pairs (499) to zero.
-
-    Complexity
-    ----------
-    O(1) time and space, as the number of states is fixed at 500.
-
-    References
-    ----------
-    https://projecteuler.net/problem=371
-    """
     num_plates = 1000
     max_have = num_plates // 2 - 1  # 499
     plates = Decimal(num_plates)

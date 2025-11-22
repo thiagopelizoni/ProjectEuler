@@ -62,24 +62,6 @@ def count_120(limit: int) -> int:
     return result
 
 def main() -> None:
-    """Purpose:
-    Computes the number of integer-sided triangles with perimeter <= 10^8 having
-    at least one integer degree angle.
-
-    Method / Math Rationale:
-    By Niven's theorem, the only possible integer angles in such triangles are
-    60°, 90°, or 120°. The sets of triangles with these angles are disjoint.
-    Generates base triples for each angle using parametric formulas for
-    Eisenstein (60° and 120°) and Pythagorean (90°) triples, adjusts for common
-    divisors of 3 where applicable, and sums the number of multiples with
-    perimeter <= limit.
-
-    Complexity:
-    Time: O(N), Space: O(1)
-
-    References:
-    https://projecteuler.net/problem=279
-    """
     limit: int = 100000000
     total: int = count_60(limit) + count_90(limit) + count_120(limit)
     print(total)

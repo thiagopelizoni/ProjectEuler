@@ -13,19 +13,6 @@ def get_neighbors(r, c):
     return neighbors
 
 def main():
-    """
-    Purpose
-    Solves Project Euler problem 280: computes the expected number of steps for an ant to transfer all seeds from the bottom row to the top row on a 5x5 grid via random walk.
-
-    Method / Math Rationale
-    Models the problem as a Markov chain where states are defined by the ant's position (row, column), whether it is carrying a seed (0 or 1), and bitmasks representing filled positions in the top row and remaining seeds in the bottom row. Transitions account for movement, picking up seeds from the bottom row, and dropping seeds on empty top row squares. Sets up a system of linear equations for the expected steps to absorption (all seeds in top row) and solves it using sparse matrix methods.
-
-    Complexity
-    Time: O(N) for setup where N ~11500 states, O(N) for filling sparse matrix with O(N) non-zeros, and O(N log N) or better for sparse solve. Space: O(N) for states and sparse matrix.
-
-    References
-    https://projecteuler.net/problem=280
-    """
     rows = range(1, 6)
     cols = range(1, 6)
     all_possible_states = []

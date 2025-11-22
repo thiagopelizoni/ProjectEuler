@@ -3,22 +3,6 @@ from typing import List
 from sympy.ntheory.generate import primerange
 
 def main() -> None:
-    """Purpose:
-    Computes the sum of the generalized Frobenius numbers f(p q, p r, q r) for all
-    distinct primes p < q < r < 5000.
-
-    Method / Math Rationale:
-    The Frobenius number f(p q, p r, q r) = 2 p q r - p q - p r - q r, derived from
-    impossibility proof for representation and assumption that larger numbers are
-    representable, verified with samples. Aggregates the sum using power sums S1, S2,
-    S3 for the triple product term, and prefix/suffix sums for pairwise terms.
-
-    Complexity:
-    Time: O(N), Space: O(N), where N is the number of primes < 5000 (~669)
-
-    References:
-    https://projecteuler.net/problem=278
-    """
     primes: List[int] = list(primerange(2, 5000))
     n: int = len(primes)
     s1: int = 0

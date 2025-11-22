@@ -76,27 +76,6 @@ def chinese_remainder(a1, a2, m1, m2):
     return c % (m1 * m2)
 
 def main():
-    """
-    Purpose
-    -------
-    Computes F(10^6!, 65432) mod (10^16 + 61), where F(n, d) is the number of divisors of n whose last
-    digits equal the digits of d (here 5 digits).
-
-    Method / Math Rationale
-    ------------------------
-    Divisors d of n = 10^6! with d ≡ 65432 mod 10^5 must have v2(d) = 3, v5(d) = 0.
-    Let c = d / 8, then c divides the 10-coprime part N' of n!, and c ≡ s mod 12500 for computed s.
-    Use DP to count divisors of N' congruent to residues mod 12500, updating for each prime by shifting
-    residues using powers, grouping for efficiency with cycles.
-
-    Complexity
-    ----------
-    O(π(10^6) * avg(order) * φ(12500)) ≈ 7.8e4 * 1500 * 5000 ≈ 6e11 operations; uses numba for acceleration.
-
-    References
-    ----------
-    https://projecteuler.net/problem=474
-    """
     n = 1000000
     M = 100000
     r = 65432

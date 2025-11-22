@@ -7,19 +7,6 @@ def mod(x, m):
     return (x % m + m) % m
 
 def main():
-    """
-    Purpose
-    Solve Project Euler problem 490: compute S(10^14) mod 10^9 where S(L) = sum_{n=1}^L f(n)^3 and f(n) is the number of ways the frog can visit all stones 1 to n exactly once, ending at n, with jumps of at most 3 units.
-
-    Method / Math Rationale
-    Use full bitmask DP to compute f(n) for n=1 to 20. Find the linear recurrence for f(n) by solving systems with sympy. Extend the state to include sum of cubes and monomials up to degree 3 for matrix exponentiation to compute the sum up to L=10^14 mod 10^9.
-
-    Complexity
-    Bitmask DP: O(20 * 2^20 * 6) ~ 10^8 operations. Finding recurrence: O(10^3) small. Matrix power: O(166^3 log 10^14) ~ 2e8 operations.
-
-    References
-    https://projecteuler.net/problem=490
-    """
 
     MOD = 10**9
     max_n = 20

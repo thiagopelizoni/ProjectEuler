@@ -44,30 +44,6 @@ def solve_linear_multi(A, bs):
     return x
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 481: compute the expected number of dishes cooked in a competition
-    with 14 chefs.
-
-    Method / Math Rationale
-    -----------------------
-    Uses bottom-up dynamic programming over subsets (masks) of chefs, ordered by increasing size.
-    For each subset, solves linear systems of equations to compute expected values and win
-    probabilities for each starting chef, handling cyclic dependencies via Gaussian elimination
-    on fractions.
-    Players choose eliminations optimally to maximize their win probability, with ties broken by
-    eliminating the chef with the next-closest turn in the cycle.
-
-    Complexity
-    ----------
-    O(2^n n^3) time for DP and linear system solves using Gaussian elimination.
-    For n=14, feasible.
-
-    References
-    ----------
-    https://projecteuler.net/problem=481
-    """
     fib = [0] * 16
     fib[1] = fib[2] = 1
     for i in range(3, 16):

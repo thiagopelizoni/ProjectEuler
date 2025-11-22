@@ -26,29 +26,6 @@ def compute_sum(start, end, MOD):
     return total
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum F(10^7) as defined in Project Euler problem 446, which is the sum of R(n) for n = k^4 + 4
-    from k=1 to 10^7, modulo 1000000007, and prints the result.
-
-    Method / Math Rationale
-    -----------------------
-    For each k, n = k^4 + 4 = ((k-1)^2 + 1) * ((k+1)^2 + 1). R(n) counts the retractions, derived as
-    prod_{p^e || n} (1 + p^e) - n.
-    Factorize the two quadratic terms using sympy.factorint, merge the factorizations, compute the product
-    (1 + p^e) for each prime power modulo MOD, then subtract n modulo MOD, adjusting for modulo.
-    Parallelizes the summation over k using ProcessPoolExecutor for efficiency.
-
-    Complexity
-    ----------
-    Time: O(N * T), where N=10^7, T is average time for factorint on ~14-digit numbers; parallelism reduces wall time.
-    Space: O(1) per process, minimal.
-
-    References
-    ----------
-    https://projecteuler.net/problem=446
-    """
     MOD = 1000000007
     N = 10**7
     num_processes = os.cpu_count() or 1

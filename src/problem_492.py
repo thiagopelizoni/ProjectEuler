@@ -80,30 +80,6 @@ class FieldElement:
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 492 by computing B(10^9, 10^7, 10^15), which is the sum of a_{10^15} mod p over all primes p in [10^9, 10^9 + 10^7].
-    No parameters. Prints the result.
-
-    Method / Math Rationale
-    -----------------------
-    The sequence a_n satisfies a_{n+1} = 6 a_n^2 + 10 a_n + 3 with a_1 = 1.
-    Transform to b_n = 6 a_n + 5, yielding b_{n+1} = b_n^2 - 2 with b_1 = 11.
-    Then b_n = u_{2^{n-1}} where u_k satisfies u_k = 11 u_{k-1} - u_{k-2} with u_0 = 2, u_1 = 11.
-    Compute u_k mod p using closed form u_k = alpha^k + beta^k mod p, where alpha, beta = [11 ± 3 sqrt(13)] / 2.
-    If 13 is quadratic residue mod p, compute in F_p; else in F_{p^2}.
-    Reduce exponent 2^{n-1} mod phi(field) to make computation feasible.
-
-    Complexity
-    ----------
-    Time: O(π(10^7) * log(10^{18})) ≈ 5*10^5 * 120 = 6*10^7 operations, efficient.
-    Space: O(1) per prime.
-
-    References
-    ----------
-    https://projecteuler.net/problem=492
-    """
     x = 10**9
     y = 10**7
     nn = 10**15

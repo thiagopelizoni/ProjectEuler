@@ -32,20 +32,6 @@ def compute_length(min_x: int, min_y: int, size: int, cx: int, cy: int,
         return 1 + tl + tr + bl + br
 
 def main():
-    """
-    Purpose
-    Solves Project Euler problem 287: find the length of the minimal quadtree encoding for the image D_24.
-
-    Method / Math Rationale
-    Uses recursive quadtree construction, checking if a region is uniform black or white using min and max distance
-    squared to the center. If uniform, contributes 2 bits; if mixed, contributes 1 bit and recurses on four subregions.
-
-    Complexity
-    O(number of nodes in the quadtree), which is O(2^N) for this problem.
-
-    References
-    https://projecteuler.net/problem=287
-    """
     n = 24
     size = 1 << n
     cx = 1 << (n - 1)

@@ -119,26 +119,6 @@ def compute_S(b):
     return total_non_all_minus1 + sum_part
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 414 by computing the sum of S(b) for b = 6k + 3 where k ranges from 2 to 300,
-    and prints the last 18 digits of this sum.
-
-    Method / Math Rationale
-    -----------------------
-    Computes S(b) as the sum of depths in the Kaprekar routine graph for base b, 5-digit numbers. Depths are
-    calculated via chain traversal, handling cycles and invalid paths. Preimage counts are derived using
-    combinatorial analysis of digit patterns. Parallel processing is used for different bases.
-
-    Complexity
-    ----------
-    O(N * B^2) time where N ~ 300 is the number of bases, B ~ 1800 is the max base, parallelized over N.
-
-    References
-    ----------
-    https://projecteuler.net/problem=414
-    """
     bs = [6 * k + 3 for k in range(2, 301)]
     with ProcessPoolExecutor() as executor:
         results = list(executor.map(compute_S, bs))

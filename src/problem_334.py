@@ -15,29 +15,6 @@ def sum_squares(a, b):
     return sum_to(-a) + sum_to(b)
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 334 by computing the number of moves required to finish the bean spilling game with 1500 adjacent bowls.
-
-    Method / Math Rationale
-    -----------------------
-    Generate the sequence b_i using the given recursive definition.
-    Compute S = sum b_i and M = sum i * b_i.
-    Determine if consecutive positions can be used based on whether the starting position L is integer.
-    If not, use an interval of length S+1 and exclude one position to achieve the correct sum M.
-    Compute sum of squares for the positions in the final configuration f and initial c.
-    The number of moves is (sum j^2 f_j - sum j^2 c_j) // 2.
-
-    Complexity
-    ----------
-    Time complexity: O(N) for N=1500 bowls.
-    Space complexity: O(N) for storing b_i.
-
-    References
-    ----------
-    https://projecteuler.net/problem=334
-    """
     t = 123456
     b = []
     for _ in range(1500):

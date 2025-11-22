@@ -4,26 +4,6 @@ from math import factorial
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 491: count the number of double pandigital numbers divisible by 11.
-
-    Method / Math Rationale
-    ------------------------
-    Enumerates canonical bitmasks for multisets in odd positions using combinations, skipping invalid patterns.
-    Computes sum of digits in odd positions, checks if (90 - 2 * sum_odd) % 11 == 0.
-    Adds squared multinomial coefficient for arrangements in odd and even positions.
-    Multiplies total by 9/10 to exclude leading zeros, as the fraction is exactly 1/10.
-
-    Complexity
-    ----------
-    O(C(20,10)) time, which is about 184756 iterations, constant space.
-
-    References
-    ----------
-    https://projecteuler.net/problem=491
-    """
     n = 10
     num_digits = 20
     digit_sum = 90

@@ -72,27 +72,6 @@ def compute_for_p(p):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 487 by computing the sum of S_10000(10^12) mod p over all primes p in
-    [2*10^9, 2*10^9 + 2000].
-
-    Method / Math Rationale
-    -----------------------
-    Uses the relation S_k(n) = (n + 1) * sum_{i=1}^n i^k - sum_{i=1}^n i^{k+1}. Since n mod p is used and
-    p - 1 does not divide k or k + 1, the sum simplifies to sum_{i=1}^r i^power mod p where r = n % p. This
-    is computed using Faulhaber's formula modulo p, with Bernoulli numbers computed modulo p via recurrence.
-
-    Complexity
-    ----------
-    O(number of primes * k^2) time, with k = 10000, approximately 100 * 10^8 operations, parallelized over
-    primes.
-
-    References
-    ----------
-    https://projecteuler.net/problem=487
-    """
     start = 2000000000
     end = 2000002000
 

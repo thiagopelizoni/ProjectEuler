@@ -3,27 +3,6 @@ import numpy as np
 from collections import defaultdict, deque
 
 def main():
-    """
-    Purpose:
-    Computes f(10**10000) mod 100000007, where f(n) is the number of distinct ways
-    to fill a 3x3xn tower with 2x1x1 blocks, allowing block rotations but counting
-    tower symmetries as distinct.
-
-    Method / Math Rationale:
-    Models the problem using DP with bitmask states (0-511) representing protruding
-    blocks in the 3x3 cross-section. Builds a 512x512 transfer matrix M where
-    M[i][j] is the number of ways to tile one layer from incoming mask i to
-    outgoing mask j. Reduces to 252 reachable states from mask 0. Computes T = M**2
-    mod q, then reduces T to a 126x126 submatrix induced by states reachable from 0
-    in T's transition graph. Since n is even, f(n) = (sub_T)**(n//2) [0, 0] mod q,
-    computed via binary matrix exponentiation with modular multiplication.
-
-    Complexity:
-    O(s**3 * log n) time with s=126, log n ≈ 33220 (negligible preprocessing).
-
-    References:
-    https://projecteuler.net/problem=324
-    """
     q = 100000007
     N = 9
     ALL = (1 << N) - 1

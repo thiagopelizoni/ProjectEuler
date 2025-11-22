@@ -69,24 +69,6 @@ def hyper_mod(arrows: int, height: int, mod_: int) -> int:
         return x
 
 def main():
-    """
-    Purpose
-    Computes the sum of A(n, n) for n from 0 to 6, where A is the Ackermann function, modulo 14^8.
-
-    Method / Math Rationale
-    The Ackermann function for large n is expressed using Knuth's up-arrow notation as 2 ↑^{n-2} (n+3) - 3.
-    The sum is computed modulo 14^8 using the Chinese Remainder Theorem by calculating it modulo 2^8 and 7^8
-    separately. For modulo 7^8, recursive modular hyperoperation with Carmichael function for exponent
-    reduction is used. For modulo 2^8, small values are computed directly, and large values are 253 since
-    higher hyperoperations yield 0 - 3 ≡ 253.
-
-    Complexity
-    Time: O(arrows * height) due to recursion depth, which is small (constant).
-    Space: O(arrows * height) for recursion stack.
-
-    References
-    https://projecteuler.net/problem=282
-    """
     mod = 14 ** 8
     m1 = 2 ** 8
     m2 = 7 ** 8

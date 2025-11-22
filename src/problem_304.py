@@ -71,26 +71,6 @@ def compute_fib(p):
 
 
 def main():
-    """
-    Purpose:
-    Solves Project Euler problem 304 by computing the sum of Fibonacci numbers at the first 100,000 primes greater
-    than 10^14, modulo 1234567891011.
-
-    Method / Math Rationale:
-    Generates small primes up to sqrt(10^14 + delta) using the Sieve of Eratosthenes.
-    Uses segmented sieve to find all primes in [10^14 + 1, 10^14 + delta], where delta is an estimate to ensure
-    at least 100,000 primes.
-    Computes each fib(a(n)) using matrix exponentiation modulo the given modulus for efficiency with large indices.
-    Sums the results modulo the modulus, utilizing parallel processing for the Fibonacci computations.
-
-    Complexity:
-    - Prime generation: O(sqrt_max log log sqrt_max) for small primes sieve, where sqrt_max ~ 10^7.
-    - Segmented sieve: O(delta log log sqrt_max), where delta ~ 3.5e6.
-    - Fibonacci computations: O(100000 * log(10^14)) modular operations, parallelized across available CPUs.
-
-    References:
-    https://projecteuler.net/problem=304
-    """
     ln_start = math.log(START)
     delta = int(NUM * ln_start * 1.1) + 100000
     low = START + 1

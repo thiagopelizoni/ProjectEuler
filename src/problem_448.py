@@ -4,27 +4,6 @@ from tqdm import tqdm
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 448 by computing S(n) mod 999999017 where n=99999999019.
-
-    Method / Math Rationale
-    ------------------------
-    A(k) = sum_{i=1}^k i / gcd(k,i)
-    S(n) = 1/2 * n + 1/2 * sum_{d=1}^n V(floor(n/d)) where V(m) = sum_{k=1}^m k * phi(k)
-    Use Min_25 sieve to compute V(m) for all needed floor(n/d).
-    The function f(k) = k * phi(k) is multiplicative with f(p^e) = p^{2e} - p^{2e-1}.
-    Compute sum over primes using sieving, then add higher power contributions using recurrence.
-
-    Complexity
-    ----------
-    O(n^{3/4} / log n)
-
-    References
-    ----------
-    https://projecteuler.net/problem=448
-    """
     n = 99999999019
     MOD = 999999017
     inv2 = pow(2, MOD - 2, MOD)

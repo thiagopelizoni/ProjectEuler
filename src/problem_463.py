@@ -41,29 +41,6 @@ def S(n: int) -> int:
     return (res % MOD + MOD) % MOD
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the last 9 digits of S(3**37), where S(n) is the sum from i=1 to n of f(i),
-    and f is a function defined by a weird recurrence relation.
-
-    Method / Math Rationale
-    -----------------------
-    Implements recursive functions for f and S with memoization using lru_cache.
-    The function f follows the given recurrence. For S, uses a derived recurrence
-    S(4n+3) = 6 * S(2n+1) - 8 * S(n) - 1, and incremental additions for other
-    modulo 4 cases. All computations are performed modulo 10**9 to get the last
-    9 digits.
-
-    Complexity
-    ----------
-    O(log n) time and space, as the memoized recursion has logarithmic depth and
-    a small number of unique calls.
-
-    References
-    ----------
-    https://projecteuler.net/problem=463
-    """
     n = 3 ** 37
     print(S(n))
 

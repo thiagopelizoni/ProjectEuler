@@ -99,28 +99,6 @@ def process_range(start, end, spf, M):
     return count
 
 def main():
-    """
-    Purpose
-    Solve Project Euler problem 309 by counting the number of integer triplets (x, y, h)
-    where 0 < x < y < 1000000 such that the street width w is a positive integer in the
-    crossing ladders problem.
-
-    Method / Math Rationale
-    For each h, find divisors u of h^2 with u <= h. Compute A = h + u, v = h^2 / u,
-    B = h + v. Derive D = (h - u) * (h + u)^3 / u^2 ensuring it is integer. Skip if
-    D >= 1000000^2. Factor D using factorizations of (h - u), (h + u), and u. Generate
-    all divisors of D. For each pair f < g = D / f with f <= isqrt(D) and f, g same
-    parity, compute x = (g - f)/2, y = (g + f)/2. If 0 < x < y < 1000000 and x^2 -
-    A^2 is a positive perfect square, count the triplet.
-
-    Complexity
-    Precompute SPF: O(MAX log log MAX). Per h: O(d(h^2) * (log terms + d(D))) with
-    d(D) up to ~10^5 in worst cases, but filtered; total feasible with parallelism over
-    chunks of h range.
-
-    References
-    https://projecteuler.net/problem=309
-    """
     M = 1000000
     MAX_N = 2 * M + 10
     spf = list(range(MAX_N + 1))

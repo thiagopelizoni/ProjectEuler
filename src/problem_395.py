@@ -32,25 +32,6 @@ class Square:
         return [left, right]
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 395: find the smallest area of an axis-aligned rectangle enclosing the Pythagorean tree fractal.
-    None (prints the area rounded to 10 decimal places).
-
-    Method / Math Rationale
-    -----------------------
-    Simulate the Pythagorean tree by representing each square by its outer side, updating bounds only from new outer vertices,
-    and pruning to retain only squares achieving the level's extremal coordinates in the new points.
-
-    Complexity
-    ----------
-    O(D * B), where D is the depth (~50), B is the number of boundary squares per level (small constant).
-
-    References
-    ----------
-    https://projecteuler.net/problem=395
-    """
     initial = Square(Decimal(0), Decimal(1), Decimal(1), Decimal(1))
     current = [initial]
     min_x = Decimal(0)

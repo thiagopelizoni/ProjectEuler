@@ -1,24 +1,5 @@
 # Problem: https://projecteuler.net/problem=340
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 340 by computing the last 9 digits of S(a, b, c) where a=21^7, b=7^21, c=12^7.
-
-    Method / Math Rationale
-    ------------------------
-    For each n from 0 to b, F(n) = 4 * (d + 1) * a + n - (3 * d + 4) * c where d = floor((b - n) / a).
-    Group the n by their d = k, each group is a consecutive range. Use closed-form formulas to sum over the full groups
-    (k=0 to m-1 where m = floor(b / a)) and the partial group (k=m).
-
-    Complexity
-    ----------
-    O(1) time and space.
-
-    References
-    ----------
-    https://projecteuler.net/problem=340
-    """
     A = 21 ** 7
     B = 7 ** 21
     C = 12 ** 7

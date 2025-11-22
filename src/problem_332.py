@@ -47,28 +47,6 @@ def compute_A(r):
     return min_area
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 332 by computing the sum of the minimal areas of spherical triangles
-    formed by lattice points on spheres of radii 1 to 50.
-
-    Method / Math Rationale
-    -----------------------
-    For each radius r, generate all lattice points on the sphere x² + y² + z² = r². Then, for all
-    combinations of three points, check if non-degenerate (scalar triple product ≠ 0), compute the
-    solid angle using omega = 2 * atan2(|det|, denom), where denom = r³ + r*(dotAB + dotAC + dotBC),
-    take the smaller area via min(rsq * omega, 4*pi*rsq - rsq * omega).
-
-    Complexity
-    ----------
-    O( sum_{r=1}^{50} binom{N(r)}{3} ), where N(r) is number of lattice points, up to ~500k per r,
-    total ~10^7 operations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=332
-    """
     total = 0.0
     with ProcessPoolExecutor() as executor:
         futures = [executor.submit(compute_A, r) for r in range(1, 51)]

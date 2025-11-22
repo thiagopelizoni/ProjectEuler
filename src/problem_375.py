@@ -2,28 +2,6 @@
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Computes M(2000000000) as defined in Project Euler problem 375, which is the sum of the minimums over all subarrays
-    of the sequence S_1 to S_N.
-    No parameters.
-    Returns None, prints the result.
-
-    Method / Math Rationale
-    ------------------------
-    Generates the periodic part of the sequence, computes periodic left and right spans using monotonic stack on doubled
-    array for circular nearest boundaries. Then, groups contributions by offset p in the period, handling boundary
-    instances separately, with special handling for the global minimum positions where left spans extend to the start.
-
-    Complexity
-    ----------
-    O(P) time and space, where P ≈ 6.3 × 10^6 is the period, due to generating the sequence and stack operations on O(P).
-
-    References
-    ----------
-    https://projecteuler.net/problem=375
-    """
     MOD = 50515093
     S0 = 290797
     N = 2000000000

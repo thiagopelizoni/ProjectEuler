@@ -37,26 +37,6 @@ def generate_divisors(factors):
     return list(helper(0, 1))
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 397 by counting integer quadruplets (k, a, b, c) where the triangle on the parabola
-    has at least one 45-degree angle.
-
-    Method / Math Rationale
-    -----------------------
-    For each k, compute the number of triples with 45-degree angle at A (and symmetrically at C), and at B using
-    divisor-based closed-form range counts. Use inclusion-exclusion to adjust for overlaps by calculating the number
-    of isosceles right-angled triangles at each vertex using specific formulas for vertex positions.
-
-    Complexity
-    ----------
-    O(K log K) for divisor generation and processing across all k.
-
-    References
-    ----------
-    https://projecteuler.net/problem=397
-    """
     K = 10**6
     X = 10**9
     spf = sieve(K)

@@ -22,31 +22,6 @@ def ft_query(tree, index):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 378 by computing Tr(60000000) and printing
-    its last 18 digits.
-
-    Method / Math Rationale
-    ------------------------
-    Precompute number of divisors for all numbers up to N+1 using a
-    sieve-like method. Then compute dT(k) for each k using the formula
-    based on parity of k. Then use two Fenwick trees to efficiently count
-    the number of decreasing triples in the sequence dT[1..N]. One tree
-    tracks the count of each dT value, the other tracks the sum of prefix
-    higher counts for each value.
-
-    Complexity
-    ----------
-    O(N log N) for divisor precomputation, O(N) for dT computation,
-    O(N log D) for the triple counting, where D is the maximum dT value
-    (around 10^4).
-
-    References
-    ----------
-    https://projecteuler.net/problem=378
-    """
     N = 60000000
 
     d = np.zeros(N + 2, dtype=np.int32)

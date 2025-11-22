@@ -36,31 +36,6 @@ def compute_sum_chunk(start: int, end: int, us: List[int], vs: List[int]) -> int
     return total
 
 def main() -> None:
-    """
-    Purpose
-    Computes the sum of S(N) for all squarefree N only divisible by primes of
-    the form 4k+1 less than 150, where S(N) is the sum of a's in all
-    representations N = a^2 + b^2 with 0 <= a <= b integers.
-
-    Args
-    None
-
-    Returns
-    None
-
-    Method / Math Rationale
-    Enumerates all 3^16 configurations where for each prime, choose to skip it,
-    include it with positive imaginary sign (u + v i), or negative (u - v i).
-    For each, computes the product z as big integers Re and Im. Adds
-    min(|Re|, |Im|) to a total sum. The desired sum is this total divided by 2,
-    since each representation for each N is counted twice (z and its conjugate).
-
-    Complexity
-    Time: O(3^16 * 16) ≈ 700 million operations, Space: O(1)
-
-    References
-    https://projecteuler.net/problem=273
-    """
     primes = [p for p in primerange(5, 150) if p % 4 == 1]
     us: List[int] = []
     vs: List[int] = []

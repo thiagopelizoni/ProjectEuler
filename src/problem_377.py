@@ -39,33 +39,6 @@ def compute_f(n, mod, M, initial_state):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the last 9 digits of the sum from i=1 to 17 of f(13^i), where
-    f(n) is the sum of all positive integers without zero in their decimal
-    representation and with digit sum equal to n.
-
-    Method / Math Rationale
-    ------------------------
-    Derives recurrences for a(n) (count of such numbers) and f(n) (sum of
-    such numbers): a(n) = sum_{d=1 to min(9,n)} a(n-d), a(0)=1; f(n) =
-    sum_{d=1 to min(9,n)} (10 * f(n-d) + d * a(n-d)), f(0)=0. These are
-    linear recurrences of order 9 for n >=9. Computes initial values up to
-    n=8 manually. Uses a 18x18 transition matrix to advance the state vector
-    [f(n), ..., f(n-8), a(n), ..., a(n-8)]. For each 13^i, computes the
-    state at n=13^i using matrix exponentiation modulo 10^9. Sums the
-    f(13^i) modulo 10^9.
-
-    Complexity
-    ----------
-    O(17 * 18^3 * log(13^17)) ≈ 17 * 6000 * 60 ≈ 6e6 operations,
-    efficient.
-
-    References
-    ----------
-    https://projecteuler.net/problem=377
-    """
     MOD = 1000000000
     size = 18
 

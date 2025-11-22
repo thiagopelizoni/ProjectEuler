@@ -19,27 +19,6 @@ def precompute_binom(max_n, mod):
     return binom
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the number of admissible paths from (0, 0) to (n, n) avoiding inadmissible intermediate points,
-    modulo 1000000007.
-
-    Method / Math Rationale
-    -----------------------
-    Generates all inadmissible points as (a², b²) where a² + b² is a perfect square. Uses dynamic programming
-    over a graph of start, inadmissible points, and end, where edges represent binomial coefficients for path
-    counts, with signs for inclusion-exclusion to account for avoiding the points.
-
-    Complexity
-    ----------
-    O(M²) where M ≈ 7850 (number of inadmissible points), due to DP transitions; precomputing factorials O(N)
-    with N=2*10^7.
-
-    References
-    ----------
-    https://projecteuler.net/problem=408
-    """
 
     n = 10000000
     mod = 1000000007

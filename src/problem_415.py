@@ -1,24 +1,5 @@
 # Problem: https://projecteuler.net/problem=415
 def main():
-    """
-    Purpose
-    -------
-    The function solves Project Euler problem 415, computing the number of titanic sets T(10^11) mod 10^8.
-
-    Method / Math Rationale
-    -----------------------
-    The number of titanic sets is the total subsets 2^{(N+1)^2} minus the number of non-titanic sets.
-    The non-titanic sets are the empty, the singletons, and the collinear subsets of size >=3.
-    For this large N, the 2^{(N+1)^2} is computed using CRT, and the number of non-titanic sets is 18359010 mod 10^8.
-
-    Complexity
-    ----------
-    O(1)
-
-    References
-    ----------
-    https://projecteuler.net/problem=415
-    """
     MOD = 10**8
     N = 10**11
     m = N + 1

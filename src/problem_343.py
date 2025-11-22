@@ -14,27 +14,6 @@ def compute_f(k):
     return max_lpf - 1
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of f(k^3) for k from 1 to 2,000,000, where f is the terminal integer
-    in the fractional sequence defined in Project Euler problem 343.
-
-    Method / Math Rationale
-    -----------------------
-    The function f(m) equals the largest prime factor of (m + 1) minus 1. Since m = k^3,
-    m + 1 = (k + 1)(k^2 - k + 1). Thus, for each k, factorize both components to find
-    the overall largest prime factor, subtract 1 to get f(k^3), and sum over all k.
-
-    Complexity
-    ----------
-    O(N * T), where N = 2e6 and T is the average time for factorint on numbers up to 4e12,
-    parallelized across available CPUs.
-
-    References
-    ----------
-    https://projecteuler.net/problem=343
-    """
     N = 2000000
     with ProcessPoolExecutor() as executor:
         results = list(tqdm(executor.map(compute_f, range(1, N + 1)), total=N))

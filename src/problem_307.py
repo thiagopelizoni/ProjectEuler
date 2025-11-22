@@ -14,21 +14,6 @@ def compute_term(l, n, k, log_fact, log_n, ln_two):
     return log_term.exp()
 
 def main():
-    """
-    Purpose
-    Solves Project Euler problem 307: computes p(20000, 1000000), the probability that at least one chip has at least 3 defects.
-
-    Method / Math Rationale
-    Computes the complement probability that all chips have at most 2 defects as the sum over l (number of chips with exactly 2 defects) of
-    (1/2)^l * n! / (n - k + l)! / (k - 2l)! / l! * k! / n^k using logarithmic computations for precision and incremental products implicitly
-    through independent per-term calculations.
-
-    Complexity
-    O(k) for precomputations; O(k/2) for main loop with parallel term computations.
-
-    References
-    https://projecteuler.net/problem=307
-    """
     getcontext().prec = 30
     n = 1000000
     k = 20000

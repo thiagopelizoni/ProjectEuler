@@ -42,19 +42,6 @@ def compute_f(m: int, n: int) -> int:
     return f
 
 def main() -> None:
-    """
-    Purpose
-    Solves Project Euler problem 281: computes the sum of all f(m, n) where f(m, n) <= 10^15, and f(m, n) is the number of ways to place m distinct toppings each on exactly n slices of a pizza divided into m*n equal slices, considering arrangements distinct under reflection but identical under rotation.
-
-    Method / Math Rationale
-    Uses Burnside's lemma on the cyclic group to derive f(m, n) = (1 / (m * n)) * sum_{t divides n} phi(n / t) * ((m * t)! / (t!)^m). Loops over m starting from 2 and increases n from 1 until f(m, n) exceeds 10^15, adding valid f(m, n) to the total sum.
-
-    Complexity
-    O(1) effectively, as loops are bounded by small constants (m < 25, n < 100).
-
-    References
-    https://projecteuler.net/problem=281
-    """
     total = 0
     for m in tqdm(range(2, 25)):
         n = 1

@@ -60,25 +60,6 @@ def find_min_n(p, e, T):
     return low
 
 def main():
-    """
-    Purpose
-    Solves Project Euler problem 320 by computing S(1,000,000) mod 10^18, where S(u) is the sum of N(i) for i from 10 to u, and N(i) is the smallest n such that (i!)^1234567890 divides n!.
-
-    Method / Math Rationale
-    N(i) = max over p <= i of min n s.t. v_p(n!) >= k * v_p(i!), where k=1234567890, v_p(m!) = (m - s_p(m))/(p-1), s_p(m) sum of base-p digits of m.
-    min_s = min over p <= i of s_p(i); T = k * (i - min_s); N(i) = T + max over p achieving min_s of (min n_p - T) where v_p(n_p!) >= k * v_p(i!) = T / (p-1).
-    Precompute s_p(i) for small primes p <= sqrt(M) ~1000 using incremental method in parallel.
-    For min_s, use min over small p and over k=1 to 50 using largest prime <= i/k for potential smaller s in large p ranges.
-    For each i, collect candidate p achieving min_s, compute e = T // (p-1), use binary search on n to find min n_p with v_p(n_p!) >= e using de Polignac's formula.
-    Sum N(i) mod 10^18.
-
-    Complexity
-    Time: O(pi(sqrt(M)) * M + M * (50 + num_cand * 30 * log_p(T))), ~ few seconds.
-    Space: O(pi(sqrt(M)) * M) ~ 600 MB.
-
-    References
-    https://projecteuler.net/problem=320
-    """
     k = 1234567890
     M = 1000000
     MOD = 10**18

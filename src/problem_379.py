@@ -80,27 +80,6 @@ def compute_for_i(i, spf, n, mu):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Computes g(10^12) as defined in Project Euler problem 379, the sum of f(i) for i=1 to 10^12,
-    where f(i) is the number of pairs (x,y) with x <= y and lcm(x,y)=i. Prints the result.
-
-    Method / Math Rationale
-    ------------------------
-    Reformulates g(n) as n (diagonal pairs) plus the sum over reduced a=1 to sqrt(n) of the sum
-    over b > a with gcd(a,b)=1 of floor(n / (a b)). Uses inclusion-exclusion and grouped sum
-    of floor values to compute efficiently.
-
-    Complexity
-    ----------
-    Time O(sqrt(n) * log(sqrt(n)) * sqrt(n)) worst-case but averaged lower due to varying k sizes;
-    approximately 10^10 operations, feasible with parallelism.
-
-    References
-    ----------
-    https://projecteuler.net/problem=379
-    """
     n = 10**12
     sq = isqrt(n)
     max_s = sq + 10

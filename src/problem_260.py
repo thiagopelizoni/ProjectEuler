@@ -3,27 +3,6 @@ import numpy as np
 from tqdm import tqdm
 
 def main() -> None:
-    """
-    Purpose: Solves Project Euler problem 260 by identifying all losing configurations in a three-pile stone game
-    where pile sizes are up to 1000 and computing the sum of their pile sizes.
-
-    Args: None
-
-    Returns: None; the computed sum is printed to standard output.
-
-    Method / Math Rationale: Processes potential losing positions (a <= b <= c) in lexicographical order using
-    dynamic programming. For each triple, checks if any emptying move—single-pile (to (0, b, c) etc.), two-pile (to
-    (0, b-a, c) etc.), or three-pile (to (0, b-a, c-a))—leads to a previously marked losing position via specialized
-    arrays. If no such move exists, classifies as losing, adds a + b + c to the sum, and marks the corresponding
-    emptying targets in the arrays for future positions. The order ensures move targets are smaller and already
-    evaluated, correctly identifying P-positions (losing) as those with no move to another P-position, with emptying
-    moves sufficing due to the game's structure as verified by the n=100 sample.
-
-    Complexity: Time O(N^3) for N=1000 with early skips; space O(N^2) for marking arrays.
-
-    References: https://projecteuler.net/problem=260
-    Impartial game theory and P-positions.
-    """
     max_pile_size = 1000
     size = max_pile_size + 1
     losing_pairs = np.zeros((size, size), dtype=np.int8)

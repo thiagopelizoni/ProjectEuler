@@ -65,32 +65,6 @@ def compute_z(p):
     return None
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 399 by finding the 100,000,000th squarefree Fibonacci number and
-    outputting its last 16 digits followed by its scientific notation rounded to one digit after the
-    decimal point.
-
-    Method / Math Rationale
-    -----------------------
-    Utilizes Wall's conjecture assuming the first Fibonacci number divisible by prime p^2 occurs at
-    index p * Z(p), where Z(p) is the rank of appearance of p in the Fibonacci sequence. Computes
-    Z(p) by checking Fibonacci values modulo p for divisors of the appropriate potential period
-    (p-1 or 2(p+1) based on p mod 5). Collects indices I_p = p * Z(p) <= estimated max_N. Marks
-    non-squarefree indices in a boolean array via sieving. Iterates to find the target index n.
-    Computes F_n mod 10^16 using matrix exponentiation and approximates scientific notation using
-    Binet's formula with high-precision decimals.
-
-    Complexity
-    ----------
-    O(PI * D * log P) for Z(p) computations where PI ~ 10^6 primes, D ~ 10 average divisors,
-    log P ~ 20; O(N) for index finding with N ~ 1.65*10^8.
-
-    References
-    ----------
-    https://projecteuler.net/problem=399
-    """
     target = 100000000
     prime_limit = 20000000
     max_n = 200000000

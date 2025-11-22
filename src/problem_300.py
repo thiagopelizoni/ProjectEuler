@@ -53,21 +53,6 @@ def compute_partial(chunk):
     return partial
 
 def main():
-    """
-    Purpose
-    Solve Project Euler problem 300 by computing the average number of H-H contact points in an optimal folding of random protein strings of length 15.
-
-    Method / Math Rationale
-    Enumerate self-avoiding walks on a 2D square lattice using backtracking with symmetry reductions (fixed initial direction and endpoint y-coordinate condition).
-    Collect unique sets of non-sequential contact pairs. For each unique set, update the maximum non-sequential contact scores for all possible sequences using
-    parallel processing and Numba for performance. Add the fixed sequential H-H contacts to each sequence's maximum score. Compute the average over all 2^15 sequences.
-
-    Complexity
-    O(number of SAW * pairs per SAW + unique contacts * 2^15 * avg contacts / CPUs), with SAW ~2.5e6, unique contacts estimated in thousands, 2^15=32768.
-
-    References
-    https://projecteuler.net/problem=300
-    """
     N = 15
     visited = set()
     positions = [(0, 0), (1, 0)]

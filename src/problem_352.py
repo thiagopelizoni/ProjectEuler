@@ -39,30 +39,6 @@ def compute_T(p, s):
     return u[s]
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of T(10000, p) for p=0.01 to 0.50 in steps of 0.01, where
-    T(s, p) is the minimal expected number of tests to screen s sheep with
-    infection probability p using optimal group testing strategy.
-
-    Method / Math Rationale
-    -----------------------
-    Uses dynamic programming to compute the minimal expected tests. Defines two
-    arrays: u[n] for unconditional screening of n sheep, c[n] for conditional
-    on at least one infected. Recursively minimizes over the size m of the
-    first pool tested, using precomputed powers of (1-p). The math is based on
-    conditional probabilities for test outcomes.
-
-    Complexity
-    ----------
-    O(50 * N^2) where N=10000, approximately 2.5e9 operations, optimized with
-    numba JIT and parallel processing over the 50 probabilities.
-
-    References
-    ----------
-    https://projecteuler.net/problem=352
-    """
     s = 10000
     ps = [0.01 * i for i in range(1, 51)]
     with ProcessPoolExecutor() as executor:

@@ -20,37 +20,6 @@ def floor_phi(n: int) -> int:
 memo: dict[int, Tuple[int, int, int]] = {}
 
 def get_suv(n: int) -> Tuple[int, int, int]:
-    """
-    Purpose
-    -------
-    Compute the sums S(n) = sum_{k=1}^n floor(k * phi), U(n) = sum_{k=1}^n k * floor(k * phi),
-    V(n) = sum_{k=1}^n floor(k * phi)^2 where phi = (1 + sqrt(5))/2.
-
-    Args
-    ----
-    None
-
-    Returns
-    -------
-    None
-
-    Method / Math Rationale
-    -----------------------
-    Uses recursive Beatty partition of natural numbers into Wythoff sequences A and B.
-    S(n) = N(N+1)/2 - S(J) - J(J+1)/2
-    V(n) = N(N+1)(2N+1)/6 - V(J) - 2 U(J) - J(J+1)(2J+1)/6
-    U(n) = [n(n+1)/2] * (n + J) - [n(n+1)(n-1)/3 + V(J) + S(J)] / 2
-    where N = floor(n * phi), J = N - n.
-    Floor computed via binary search for floor(n * sqrt(5)).
-
-    Complexity
-    ----------
-    O(log n)
-
-    References
-    ----------
-    https://projecteuler.net/problem=325
-    """
     if n <= 0:
         return 0, 0, 0
     if n in memo:
@@ -67,28 +36,6 @@ def get_suv(n: int) -> Tuple[int, int, int]:
     return s, u, v
 
 def main() -> None:
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 325: compute S(10^16) mod 7^10, where S(N) is the sum of x+y over
-    losing positions (x,y) with 0 < x < y <= N in the stone game.
-
-    Method / Math Rationale
-    -----------------------
-    Losing positions are those with y <= floor(x * phi) where phi = (1 + sqrt(5))/2.
-    Split sum at K = floor(N / phi). For x = 1 to K, use sums S(K), U(K), V(K) over
-    floor(k * phi) combined as [2*U(K) + V(K) + S(K) - sum x - 3*sum x^2] // 2.
-    For x = K+1 to N-1, closed-form sum_d=1^{N-K-1} d*(4*N - 3*d + 1)//2.
-    S, U, V computed recursively using Beatty partition.
-
-    Complexity
-    ----------
-    O(log N)
-
-    References
-    ----------
-    https://projecteuler.net/problem=325
-    """
     N = 10**16
     mod = 7**10
     A = floor_phi(N) - N

@@ -45,28 +45,6 @@ def M(x):
     return 1 - s
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 388: Compute D(10^10), the number of distinct lines from the origin to
-    lattice points in [0, N]^3 excluding the origin, and outputs the first nine digits followed by the
-    last nine digits.
-
-    Method / Math Rationale
-    ------------------------
-    D(N) = sum_{d=1}^N mu(d) * [ (floor(N/d) + 1)^3 - 1 ]
-    Use segmented summation with Mertens function M(x) for efficient computation. M(x) is computed
-    recursively with memoization using the relation sum_{m=1}^x M(floor(x/m)) = 1.
-    Precompute M(x) for x <= 10^6 using linear sieve.
-
-    Complexity
-    ----------
-    Time: O(N^{2/3}) for the recursive M(x) computations due to memoization and segment grouping.
-
-    References
-    ----------
-    https://projecteuler.net/problem=388
-    """
     N = 10**10
     s = 0
     l = 1

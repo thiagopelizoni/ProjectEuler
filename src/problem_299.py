@@ -23,24 +23,6 @@ def compute_par_for_m(m, L):
     return local_count
 
 def main():
-    """
-    Purpose:
-    Solves Project Euler problem 299 by counting the number of distinct triplets (a, b, d)
-    such that b + d < 100000000 and there exists an integer coordinate point P on the
-    line AC making the triangles ABP, CDP, and BDP similar.
-
-    Method / Math Rationale:
-    The solution separates into two cases: the general (incenter) case where b^2 + d^2
-    is a perfect square, parameterized by primitive Pythagorean triples and scaled; and
-    the parallel case (b = d) where a^2 - 2(b - a)^2 is a perfect square, parameterized
-    and filtered for primitive solutions before scaling.
-
-    Complexity:
-    O(sqrt(L)^2) = O(L) time due to nested loops over parameters up to sqrt(L).
-
-    References:
-    https://projecteuler.net/problem=299
-    """
     L = 100000000
     count_in = 0
     max_m = int(L**0.5) + 10

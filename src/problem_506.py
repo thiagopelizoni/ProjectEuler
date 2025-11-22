@@ -15,27 +15,6 @@ def geom_sum(QQ, M, base, inv_basem1):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 506 by computing S(10^14) mod 123454321, where S(n) is the sum of the first n
-    terms in the clock sequence.
-
-    Method / Math Rationale
-    -----------------------
-    The digit sequence is 1 followed by repeating "234321". We model the consumption of digits for each v_k using
-    modular arithmetic over the period 6. The state transitions cycle every 15 steps starting from k=2. We group
-    computations into cycles of 15, using closed-form geometric series sums for efficient calculation of large
-    exponents modulo M.
-
-    Complexity
-    ----------
-    O(1) effectively, with logarithmic operations for modular exponentiations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=506
-    """
     N = 10**14
     M = 123454321
 

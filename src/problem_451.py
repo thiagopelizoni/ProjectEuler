@@ -71,27 +71,6 @@ def sum_I(start, end):
     return s
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of I(n) for 3 <= n <= 2*10^7, where I(n) is the largest m < n-1 such that
-    m^2 ≡ 1 mod n.
-
-    Method / Math Rationale
-    ------------------------
-    For each n, factorize using precomputed smallest prime factor sieve, get local solutions to
-    x^2 ≡ 1 mod p^e for each prime power p^e dividing n, then use Cartesian product to get all
-    combinations, compute each global x using Chinese Remainder Theorem, and find the maximum x < n-1.
-
-    Complexity
-    ----------
-    O(LIMIT log log LIMIT for sieve + sum over n of 2^{omega(n)} * omega(n) for combinations and CRT),
-    parallelized over chunks of n using ProcessPoolExecutor.
-
-    References
-    ----------
-    https://projecteuler.net/problem=451
-    """
     chunk_size = 100000
     chunks = list(range(1, LIMIT + 1, chunk_size))
     with ProcessPoolExecutor() as executor:

@@ -2,27 +2,6 @@
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler Problem 345: Find the maximum sum of elements in a 15x15 matrix
-    where no two elements share the same row or column.
-
-    Method / Math Rationale
-    -----------------------
-    Uses dynamic programming with bitmasks to solve the maximum weight assignment problem.
-    dp[mask] is the maximum sum assigning the first popcount(mask) rows to the columns indicated
-    by the bits in mask. We iterate over all masks in numerical order, updating dp[mask] based
-    on previous masks by adding the appropriate matrix entry.
-
-    Complexity
-    ----------
-    Time: O(2^n * n), Space: O(2^n), where n=15.
-
-    References
-    ----------
-    https://projecteuler.net/problem=345
-    """
     matrix = [
         [7, 53, 183, 439, 863, 497, 383, 563, 79, 973, 287, 63, 343, 169, 583],
         [627, 343, 773, 959, 943, 767, 473, 103, 699, 303, 957, 703, 583, 639, 913],

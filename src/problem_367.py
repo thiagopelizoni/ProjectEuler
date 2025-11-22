@@ -41,32 +41,6 @@ def class_size(n, part):
     return factorial(n) // z
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 367 by computing the expected number of shuffles
-    in the described Bozo sort variant for n=11, averaged over all permutations,
-    and prints the rounded value.
-
-    Method / Math Rationale
-    -----------------------
-    Models the problem as a Markov chain on the symmetric group S_11, grouping
-    states by cycle types (partitions of 11). Computes transition probabilities
-    between cycle types by simulating all possible 3-element shuffles on
-    representative permutations. Solves the system of linear equations for
-    expected values using numpy.linalg.solve. Averages using class sizes and
-    rounds to nearest integer.
-
-    Complexity
-    ----------
-    O(p * C(n,3) * 6 * n) where p is number of partitions (~56 for n=11), due
-    to simulating shuffles and computing cycle types; solving O(p^3). Overall
-    negligible for n=11.
-
-    References
-    ----------
-    https://projecteuler.net/problem=367
-    """
     n = 11
     parts = [tuple(sorted(sum([[k]*v for k,v in p.items()], []), reverse=True)) for p in partitions(n)]
     id_part = (1,) * n

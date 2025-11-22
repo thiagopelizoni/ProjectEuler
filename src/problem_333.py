@@ -4,27 +4,6 @@ from tqdm import tqdm
 from sympy.ntheory import isprime
 
 def main():
-    """
-    Purpose
-    ------
-    Solves Project Euler problem 333 by computing the sum of primes q < 1000000 such that P(q) = 1,
-    where P(q) is the number of special partitions.
-
-    Method / Math Rationale
-    -----------------------
-    Uses dynamic programming to count the number of valid antichains summing to each number up to the limit.
-    The DP state tracks the current sum and the last used power of 3 (b), adding terms with increasing powers of 2 (a)
-    and decreasing b to ensure the antichain property (no term divides another). Single and multi-term partitions are
-    handled naturally. Ways are capped at 2 since we only need to know if P(n) == 1.
-
-    Complexity
-    ----------
-    O(max_a * limit * max_b) ~ 3.6e8 operations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=333
-    """
     limit = 999999
     max_a = 0
     while (1 << max_a) <= limit:

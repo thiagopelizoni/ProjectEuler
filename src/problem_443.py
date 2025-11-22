@@ -4,28 +4,6 @@ from sympy.ntheory import factorint
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Computes g(10^15) where g is the GCD sequence defined in the problem.
-
-    Method / Math Rationale
-    -----------------------
-    Uses the offset b(n) = g(n) - n, which stays constant between jumps where gcd >1.
-    Jumps to the next n where gcd(n, b-1) >1 by finding the minimal next multiple of
-    primes dividing (b-1).
-    At each jump, updates b += gcd -1.
-    This avoids iterating over all n.
-
-    Complexity
-    ----------
-    O(J * F) where J is number of jumps (~ few hundred), F is time to factorize numbers
-    up to ~10^15 (~ fast with sympy).
-
-    References
-    ----------
-    https://projecteuler.net/problem=443
-    """
     N = 10**15
     n = 4
     b = 9

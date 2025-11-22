@@ -22,27 +22,6 @@ def is_primitive_root(g, p):
     return True
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of all digits of the cyclic number that starts with 00000000137 and ends with 56789.
-
-    Method / Math Rationale
-    ------------------------
-    The cyclic number is the repetend of 1/p for a prime p with full decimal period p-1 (10 is primitive root mod p).
-    p satisfies p % 100000 = 9891 (from solving 56789 * p ≡ 99999 mod 100000 for the ending digits) and
-    approximately 724637682 <= p <= 729927007 (from 1/p ≈ 1.37 * 10^{-9} for the starting digits).
-    Confirm exact starting digits via long division. The digit sum is 9 * (p - 1) // 2 for such numbers.
-
-    Complexity
-    ----------
-    Time: O(((p_max - p_min) / modulus) * log(p)^c) for primality and factoring, with small constants (53 iterations).
-    Space: O(1)
-
-    References
-    ----------
-    https://projecteuler.net/problem=358
-    """
     min_frac = 1.37e-9
     max_frac = 1.38e-9
     p_min = math.ceil(1 / max_frac)

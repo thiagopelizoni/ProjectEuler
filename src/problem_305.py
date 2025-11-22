@@ -212,25 +212,6 @@ def compute_f(m):
 
 
 def main():
-    """
-    Purpose:
-    Solves Project Euler problem 305 by computing the sum of f(3^k) for k from 1 to 13, where f(n) is the starting position
-    of the nth occurrence of the string representation of n in the concatenated positive integers.
-
-    Method / Math Rationale:
-    For each power m = 3^k, uses binary search to find the minimal integer k such that the total occurrences of str(m)
-    in the concatenation of 1 to k is at least m. Occurrences include within-number matches counted via digit DP with
-    a string matching automaton and spanning matches across consecutive numbers. Spanning matches are computed exactly
-    for small digit lengths and using closed-form arithmetic progressions for larger lengths. The exact position is then
-    located by identifying whether the target occurrence is a spanning or within match in the final number.
-
-    Complexity:
-    O(13 * log(10^15) * (digit DP states ~ 15*10*2*2 * 10) + small loop max 10^7 per power) operations, parallelized
-    across the 13 computations.
-
-    References:
-    https://projecteuler.net/problem=305
-    """
     powers = [3 ** i for i in range(1, 14)]
     with ProcessPoolExecutor() as executor:
         fs = list(tqdm(executor.map(compute_f, powers), total=13, desc="Computing f(3^k)"))

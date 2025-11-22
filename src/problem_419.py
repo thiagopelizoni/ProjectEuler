@@ -47,28 +47,6 @@ def decompose(s, sorted_atoms):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 419 by computing the number of 1s, 2s, and 3s in the
-    10^12-th term of the look and say sequence starting from 1, modulo 2^30.
-
-    Method / Math Rationale
-    -----------------------
-    Uses John Conway's analysis of the look and say sequence, modeling it as
-    independent atomic elements evolving via a transition matrix. Decomposes the
-    sequence into atoms after a few iterations, then uses matrix exponentiation to
-    advance the counts to the desired generation.
-
-    Complexity
-    ----------
-    O(92^3 * log(10^12)) for matrix exponentiation, which is small.
-
-    References
-    ----------
-    https://projecteuler.net/problem=419
-    https://en.wikipedia.org/wiki/Look-and-say_sequence
-    """
     mod = 1 << 30
 
     atoms_data = [

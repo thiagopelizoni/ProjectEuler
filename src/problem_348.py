@@ -5,29 +5,6 @@ def is_palindrome(n):
     return str(n) == str(n)[::-1]
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of the five smallest palindromic numbers that can be
-    expressed as the sum of a square and a cube, both greater than 1, in
-    exactly 4 different ways.
-
-    Method / Math Rationale
-    -----------------------
-    Uses a min-heap to generate sums s^2 + c^3 for s, c >= 2 in increasing
-    order. Tracks visited (s, c) to avoid duplicates. Groups sums by value to
-    count ways. Checks for palindrome and exactly 4 ways.
-
-    Complexity
-    ----------
-    Time: O(M log M) where M is the number of pairs processed until the fifth
-    palindrome is found, approximately O(sqrt(V) * cbrt(V) log V) for V the
-    value of the fifth number.
-
-    References
-    ----------
-    https://projecteuler.net/problem=348
-    """
     heap = []
     visited = set()
     initial_s = 2

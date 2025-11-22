@@ -35,26 +35,6 @@ def search_skewed(limit, max_exp, F, L, exponent=0, sum_L=0, sum_F=0):
     return result
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 473: Find the sum of all positive integers not exceeding 10^10 whose
-    phigital representation is palindromic.
-
-    Method / Math Rationale
-    ------------------------
-    Uses a recursive search to generate candidate sets of exponents for skewed pairs (k, -k-1) with minimum
-    difference 3 between k's, computes the sum using Lucas numbers for the rational part and Fibonacci for
-    the irrational part, adding the n if the irrational part cancels (sum_F = 0).
-
-    Complexity
-    ----------
-    O(1.465^48) time, approximately 10^8 operations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=473
-    """
     limit = 10**10
     max_exp = 48
     F = [0] * (max_exp + 3)

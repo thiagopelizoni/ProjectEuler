@@ -10,36 +10,6 @@ def get_base5_digits_lsd(n, base, length):
     return digits
 
 def main():
-    """
-    Purpose
-
-    Solves Project Euler problem 383, computing T_5(10^18), the number of integers i from 1 to
-    10^18 satisfying f_5((2*i - 1)!) < 2 * f_5(i!), where f_5(k) is the highest power of 5
-    dividing k.
-
-    Parameters: None
-
-    Returns: None, prints the result.
-
-    Method / Math Rationale
-
-    Equivalent to counting i <= 10^18 with s_5(2i - 1) >= 2 * s_5(i), where s_5 is the base-5
-    digit sum. Use digit DP from LSD to MSD in base 5 with 27 digits (padded). State tracks
-    position, comparison borrow (0/1) for i <= n via simulating n - i subtraction, whether
-    still zero, running sums s_i and s_m, carry_in for doubling, borrow_in for subtraction.
-    At each step, choose digit d (0-4), compute doubled digit with carry_in, get carry_out;
-    subtract borrow_in to get m digit, get borrow_out. For comparison, compute effective
-    n digit minus borrow_comp, subtract d, adjust if negative to get borrow_next. At end,
-    handle possible extra digit for m, check no comparison borrow, and condition.
-
-    Complexity
-
-    O(l * 2 * 2 * s^2 * 2 * 2) states/transitions, with l=27, s~108, ~10^7 operations.
-
-    References
-
-    https://projecteuler.net/problem=383
-    """
 
     n = 10**18
     base = 5

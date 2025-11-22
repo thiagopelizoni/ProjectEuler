@@ -106,27 +106,6 @@ def special_contrib(N, mu, base_type, divisors):
     return total
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 450 by computing T(10^6), the sum of S(R, r) for R=3 to 10^6,
-    r=1 to floor((R-1)/2).
-
-    Method / Math Rationale
-    ------------------------
-    The lattice points with rational sin(t), cos(t) are derived from base Pythagorean triples
-    raised to powers corresponding to the rational k = (R-r)/r = s/t in lowest terms.
-    Special handling for base cases with small m, using Mobius inversion for efficient summation.
-    For other bases, enumerate small p, q and limited s, t based on m.
-
-    Complexity
-    ----------
-    O(N log N) for special cases due to Mobius sums; for other bases, small constants make it fast.
-
-    References
-    ----------
-    https://projecteuler.net/problem=450
-    """
     N = 1000000
     mu = compute_mobius(N)
     divisors = compute_divisors(N)

@@ -20,27 +20,6 @@ def row_prod(i, m, n, mod):
     return res
 
 def main():
-    r"""
-    Purpose
-    -------
-    Solves Project Euler problem 412 by computing LC(10000, 5000) mod 76543217, where LC(m, n) is the number of valid
-    numberings of the gnomon L(m, n).
-
-    Method / Math Rationale
-    -----------------------
-    LC(m, n) is the number of standard Young tableaux of shape (m^{m-n}, (m-n)^n), given by the hook-length formula:
-    (m^2 - n^2)! / \prod_{(i,j) \in \lambda} h_{i,j}, where h_{i,j} = \lambda_i + \lambda_j - i - j + 1 since the partition
-    is self-conjugate. Computes the factorial and the product of hook lengths modulo p using parallel processing for
-    efficiency, then inverts the product.
-
-    Complexity
-    ----------
-    Time: O(m^2 - n^2 / cpus), space: O(1).
-
-    References
-    ----------
-    https://projecteuler.net/problem=412
-    """
     m = 10000
     n = 5000
     p = 76543217

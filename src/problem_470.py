@@ -51,31 +51,6 @@ def compute_for_c(params):
     return value_vec[full_mask - 1]
 
 def main():
-    """
-    Purpose
-    -------
-    Computes F(20), the sum of S(d, c) for d from 4 to 20 and c from 0 to 20,
-    where S(d, c) is the expected total net profit for Super Ramvok with d-sided
-    die and cost c, and prints the rounded value to the nearest integer.
-    No parameters. Prints the result.
-
-    Method / Math Rationale
-    ------------------------
-    For each d, represents die states as bitmasks. Computes rewards R for each
-    non-empty state as max over t of expected prize minus c*t, using backward
-    induction for optimal stopping in Ramvok. Solves expected value equations
-    using sparse linear system (I - Q) v = r, where Q is transition probabilities
-    after toggling a random face.
-
-    Complexity
-    ----------
-    O(2^d * d) time and space per d per c for building and solving the system,
-    with d up to 20 making it feasible.
-
-    References
-    ----------
-    https://projecteuler.net/problem=470
-    """
     total = 0.0
     for d in range(4, 21):
         size = 1 << d

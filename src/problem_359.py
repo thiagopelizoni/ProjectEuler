@@ -23,33 +23,6 @@ def P(floor, room):
     return result
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 359 by computing the sum of P(f, r) for all
-    positive integers f and r such that f * r = 71328803586048, and prints the
-    last 8 digits of this sum.
-    Parameters: None
-    Returns: None (prints the result)
-
-    Method / Math Rationale
-    ------------------------
-    Uses a closed-form formula for P(f, r), the person number occupying room r
-    in floor f, derived from patterns in room assignments. The first person in
-    each floor is calculated based on floor parity. Subsequent persons are added
-    using arithmetic progressions for odd and even room positions, with
-    increments depending on floor parity. The sum is computed over all divisor
-    pairs (f, r) of the given number.
-
-    Complexity
-    ----------
-    O(1) per P computation, with a constant number of divisor pairs (364),
-    resulting in overall constant time complexity O(1).
-
-    References
-    ----------
-    https://projecteuler.net/problem=359
-    """
     N = 71328803586048
     mod = 100000000
     exp_two = 27

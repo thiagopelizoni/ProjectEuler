@@ -66,27 +66,6 @@ def recurse_case(start: int, end: int, p: np.ndarray, L: int,
     return total
 
 def main() -> None:
-    """
-    Purpose
-    Computes the sum of positive n <= 10^11 with C(n) = 242, where C(n) is the
-    number of integers 1 < x < n with x^3 ≡ 1 mod n.
-
-    Method / Math Rationale
-    Enumerates increasing combinations of primes ≡1 mod 3 using recursion with
-    product pruning. For case1 (5 such primes): prod = product of them, sum
-    over additional e>=0 for each: prod * a * sum b <= L/(prod*a) where b has
-    only primes 2, ≡2 mod 3 (any e), 3^{0 or 1}. For case2 (4 such primes,
-    plus 3^{e>=2}): prod = product of 4 * 9, sum over additional e>=0 for the
-    4 and 3: prod * a * sum b <= L/(prod*a) where b has only 2, ≡2 mod 3 (any
-    e), no 3.
-
-    Complexity
-    Time: O(number of combinations * average log(M/p) per prime for exponents),
-    ~ seconds to minutes with Numba JIT and parallelism; Space: O(MAX_M)
-
-    References
-    https://projecteuler.net/problem=272
-    """
     L: int = 10**11
     MAX_M: int = 10**6
     LIMIT: int = 10**7

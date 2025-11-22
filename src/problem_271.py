@@ -6,25 +6,6 @@ from tqdm import tqdm
 from typing import List
 
 def main() -> None:
-    """
-    Purpose
-    Computes S(13082761331670030), the sum of integers x where 1 < x < n
-    and x^3 ≡ 1 mod n.
-
-    Method / Math Rationale
-    Factors n as the product of the first 14 primes. Identifies primes with
-    1 or 3 solutions to x^3 ≡ 1 mod p. Fixes x ≡ 1 mod m1 (product of
-    single-solution primes). Enumerates all 3^6 = 729 combinations of
-    residues for the 6 primes with 3 solutions, computes c mod m2 using CRT,
-    then solves x ≡ 1 mod m1, x ≡ c mod m2 explicitly. Sums all such x and
-    subtracts 1.
-
-    Complexity
-    Time: O(729 * 6) constant time, Space: O(1)
-
-    References
-    https://projecteuler.net/problem=271
-    """
     single_primes: List[int] = [2, 3, 5, 11, 17, 23, 29, 41]
     m1: int = 1
     for p in single_primes:

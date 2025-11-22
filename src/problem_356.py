@@ -27,28 +27,6 @@ def matrix_power(mat, exp, mod):
     return result
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 356 by computing the last eight digits of the sum from i=1 to 30
-    of floor(a_i^{987654321}), where a_i is the largest real root of x^3 - 2^i x^2 + i = 0.
-    
-    Method / Math Rationale
-    -----------------------
-    For each n, define v_k = alpha^k + beta^k + gamma^k, where alpha, beta, gamma are the roots,
-    with alpha the largest. v_k is an integer satisfying the recurrence v_m = 2^n v_{m-1} - n v_{m-3}.
-    Since k is odd and beta > |gamma| > 0 with gamma < 0, beta^k + gamma^k > 0. Thus,
-    floor(alpha^k) = v_k - 1. Compute v_k mod 10^8 using modular matrix exponentiation for each n,
-    sum them, subtract 30, and take mod 10^8 to get the last eight digits.
-    
-    Complexity
-    ----------
-    O(30 * log(k) * 27) where k=987654321, effectively constant time.
-    
-    References
-    ----------
-    https://projecteuler.net/problem=356
-    """
     mod = 100000000
     k = 987654321
     total = 0

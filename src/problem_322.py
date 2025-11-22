@@ -40,27 +40,6 @@ def count_below_dp(pos, tight, L, digs_rem, constrained):
     return ans
 
 def main():
-    """
-    Purpose
-    Solves Project Euler Problem 322: Find T(10^18, 10^12-10), where T(m, n) is the number of binomial coefficients
-    C(i, n) divisible by 10 for n ≤ i < m.
-
-    Method / Math Rationale
-    T(m, n) = (m - n) - number of C(i, n) not div by 10 for i in [n, m).
-    Number not div by 10 = num(not div 2) + num(not div 5) - num(not div 2 and not div 5)
-    By Kummer's theorem, v_p(C(i, n)) = number of carries when adding n + (i - n) in base p.
-    num(not div p) = count of k = i - n in [0, m - n) where no carries, i.e. digits(k) <= p-1 - digits(n) componentwise in base p.
-    Computed using periodicity: period = p^{len(digits_n(p))}, valid residues mod period generated recursively,
-    then count = full periods * valid count + count in remainder using bisect.
-    For both: loop over full periods and valid residues, check if (period * i + a) & n == 0 using mod 2^{bit_length(n)}.
-
-    Complexity
-    O(L log_p(m)) for residue generation (small); O(full periods * valid residues) ~ 1.26e9 for both, optimized with njit;
-    O(L) for digit DP in base 2 remainder.
-
-    References
-    https://projecteuler.net/problem=322
-    """
     n = 10**12 - 10
     m = 10**18
     S = m - n

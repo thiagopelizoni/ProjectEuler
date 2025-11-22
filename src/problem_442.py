@@ -8,29 +8,6 @@ class Node:
         self.output = False
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 442 by finding the 10^18-th eleven-free integer, where an eleven-free
-    integer does not contain any substring that is a power of 11 except 1 in its decimal representation.
-
-    Method / Math Rationale
-    -----------------------
-    Constructs an Aho-Corasick automaton for the forbidden substrings (decimal representations of
-    11^k for k >= 1). Identifies good states (no match). Uses dynamic programming to precompute the
-    number of valid ways to extend from each good state with a given number of digits. Determines the
-    digit length d for the result, then constructs the number digit by digit by greedily choosing the
-    smallest digit that covers the remaining count.
-
-    Complexity
-    ----------
-    O(sum of pattern lengths * 10 + max_d * num_states * 10), which is small (around 10^5 operations)
-    given max_d=50 and num_states ~5000.
-
-    References
-    ----------
-    https://projecteuler.net/problem=442
-    """
     patterns = []
     power = 11
     for _ in range(100):

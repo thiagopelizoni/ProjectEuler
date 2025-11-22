@@ -2,32 +2,6 @@
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Compute S(100), the sum of R(i, j) for 1 <= i, j <= 100, where R(m, n) is the number of
-    ways to make an m x n grid graph rigid by adding diagonals, modulo 1000000033.
-    No parameters.
-    Returns: None (prints the result).
-
-    Method / Math Rationale
-    -----------------------
-    Uses dynamic programming to compute R(i, j) using the formula for the number of connected
-    bipartite graphs between sets of sizes i and j:
-    R(i, j) = 2^{i*j} - sum over 1 <= a <= i, 0 <= b <= j (excluding a=i and b=j) of
-    binom(i-1, a-1) * binom(j, b) * 2^{(i-a)*(j-b)} * R(a, b).
-    This counts the connected labeled bipartite graphs, corresponding to rigid configurations
-    where each cell may or may not have a diagonal (orientation not distinguished).
-
-    Complexity
-    ----------
-    Time: O(N^4) due to DP with O(N^2) states and O(N^2) work per state.
-    Space: O(N^2).
-
-    References
-    ----------
-    https://projecteuler.net/problem=434
-    """
     N = 100
     MOD = 1000000033
 

@@ -12,26 +12,6 @@ def dist(p_mod, g_mod, k_mod, mod, p_less_g):
         return (diff * d2) % mod
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 497 by computing the sum of E(n,10^n,3^n,6^n,9^n) for n=1 to 10000,
-    and prints the result modulo 1000000000.
-
-    Method / Math Rationale
-    -----------------------
-    Uses dynamic programming to recursively compute the expected squares travelled for subsets of disks
-    using the Hanoi recursion structure, with expected distances between rods calculated using closed-form
-    formulas for the random walk on a line with reflecting boundaries.
-
-    Complexity
-    ----------
-    O(N^2) time where N=10000, due to DP filling for each n; space O(N).
-
-    References
-    ----------
-    https://projecteuler.net/problem=497
-    """
     mod = 1000000000
     total = 0
     for n in tqdm(range(1, 10001)):

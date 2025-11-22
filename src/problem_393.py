@@ -115,35 +115,6 @@ def search(row, down, up):
     return result
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 393: count the number of ways ants on a 10x10 grid can move to
-    adjacent squares without ending on the same square or crossing edges.
-    No parameters.
-    Prints the result.
-
-    Method / Math Rationale
-    -----------------------
-    Uses dynamic programming to process the grid row by row. State defined by current row and
-    masks for incoming downward and required upward moves.
-    Each row's possible move combinations are enumerated (4^n), validated for no crossings,
-    boundary conditions, and balance of ants per square.
-    Memoization on states (row, down_mask, up_mask).
-    Symmetry: for first row, force leftmost ant to move right and multiply final valid configs
-    by 2.
-
-    Complexity
-    ----------
-    Time: O(number of states * 4^n), with n=10, 4^10 ~1M per row, 11 rows, but with skips and
-    cache, feasible.
-    Space: O(number of states) ~ 11 * 2^10 * 2^10 ~ 11M.
-
-    References
-    ----------
-    https://projecteuler.net/problem=393
-    https://euler.stephan-brumme.com/393/
-    """
     print(search(0, 0, 0))
 
 if __name__ == "__main__":

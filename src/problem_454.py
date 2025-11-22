@@ -72,26 +72,6 @@ def compute_chunk(start: int, end: int) -> int:
     return res
 
 def main():
-    """
-    Purpose
-    -------
-    Computes F(L), the number of positive integer solutions (x, y, n) to 1/x + 1/y = 1/n with x < y <= L=10**12.
-
-    Method / Math Rationale
-    -----------------------
-    Parameterizes solutions using a, b coprime, a < b, k >=1, x = k(a+b)a, y = k(a+b)b. Counts using sum over s = a+b,
-    sum over a coprime < s/2 floor(L / (s * (s-a))). Uses Möbius inversion to handle the coprimality condition and an
-    O(sqrt(N)) algorithm to compute sums of floor functions efficiently. Employs numba for JIT compilation and
-    multiprocessing for parallelism.
-
-    Complexity
-    ----------
-    Time: O(L^{3/4}) operations, space: O(sqrt(L))
-
-    References
-    ----------
-    https://projecteuler.net/problem=454
-    """
     result = 0
     futures = []
     with ProcessPoolExecutor() as executor:

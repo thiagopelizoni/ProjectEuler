@@ -41,27 +41,6 @@ def mod_pow(base, level, mod):
     return result
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 500: Find the smallest number with exactly 2^500500 divisors, modulo 500500507.
-
-    Method / Math Rationale
-    -----------------------
-    Uses a greedy algorithm with a priority queue to build the number by repeatedly choosing the smallest multiplier
-    that doubles the number of divisors. Each multiplier is either introducing a new prime or extending an existing
-    one's exponent. Exponents are of the form 2^k - 1 for some k.
-    The result is computed modulo 500500507 using modular exponentiation.
-
-    Complexity
-    -----------------------
-    O(N log P + S) where N=500500, P=number of primes used (~N in worst case but less), S=sieve time O(L log log L)
-    with L~8e6.
-
-    References
-    ----------
-    https://projecteuler.net/problem=500
-    """
     MOD = 500500507
     N = 500500
     LIMIT = 8000000

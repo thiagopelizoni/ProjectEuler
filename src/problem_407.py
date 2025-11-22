@@ -44,35 +44,6 @@ def partial_sum(start, end):
     return s
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of M(n) for 1 <= n <= 10^7, where M(n) is the largest a < n such that
-    a^2 ≡ a mod n, and prints the result.
-
-    Method / Math Rationale:
-    -----------------------
-    Precomputes an array where for each n, the value is n if n is a prime power (including
-    primes), else the largest prime factor of n.
-    For each n:
-    - If n=1, M(n)=0
-    - If the array value == n (prime power), M(n)=1
-    - Else, p = largest prime factor, iterate x from n down to p in steps of -p (multiples
-      of p), check if x+1 or x satisfies a^2 % n == a (with a possibly >n, but check fails
-      naturally if so), return the largest such a.
-    This efficiently finds the maximum idempotent <n by checking candidates where a ≡ 0 or
-    1 mod p, leveraging that p divides a or a-1 for any idempotent a.
-
-    Complexity
-    ----------
-    Precomputation: O(N log log N) for sieve-like pass.
-    Computation: For each n, O(n / p) operations where p is largest prime factor; total
-    empirically acceptable for N=10^7 (runs in seconds with parallelism).
-
-    References
-    ----------
-    https://projecteuler.net/problem=407
-    """
     limit = 10000000
     num_workers = multiprocessing.cpu_count()
     num_chunks = num_workers * 10

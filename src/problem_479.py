@@ -18,30 +18,6 @@ def compute_sum_chunk(start, end, n, MOD):
     return s
 
 def main():
-    """
-    Purpose
-    -------
-    Computes S(10^6) modulo 1,000,000,007 for Project Euler problem 479, where S(n) is the sum over p=1 to n
-    and k=1 to n of (a_k + b_k)^p (b_k + c_k)^p (c_k + a_k)^p, with a_k, b_k, c_k being the roots of the given
-    equation.
-
-    Method / Math Rationale
-    ----------------------
-    The expression (a_k + b_k)^p (b_k + c_k)^p (c_k + a_k)^p simplifies to (1 - k^2)^p for each k and p.
-    For each fixed k, the sum over p=1 to n of r^p, where r = 1 - k^2, is a geometric series computed as
-    r * (1 - r^n) / (1 - r), with 1 - r = k^2.
-    Computations are performed modulo MOD using modular exponentiation and inverses.
-    The sum over k is parallelized across multiple processes for performance.
-
-    Complexity
-    ----------
-    O(n log n) time due to n modular exponentiations each O(log n), parallelized over available CPU cores.
-    O(1) space per process.
-
-    References
-    ----------
-    https://projecteuler.net/problem=479
-    """
     MOD = 1000000007
     n = 1000000
     num_workers = os.cpu_count() or 1

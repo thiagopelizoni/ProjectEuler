@@ -71,27 +71,6 @@ def pi(x):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 501 by counting the number of positive integers n <= 10^12 that have
-    exactly 8 positive divisors.
-
-    Method / Math Rationale
-    ----------------------
-    Numbers with exactly 8 divisors have prime factorizations of the form p^7, p^3 * q, or p * q * r
-    where p, q, r are distinct primes. The function counts the number of such n <= N for each form
-    separately using the prime counting function pi(x) implemented using the Meissel-Lehmer algorithm.
-
-    Complexity
-    ----------
-    The prime counting function is O(n^{2/3} / log^2 n) per call; with memoization, the overall solution
-    runs in reasonable time for N = 10^12.
-
-    References
-    ----------
-    https://projecteuler.net/problem=501
-    """
     global limit, primes
     N = 1000000000000
     limit = 10**7

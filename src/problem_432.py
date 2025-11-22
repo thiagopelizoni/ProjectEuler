@@ -4,29 +4,6 @@ from functools import lru_cache
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the totient sum S(n, m) where S(n, m) = sum of phi(n * i) for i from 1 to m, with n=510510 and m=10^11,
-    and prints the last 9 digits of the result.
-    No parameters.
-    Prints the result modulo 10^9; returns None.
-
-    Method / Math Rationale
-    -----------------------
-    Utilizes a recursive approach to factor out each prime from n, summing contributions over powers of the prime using
-    the formula that accounts for higher powers in the argument, reducing the problem to computing prefix sums of the
-    totient function for large values via a memoized method that groups terms with constant floor values for efficiency.
-
-    Complexity
-    ----------
-    O(2^7 * log(10^11)^7 + (10^11)^{3/4}) due to the number of subproducts of the 7 primes and logarithmic chains per
-    subproduct, plus the complexity of the totient prefix sum computation, resulting in approximately 10^8 operations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=432
-    """
     sys.setrecursionlimit(10000)
     N = 510510
     M = 10**11

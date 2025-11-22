@@ -68,24 +68,6 @@ def generate_chunk_ranges(start: int, stop: int, chunk_size: int):
         current = end + 1
 
 def main() -> None:
-    """
-    Purpose: Computes the number of non-empty subsets of {1^1, 2^2, ..., 250250^{250250}} whose sum is divisible by
-    250, modulo 10^{16}.
-
-    Args: None
-
-    Returns: None; prints the result as a 16-digit string.
-
-    Method / Math Rationale: Counts frequencies of i^i mod 250 for i from 1 to 250250. Constructs generating function
-    product over residues r of (1 + x^r)^{count_r} in the ring Z/(10^{16})Z[x] / (x^{250} - 1) using exponentiation
-    by squaring and modular polynomial multiplication via circular convolution. Handles r=0 separately as a scalar
-    2^{count_0}. The constant term minus 1 yields the count of non-empty subsets with sum ≡ 0 mod 250.
-
-    Complexity: Time O(M^2 * log L * D + L) where M=250, L=250250, D≈M; space O(M).
-
-    References: https://projecteuler.net/problem=250
-    Generating functions modulo cyclotomic polynomial.
-    """
     residue_mod: int = 250
     sequence_length: int = 250250
     result_mod: int = 10**16

@@ -19,27 +19,6 @@ def compute_I(x, r):
     return quad(integrand, 0, r, args=(x,), epsabs=1e-12, epsrel=1e-12)[0]
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 431 by computing the sum of all x values where the wasted space V(x) is a perfect square.
-
-    Method / Math Rationale
-    -----------------------
-    The wasted space V(x) = tan(alpha) * \iint_D sqrt((a - x)^2 + b^2) da db over the disk D of radius r.
-    This integral I(x) is computed as 4 \int_0^r \rho (x + \rho) E( (2 sqrt(x \rho) / (x + \rho))^2 ) d\rho,
-    where E is the complete elliptic integral of the second kind.
-    For each integer n from 20 to 25, solve I(x) = n^2 / tan(alpha) using Brent's method to find x,
-    then sum these x values.
-
-    Complexity
-    ----------
-    O(1) effectively, as the number of n is fixed at 6, each requiring a fixed number of integral evaluations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=431
-    """
     r = 6.0
     alpha = 40 * pi / 180
     tan_alpha = tan(alpha)

@@ -40,27 +40,6 @@ def compute_g(L: int) -> int:
     return compute_h(L) - compute_d(L)
 
 def main() -> None:
-    """Purpose:
-    Computes the number of primitive integer-sided triangles with perimeter at most 10,000,000.
-
-    Args:
-    None
-
-    Returns:
-    None (prints the result)
-
-    Method / Math Rationale:
-    Uses Möbius inversion to count primitive (gcd=1) triangles via f(M) = ∑ μ(k) g(M/k), where g(L) is
-    the total number of integer triangles with perimeter ≤ L. g(L) = h(L) - d(L), with h(L) the total
-    ordered a≤b≤c with sum ≤L computed as ∑ floor((n² + 6)/12), optimized using periodic moduli.
-    d(L) is the degenerate count, computed via closed-form quadratic sums over even/odd.
-
-    Complexity:
-    Time: O(M), Space: O(M)
-
-    References:
-    https://projecteuler.net/problem=276
-    """
     M: int = 10000000
     mu: List[int] = [0] * (M + 1)
     is_comp: List[bool] = [False] * (M + 1)

@@ -3,28 +3,6 @@ from decimal import Decimal, getcontext
 from math import floor
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 462: computes F(10^18), the number of permutations of 3-smooth numbers <= 10^18 where each number appears after all its
-    proper divisors in the permutation.
-
-    Method / Math Rationale
-    -----------------------
-    The set S(N) consists of numbers 2^a * 3^b <= N. The poset under divisibility is isomorphic to the Young diagram poset with partition lambda where
-    lambda[a] = 1 + max b for each a (exponent of 2).
-    F(N) is the number of standard Young tableaux of this shape, computed via the hook-length formula: n! / product of hook lengths over all boxes,
-    where n = |S(N)|.
-    We compute log10 of this value for precision, then derive the mantissa and exponent for scientific notation.
-
-    Complexity
-    ----------
-    O((log N)^2) time to compute the partition, conjugate, and sum logarithms over O((log N)^2) boxes.
-
-    References
-    ----------
-    https://projecteuler.net/problem=462
-    """
     N = 10**18
     max_a = 0
     while (1 << max_a) <= N:

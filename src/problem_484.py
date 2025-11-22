@@ -35,27 +35,6 @@ def dfs(i0, L0, pLst, qLst):
     return res
 
 def main():
-    """
-    Purpose
-    Compute the sum of gcd(k, k') for 1 < k <= 5*10^15, where k' is the arithmetic derivative of k.
-    Parameters: None
-    Returns: None (prints the result)
-
-    Method / Math Rationale
-    The arithmetic derivative k' follows the product rule. The gcd(k, k') is multiplicative.
-    The sum is computed as N - 1 + contributions from powerful numbers using a recursive DFS over primes.
-    For each prime power p^e (e >= 2), incremental differences f(p^e) = gcd(p^e, (p^e)') - 
-    gcd(p^{e-1}, (p^{e-1})') are calculated, handling cases where p divides e by multiplying by p^2 
-    and resetting the exponent counter. The recursion builds composite powerful numbers and accumulates
-    the sum of f(n) * floor(N / n) for powerful n.
-
-    Complexity
-    Time: O(sqrt(N)), dominated by looping over ~sqrt(N)/log(sqrt(N)) primes and log_p(N) iterations per prime.
-    Space: O(sqrt(N)/log(sqrt(N))) for storing primes.
-
-    References
-    https://projecteuler.net/problem=484
-    """
     N = 5 * 10 ** 15
     print(euler484(N))
 

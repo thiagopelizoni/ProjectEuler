@@ -19,34 +19,6 @@ def matrix_pow(mat, exp, mod):
     return result
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 458 by computing the last 9 digits of T(10^12),
-    where T(n) is the number of strings of length n over a 7-letter alphabet
-    that do not contain any substring of 7 consecutive distinct letters.
-    No parameters. Prints the result and returns None.
-
-    Method / Math Rationale
-    -----------------------
-    Models the problem using a state machine with 8 states: states 0 to 6
-    represent the length of the current run of distinct letters at the end
-    (state 0 is initial), and state 7 is an absorbing state for strings that
-    have contained a forbidden substring. A transition matrix M is constructed
-    where M[i][j] is the number of ways to transition from state i to j by
-    adding one letter. The matrix is raised to the power n using binary
-    exponentiation under modulo 10^9 to compute the number of ways to reach
-    each state after n letters. The total strings is (M^n)[7][7], the invalid
-    ones is (M^n)[0][7], and T(n) is their difference modulo 10^9.
-
-    Complexity
-    ----------
-    O(8^3 log n) time and O(8^2) space for matrix exponentiation.
-
-    References
-    ----------
-    https://projecteuler.net/problem=458
-    """
     MOD = 1000000000
     n = 10**12
     size = 8

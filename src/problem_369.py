@@ -48,33 +48,6 @@ def solve(n, m, s, p, b):
     return t
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of f(n) for n from 4 to 13, where f(n) is the number of
-    n-card hands from a standard 52-card deck that contain at least one Badugi
-    (a 4-card subset with all distinct suits and ranks).
-    Parameters: None
-    Returns: None (prints the sum)
-
-    Method / Math Rationale
-    -----------------------
-    Models the hand as configurations of ranks (columns), each with a bitmask
-    indicating present suits. Recursively builds multisets of these
-    configurations, checks if they contain a Badugi by attempting to assign
-    distinct ranks to each suit, and counts the ways to assign actual ranks
-    using combinations.
-
-    Complexity
-    ----------
-    O(number of visited recursion nodes * O(k^4) for Badugi check where k <=13),
-    with recursion depth up to 13 and branching up to 15, but prunes on card
-    count; runs in seconds.
-
-    References
-    ----------
-    https://projecteuler.net/problem=369
-    """
     total = 0
     for i in range(4, 14):
         total += solve(0, i, [], 0, False)

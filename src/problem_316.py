@@ -42,30 +42,6 @@ def compute_g(n: int) -> int:
     return int(g_val)
 
 def main():
-    """
-    Purpose
-    Computes the sum of g(floor(10^16 / n)) for n=2 to 999999, where g(n) is the expected starting position of the
-    first occurrence of n's digits in a random infinite decimal sequence.
-
-    Method / Math Rationale
-    The problem requires calculating a sum involving the function g(n), which is the expected starting index k for
-    the digits of n to appear in a random digit sequence.
-    To compute g(n), we convert n to its digit list s of length d.
-    We use a Markov chain with states 0 to d-1 representing the matched prefix length.
-    Transitions are built using the KMP prefix table to handle overlaps.
-    We set up the system 10*E_i - sum (counts to j) * E_j = 10, solved exactly using sympy.Matrix.solve for the
-    expected steps E_i.
-    Then g(n) = E_0 - d + 1.
-    To compute the sum efficiently, we collect counts of each unique floor(10^16 / n), compute g for uniques in
-    parallel using ProcessPoolExecutor, and accumulate the weighted sum.
-
-    Complexity
-    O(MAX_N + U * d^3) where MAX_N=999999, U is number of unique m (~MAX_N), d<=16. Parallelism reduces wall time
-    by number of CPUs.
-
-    References
-    https://projecteuler.net/problem=316
-    """
     N = 10**16
     MAX_N = 999999
     m_counts = Counter()

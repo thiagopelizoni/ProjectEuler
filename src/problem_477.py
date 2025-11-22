@@ -2,30 +2,6 @@
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 477, computing the score F(10^8) of the first player in the number
-    sequence game under optimal play.
-
-    Method / Math Rationale
-    ----------------------
-    Generates the sequence s_i where s_1 = 0, s_{i+1} = (s_i^2 + 45) mod 1000000007.
-    Uses an O(N) algorithm based on fusion principle to reduce the array by fusing triples where the
-    middle value is at least as large as both neighbors.
-    Computes the game value 'val' as the alternating sum of the sorted (descending) reduced array values.
-    The first player's score F(N) is (total sum + val) // 2.
-
-    Complexity
-    ----------
-    O(N log N) in worst case due to sorting the reduced array (reduced size up to N); in practice closer
-    to O(N) for this sequence.
-
-    References
-    ----------
-    https://projecteuler.net/problem=477
-    An Optimal Algorithm for Calculating the Profit in the Coins in a Row Game by Tomasz Idziaszek.
-    """
     MOD = 1000000007
     N = 10**8
     s = [0] * N

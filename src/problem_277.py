@@ -18,22 +18,6 @@ def solve_linear_congruence(a: int, b: int, m: int) -> Optional[Tuple[int, int]]
     return x0, m_g
 
 def main() -> None:
-    """Purpose:
-    Solves Project Euler problem 277: finds the smallest integer a1 > 10^15 whose
-    modified Collatz sequence begins with the specified step sequence.
-
-    Method / Math Rationale:
-    Composes backward affine transformations using fractions for the inverse steps.
-    Derives a1 = coeff * k + const. Solves the linear congruence to find k values
-    yielding integer a1. Computes the smallest such a1 exceeding 10^15 by advancing
-    in the arithmetic progression.
-
-    Complexity:
-    Time: O(1), Space: O(1)
-
-    References:
-    https://projecteuler.net/problem=277
-    """
     s: str = "UDDDUdddDDUDDddDdDddDDUDDdUUDd"
     target: int = 10**15
     steps_reversed: list[str] = list(s[::-1])

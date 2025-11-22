@@ -29,27 +29,6 @@ def compute_total_add(A, B):
     return sum_k3 + 5 * sum_k + 6 * sum_1
 
 def main():
-    """
-    Purpose
-    -------
-    Computes S(10^12) mod 10^8, where S(N) is the sum of the number of lattice points
-    in D(a,b) for all |a|,|b| <= N where the area of D(a,b) is rational.
-
-    Method / Math Rationale
-    -----------------------
-    The area is rational iff a^2 + 4b is perfect square k^2.
-    L(a,b) = (k^3 + 5k + 6)/6.
-    Use non-negative s <= t parametrization for b >= 0 and add multiplicity for sign of a.
-    For b < 0, use s > r > 0 with multiplicity, grouping large s.
-    Sum using closed-form polynomial sums.
-
-    Complexity
-    ----------
-    O(sqrt(N)) time, with N=10^12, sqrt=10^6, fine.
-
-    References:
-    https://projecteuler.net/problem=403
-    """
     N = 10**12
     MOD = 10**8
     S = int(math.sqrt(N))

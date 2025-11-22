@@ -4,37 +4,6 @@ from bisect import bisect_right
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 461 by finding non-negative integers a, b, c, d
-    that minimize the absolute error |f_n(a) + f_n(b) + f_n(c) + f_n(d) - pi|,
-    where f_n(k) = exp(k/n) - 1 and n=10000, then compute and print
-    g(n) = a^2 + b^2 + c^2 + d^2.
-
-    Method / Math Rationale
-    -----------------------
-    Precompute f[k] = exp(k/n) - 1 for k from 0 until f[k] > pi.
-    Generate pair sums s = f[i] + f[j] for i <= j, s <= pi.
-    Sort the pair sums.
-    For each potential left pair sum current, compute need = pi - current.
-    Use binary search to find the right pair sum closest to need.
-    Track the left and right indices with the minimal error.
-    Resolve a, b and c, d by re-computing pairs until matching the sums.
-    The method uses meet-in-the-middle on pairs to reduce complexity.
-    Math: the sum of four f terms approximates pi closely for optimal choices.
-
-    Complexity
-    ----------
-    Time: O(M^2 log M) for sorting pairs, where M ~ 1.42 * n ~ 14200,
-    pair generation O(M^2), loop over pairs O(P) with P ~ 7e7, each O(1).
-    Resolving: worst O(M^2) per, but practical as loops break early.
-    Space: O(P) for pairs ~ 576 MB.
-
-    References
-    ----------
-    https://projecteuler.net/problem=461
-    """
     n = 10000
     pi = math.pi
     f = []

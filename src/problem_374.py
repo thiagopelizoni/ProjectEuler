@@ -17,28 +17,6 @@ def find_max_m(N):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of f(n) * m(n) for n=1 to 10^14 modulo 982451653, where f(n) is the
-    maximum product of a partition of n into distinct parts, and m(n) is the number of parts
-    in such a partition.
-
-    Method / Math Rationale
-    ------------------------
-    Uses the explicit formulas from the paper "Maximum Product Over Partitions Into Distinct
-    Parts" by Tomislav Došlić. Groups by triangular number blocks, uses modular arithmetic with
-    precomputed factorials, inverses, and partial harmonic sums modulo the prime.
-
-    Complexity
-    ----------
-    O(sqrt(N)) time, since M ~ sqrt(2N), precompute O(M), loop O(M)
-
-    References
-    ----------
-    https://projecteuler.net/problem=374
-    https://cs.uwaterloo.ca/journals/JIS/VOL8/Doslic/doslic33.pdf
-    """
     N = 10**14
     P = 982451653
 

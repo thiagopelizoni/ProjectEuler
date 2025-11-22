@@ -5,27 +5,6 @@ def get_mean_var(sides):
     return Fraction(sides + 1, 2), Fraction(sides**2 - 1, 12)
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 389: compute the variance of I from the chain of Platonic dice throws.
-    No parameters.
-    Prints the variance rounded to 4 decimal places.
-
-    Method / Math Rationale
-    ------------------------
-    Uses the law of total variance for compound sums: Var(sum_{k=1}^N X_k) = E[N] * Var(X) + (E[X])^2 * Var(N),
-    where X are i.i.d. independent of N.
-    Propagate mean and variance from T to C to O to D to I.
-
-    Complexity
-    ----------
-    O(1), constant time computations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=389
-    """
     m_t, v_t = get_mean_var(4)
     m6, v6 = get_mean_var(6)
     m_c = m6 * m_t

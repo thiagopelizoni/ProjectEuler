@@ -5,28 +5,6 @@ from tqdm import tqdm
 from itertools import product
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the last nine digits of Seq(1234567898765, 4321), the number of sequences of length n=1234567898765
-    where each a_i divides n, and n + sum a_i is divisible by k=4321.
-
-    Method / Math Rationale
-    ----------------------
-    The possible a_i are the 16 divisors of n. Compute their residues mod k and build a frequency array freq[0..k-1]
-    representing the polynomial p(x) = sum freq[m] x^m. The number of sequences with sum a_i ≡ s mod k is the
-    coefficient of x^s in p(x)^n mod (x^k - 1). Use exponentiation by squaring with circular convolution for
-    polynomial multiplication mod (x^k - 1) and coefficients mod 1000000000 to compute this efficiently. Extract the
-    coefficient at r = (-n) % k.
-
-    Complexity
-    ----------
-    O(k^2 log n) time, with k=4321, n≈10^12.
-
-    References
-    ----------
-    https://projecteuler.net/problem=511
-    """
     n = 1234567898765
     k = 4321
     MOD = 1000000000

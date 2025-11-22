@@ -15,25 +15,6 @@ def binom_ratio(a, r, denom_base):
     return prod
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the expected length of the second-shortest segment for the rope cutting problem in Project Euler 398.
-
-    Method / Math Rationale
-    -----------------------
-    Uses the tail sum for expectation E[X] = sum_{k>=1} P(X >= k), where X is the second-shortest segment length.
-    P(X >= k) is calculated as the probability all segments >=k plus the probability exactly one segment <k
-    and the rest >=k, using binomial coefficient ratios computed via products.
-
-    Complexity
-    ----------
-    O( max_k * m ) where max_k ~ n/m, m=100, n=10^7, so O(10^5 * 100) = O(10^7), acceptable.
-
-    References
-    ----------
-    https://projecteuler.net/problem=398
-    """
     n = 10000000
     m = 100
     denom_base = n - 1

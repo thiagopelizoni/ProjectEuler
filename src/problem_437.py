@@ -34,28 +34,6 @@ def check(p):
     return False
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the sum of all primes less than 100,000,000 that have at least one Fibonacci primitive root.
-    
-    Method / Math Rationale
-    -----------------------
-    A Fibonacci primitive root for a prime p is a primitive root g modulo p satisfying g^2 ≡ g + 1 (mod p),
-    i.e., g is a root of x^2 - x - 1 ≡ 0 (mod p). Such roots exist for p = 5 or when p ≡ 1 or 4 (mod 5),
-    as these make 5 a quadratic residue modulo p. For each such prime p, compute the roots using the modular
-    square root of 5, then check if either root is a primitive root by verifying that g^{(p-1)/q} ≠ 1 (mod p)
-    for all prime factors q of p-1.
-    
-    Complexity
-    ----------
-    Time: O(N log log N) for sieving primes + O(π(N) * time for factoring p-1 and modular operations per prime).
-    Space: O(N) for the sieve.
-
-    References
-    ----------
-    https://projecteuler.net/problem=437
-    """
     N = 100000000
     primes = get_primes(N)
     candidates = [p for p in primes if p == 5 or p % 5 in (1, 4)]

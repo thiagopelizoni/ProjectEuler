@@ -3,28 +3,6 @@ import math
 from mpmath import mp, mpf, harmonic, quad, diff, ln, euler, bernoulli, nstr
 
 def main():
-    """
-    Purpose
-    -------
-    Computes G(10**11) where G(n) is the sum over a=3 to n and b=1 to floor((a-1)/2) of r(a,b),
-    with r(a,b) = b * (a - 2b) / (a - b). Outputs the result in scientific notation rounded
-    to 10 significant digits. No parameters. Returns None, prints the result.
-
-    Method / Math Rationale
-    ------------------------
-    Derives r(a,b) from examples and verifies with G(10). Reorders summation over b then a.
-    Uses closed-form expressions for polynomial sums and sum k^2 H_k. For sum l^2 H_{n-l},
-    employs Euler-Maclaurin formula with asymptotic expansion of harmonic numbers using
-    mpmath for high-precision computation.
-
-    Complexity
-    ----------
-    O(1) - fixed number of arithmetic operations and quadrature evaluations.
-
-    References
-    ----------
-    https://projecteuler.net/problem=471
-    """
 
     mp.dps = 40  # Extra precision for safety
 

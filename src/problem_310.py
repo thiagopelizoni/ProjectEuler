@@ -3,31 +3,6 @@ import math
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    Solve Project Euler problem 310 by counting the number of losing positions for the next player
-    in Nim Square with heap sizes 0 <= a <= b <= c <= 100000.
-
-    Args
-    None
-
-    Returns
-    None
-
-    Method / Math Rationale
-    Compute Grundy numbers g(n) = mex { g(n - k^2) for k >= 1, k^2 <= n } for n = 0 to N.
-    A position (a, b, c) is losing if g(a) ^ g(b) ^ g(c) == 0. Precompute prefix[gr][x+1] as count
-    of y <= x with g(y) == gr, and suffix[gr][x] as count of y >= x with g(y) == gr. For each b,
-    sum over ga the prefix[ga][b+1] * suffix[ga ^ g(b)][b], which gives the count of a <= b <= c
-    with the xor condition.
-
-    Complexity
-    O(N sqrt N) for Grundy numbers + O(N G) for prefix/suffix and counting, where G is max Grundy
-    value + 1.
-
-    References
-    https://projecteuler.net/problem=310
-    """
     N = 100000
     max_k = int(math.sqrt(N)) + 1
     squares = [k * k for k in range(1, max_k + 1) if k * k <= N]

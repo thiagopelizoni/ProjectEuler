@@ -18,31 +18,6 @@ def mod_inverse(a, m):
     return x
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 381: compute the sum of S(p) for all primes
-    5 <= p < 10^8, where S(p) = sum_{k=1}^5 (p-k)! mod p.
-
-    Method / Math Rationale
-    ------------------------
-    Using Wilson's Theorem: (p-1)! ≡ -1 mod p.
-    Then (p-k)! ≡ (-1)^k * (k-1)!^{-1} mod p for k=1 to 5.
-    Thus S(p) ≡ -inv(2) + inv(6) - inv(24) mod p.
-    Compute inv(3,p) using extended Euclidean algorithm, inv(2,p) = (p+1)//2,
-    then derive inv(6) and inv(24).
-    Primes generated via Sieve of Eratosthenes.
-
-    Complexity
-    ----------
-    Time: O(N log log N) for sieve + O(pi(N) * log N) for inverses,
-    where N=10^8.
-    Space: O(N)
-
-    References
-    ----------
-    https://projecteuler.net/problem=381
-    """
     N = 100000000
     is_prime = [True] * N
     is_prime[0] = is_prime[1] = False

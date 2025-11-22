@@ -49,31 +49,6 @@ def get_mobius(n):
     return mu
 
 def main():
-    """
-    Purpose
-    -------
-    Computes the number of integer pairs (a, b) with 1 <= a <= b <= 20000000 such that
-    99 * N(a, b) <= 100 * P(a, b) and 99 * P(a, b) <= 100 * N(a, b), where P(a, b)
-    and N(a, b) are the counts of numbers in [a, b] with Mobius function values 1 and
-    -1, respectively. No parameters. Prints the result.
-
-    Method / Math Rationale
-    -----------------------
-    Computes the Mobius function values up to n using a linear sieve. Constructs prefix
-    sum arrays U and V where U corresponds to 100 * P - 99 * N and V to 100 * N - 99 * P.
-    Reformulates the problem as counting, for each b, the number of j < b such that
-    U[j] <= U[b] and V[j] <= V[b] using prefix sums. Employs CDQ divide-and-conquer to
-    efficiently count these 2D dominated points by sorting on one dimension and using
-    a Fenwick tree (binary indexed tree) on the shifted values of the other dimension.
-
-    Complexity
-    ----------
-    O(n log^2 n) time, O(n) memory.
-
-    References
-    ----------
-    https://projecteuler.net/problem=464
-    """
     n = 20000000
     mu = get_mobius(n)
     U = np.zeros(n + 1, dtype=np.int64)

@@ -25,36 +25,6 @@ class UnionFind:
                 self.rank[px] += 1
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler problem 425: compute F(10^7), the sum of primes <= 10^7
-    that are not 2's relatives.
-    Parameters: None
-    Returns: None (prints the result)
-
-    Method / Math Rationale
-    -----------------------
-    Generate all primes up to N=10^7 using sympy.ntheory.generate.primerange.
-    Use a Union-Find structure to connect primes incrementally in increasing order.
-    For each prime P, connect it to the prime Q obtained by removing its first digit
-    if Q is prime and the remaining string does not start with '0' (to ensure exactly
-    one digit added without leading zeros), and to same-length primes differing in
-    exactly one digit using bucketing by masked strings for each position.
-    After making connections, check if P is in the same component as 2; if not,
-    add P to the sum of non-relatives.
-    This ensures connectivity in the subgraph of primes <= P.
-
-    Complexity
-    ----------
-    Time: O(P * D * alpha(P)), where P is the number of primes (~664k), D is max
-    digits (7), and alpha is the inverse Ackermann function (~constant).
-    Space: O(P * D) for buckets and Union-Find.
-
-    References
-    ----------
-    https://projecteuler.net/problem=425
-    """
     N = 10**7
     primes = list(nt.generate.primerange(2, N + 1))
     num_primes = len(primes)

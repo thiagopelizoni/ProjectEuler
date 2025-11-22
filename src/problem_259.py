@@ -26,27 +26,6 @@ def get_cpu_count() -> int:
         return 1
 
 def main() -> None:
-    """
-    Purpose: Solves Project Euler problem 259 by computing all reachable rational numbers from the concatenated
-    digits "123456789" using the operators +, -, *, / between them, then sums all positive integers among them.
-
-    Args: None
-
-    Returns: None; the sum of all positive integers reachable is printed to standard output.
-
-    Method / Math Rationale: Uses dynamic programming where reachable_values[i][j] stores the set of all possible
-    evaluation results for the substring digits[i..j]. Initializes with concatenated integers for each substring,
-    then for increasing lengths, tries all split points k, combining left [i..k] and right [k+1..j] values using
-    the four operators, preserving exactness with Fraction. Parallelizes computation per length over split points
-    using multiprocessing. Finally, sums numerators of positive Fractions with denominator 1, ensuring all
-    parenthesizations and operator choices are covered exhaustively as splits model associative groupings.
-
-    Complexity: Time O(N^3 * S^2 / C) where N=9, S is max set size (~10^5), C is CPU count; space O(N^2 * S) for
-    storing sets of reachable values.
-
-    References: https://projecteuler.net/problem=259
-    Dynamic programming for expression parsing.
-    """
     digits = "123456789"
     n = len(digits)
     reachable_values: List[List[Set[Fraction]]] = [

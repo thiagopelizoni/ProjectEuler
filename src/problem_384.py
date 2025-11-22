@@ -114,34 +114,6 @@ def find_g(t_val, c):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 384 by computing the sum of GF(t) for 2 <= t <= 45, where
-    GF(t) = g(F(t), F(t-1)), with F being the Fibonacci sequence starting with F(0) = 1,
-    F(1) = 1, and prints the sum.
-
-    Method / Math Rationale
-    -----------------------
-    Uses recursive base-4 formulas for Rudin-Shapiro coefficients r(n) and cumulative sums s(n).
-    Employs memoized recursive counting with special handling for remainder 3 to avoid deep recursion
-    by reducing to counts with halved target values and additional parity and sign conditions.
-    Binary search finds the c-th occurrence.
-
-    Complexity
-    ----------
-    O(T * log N * log T) where:
-        - T = 44
-        - N ~ 10^19
-        - log N ~ 60
-        - log T ~ 30
-    Memoization ensures efficient reuse.
-
-    References
-    ----------
-    https://projecteuler.net/problem=384
-    https://arxiv.org/pdf/2302.00405
-    """
     F = [0] * 46
     F[0] = 1
     F[1] = 1

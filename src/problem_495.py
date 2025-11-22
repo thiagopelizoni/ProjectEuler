@@ -43,28 +43,6 @@ def generate_partitions(n):
     return list(rec(n, n, []))
 
 def main():
-    """
-    Purpose
-    -------
-    Computes W(10000!, 30) modulo 1000000007, where W(n, k) is the number of ways to
-    write n as the product of k distinct positive integers (order does not matter).
-
-    Method / Math Rationale
-    -----------------------
-    Uses inclusion-exclusion derived from counting ordered tuples with distinct factors
-    and dividing by k!. Groups by integer partitions of k=30, computes scalar contribution
-    and product over primes of coefficients in the generating function prod_s (1 - x^s)^(-m_s),
-    where m_s is the multiplicity of part s.
-
-    Complexity
-    ----------
-    O(p(k) * k * max_e) ≈ 1.7e9 operations (p(30)=5604 partitions, k=30, max_e=10000),
-    accelerated with Numba JIT.
-
-    References
-    ----------
-    https://projecteuler.net/problem=495
-    """
     MOD = 1000000007
     K = 30
     N = 10000

@@ -3,33 +3,6 @@ import math
 from tqdm import tqdm
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 467 by computing f(10000) mod 1,000,000,007, where f(n) is the smallest
-    positive integer that is a common superinteger of P_n and C_n. P_n is the concatenation of the first n
-    digital roots of primes, and C_n for composites.
-
-    Method / Math Rationale
-    ------------------------
-    Generate the first 10000 primes and composites using the Sieve of Eratosthenes.
-    Compute digital roots (1 + (x - 1) % 9) and concatenate them into strings Pn and Cn.
-    Use dynamic programming to compute the minimum length of a common supersequence (SCS) using a suffix
-    DP table, where dp[x][y] is the min SCS length for Pn[x:] and Cn[y:].
-    Construct the lexicographically smallest minimal-length SCS by greedily appending the smallest digit
-    that advances at least one pointer and maintains the optimal length.
-    Compute the large number represented by the SCS string modulo 1,000,000,007 iteratively to avoid
-    overflow.
-
-    Complexity
-    ----------
-    Time: O(n^2) for filling the DP table, where n = 10000.
-    Space: O(n^2) for the DP table.
-
-    References
-    ----------
-    https://projecteuler.net/problem=467
-    """
     n = 10000
     MOD = 1000000007
     limit = 200000

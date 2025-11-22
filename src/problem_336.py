@@ -18,26 +18,6 @@ def next_perm(arr):
     return True
 
 def main():
-    """
-    Purpose
-    -------
-    Solve Project Euler Problem 336: find the 2011th lexicographic maximix arrangement for 11 carriages.
-
-    Method / Math Rationale
-    -----------------------
-    Generate permutations in lexicographic order starting from the smallest possible candidate ('CABDEFGHIJK'). For each, simulate Simple Simon's
-    rearrangement process and check if it requires the maximum number of rotations (2*(n-1)-1 =19 for n=11). Count such arrangements until
-    reaching the 2011th.
-
-    Complexity
-    ----------
-    Time: O((n-1)! * n^2) in worst case, but with early exits.
-    Space: O(n)
-
-    References
-    ----------
-    https://projecteuler.net/problem=336
-    """
     n = 11
     letters = string.ascii_uppercase[:n]
     first_start = 'C'

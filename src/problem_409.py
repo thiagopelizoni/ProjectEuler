@@ -11,29 +11,6 @@ def compute_inverses(max_val, mod):
     return inv
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 409 by computing W(10000000) mod 1000000007,
-    where W(n) is the number of winning Nim positions with n distinct non-empty
-    piles, each of size less than 2^n.
-
-    Method / Math Rationale
-    -----------------------
-    Models pile sizes as non-zero vectors in GF(2)^n. Uses character sum to
-    derive a closed-form involving a binomial coefficient reduced via Lucas'
-    theorem, and computes large products and factorials modulo the prime
-    1000000007.
-
-    Complexity
-    ----------
-    O(n) time for loops computing inverses, binomial coefficients, falling
-    factorials, and n!; O(n/2) space for inverse array.
-
-    References
-    ----------
-    https://projecteuler.net/problem=409
-    """
     n = 10000000
     MOD = 1000000007
     k = n // 2

@@ -37,33 +37,6 @@ def emit_prob(i, c, is_prime):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Compute the probability that the frog croaks the specific sequence
-    "PPPPNNPPPNPPNPN" in its first 15 croaks, starting from a uniform
-    random position.
-
-    Method / Math Rationale
-    -----------------------
-    Model the frog's movement as a Markov chain on positions 1 to 500
-    with reflecting boundaries. Use dynamic programming where dp[t][i]
-    is the probability of being at position i after emitting the first
-    t croaks correctly. Initialize dp[1][i] = (1/500) * emit_prob(i,
-    seq[0]). Transition: dp[t+1][k] += dp[t][j] * trans(j,k) *
-    emit_prob(k, seq[t]) for possible k from j. Sum dp[15][i] over i
-    gives the total probability. All probabilities use exact Fraction
-    for precision.
-
-    Complexity
-    ----------
-    O(T * N) time, where T=15, N=500, as each transition step processes
-    N positions with O(1) neighbors. O(N) space using rolling arrays.
-
-    References
-    ----------
-    https://projecteuler.net/problem=329
-    """
     is_prime = sieve(500)
     seq = list('PPPPNNPPPNPPNPN')
     N = 500

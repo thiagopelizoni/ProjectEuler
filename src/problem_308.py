@@ -102,21 +102,6 @@ def compute_steps(num_primes):
             continue
 
 def main():
-    """
-    Purpose
-    Solves Project Euler problem 308: computes the number of iterations needed in the Fractran program to produce 2 raised to the 10001st prime.
-
-    Method / Math Rationale
-    Simulates the Fractran program using a state machine based on active large-prime registers and exponent tracking for small primes. Optimizes repetitive fraction
-    applications in specific states with closed-form bulk updates to step counts and exponents, avoiding simulation of each individual iteration. Uses Numba JIT for
-    performance acceleration.
-
-    Complexity
-    O(P) where P is the number of state transitions, efficient with JIT compilation.
-
-    References
-    https://projecteuler.net/problem=308
-    """
     print(compute_steps(10001))
 
 if __name__ == "__main__":

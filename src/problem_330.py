@@ -3,37 +3,6 @@ from tqdm import tqdm
 from sympy.ntheory.modular import crt
 
 def compute_ab(n: int, p: int):
-    """
-    Purpose
-    -------
-    Computes A(n) mod p and B(n) mod p for the sequences in Project Euler 330.
-
-    Args
-    ----
-    n: The index for A(n) and B(n).
-    p: Prime modulus.
-
-    Returns
-    -------
-    Tuple (A(n) % p, B(n) % p).
-
-    Method / Math Rationale
-    ------------------------
-    Uses recurrences A(n) = n! + sum_{k=0}^{n-1} binom(n,k) A(k),
-    B(n) = sum_{k=0}^{n-1} binom(n,k) B(k) - sum_{j=0}^n n!/j! for all n,
-    where sum_{j=0}^n n!/j! = T(n) with T(0)=1, T(n)=1 + n T(n-1).
-    For n >= p, n! ≡ 0 mod p. Binomial rows via Pascal's triangle mod p.
-    Sequences periodic mod p with period p(p-1) from n=p.
-
-    Complexity
-    ----------
-    O(p^4) time per prime due to O((p^2)^2) binomial and sum computations;
-    negligible for p=137.
-
-    References
-    ----------
-    https://projecteuler.net/problem=330
-    """
     if p == 2:
         per = 2
     else:
@@ -75,26 +44,6 @@ def compute_ab(n: int, p: int):
     return A[p + offset], B[p + offset]
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 330: Compute A(10^9) + B(10^9) mod 77777777.
-
-    Method / Math Rationale
-    ------------------------
-    Factor 77777777 = 7*11*73*101*137. For each prime p, compute
-    (A(10^9) + B(10^9)) mod p using periodic recurrences mod p
-    with binomial transform and T(n) for B's inhomogeneity.
-    Combine via Chinese Remainder Theorem.
-
-    Complexity
-    ----------
-    O(sum_p p^4) ~ O(10^9) operations total, acceptable.
-
-    References
-    ----------
-    https://projecteuler.net/problem=330
-    """
     primes = [7, 11, 73, 101, 137]
     n = 10**9
     remainders = []

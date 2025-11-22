@@ -89,35 +89,6 @@ def chunk_wrapper(args):
     return compute_chunk(*args)
 
 def main():
-    """
-    Purpose
-    -------
-    Compute the sum of N(n) for 1 <= n <= 10^8, where N(n) is the maximum
-    length of an antichain in the set of divisors of n.
-
-    Method / Math Rationale
-    ------------------------
-    N(n) is the size of the largest rank in the divisor poset, which is the
-    number of divisors d with Omega(d) = floor(Omega(n)/2), where Omega is
-    the total number of prime factors with multiplicity. This is computed as
-    the coefficient of x^{floor(Omega(n)/2)} in the generating function
-    product over i (1 + x + ... + x^{e_i}) where e_i are the exponents in
-    the prime factorization of n.
-    We generate all n by recursively building their sorted list of prime
-    factors (with multiplicity) using increasing primes, compute the sorted
-    exponents, and add the precomputed antichain size using memoized
-    recursion for the coefficient.
-
-    Complexity
-    ----------
-    Time complexity is O(number of partial factorizations), empirically
-    acceptable with parallelism (runs in seconds to minutes depending on
-    hardware).
-
-    References
-    ----------
-    https://projecteuler.net/problem=386
-    """
     global primes
     limit = 100000000
     primes = fill_sieve(limit)

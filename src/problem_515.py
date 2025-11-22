@@ -32,28 +32,6 @@ def segmented_sieve(L, R):
 
 
 def main():
-    """
-    Purpose
-    -------
-    Computes and prints the value of D(10^9, 10^5, 10^5) as defined in Project Euler Problem 515.
-
-    Method / Math Rationale
-    ------------------------
-    The function generates all primes p in [10^9, 10^9 + 10^5) using segmented sieve.
-    For each such prime, computes the modular inverse of (10^5 - 1) modulo p using Fermat's Little Theorem.
-    Sums these inverses and prints the total.
-    This is based on the derivation that d(p, p-1, k) mod p = (k-1)^{-1} mod p,
-    obtained from expressing the iterated sum using binomial coefficients and evaluating the polynomial sum modulo p.
-
-    Complexity
-    ----------
-    Time: O(sqrt(10^9) + 10^5 log log 10^5) for sieving, plus O(number of primes * log(10^9)) for inverses,
-    where number of primes is approximately 10^5 / ln(10^9) ≈ 4800.
-
-    References
-    ----------
-    https://projecteuler.net/problem=515
-    """
     a = 1000000000
     b = 100000
     k = 100000

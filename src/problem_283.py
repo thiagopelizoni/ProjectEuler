@@ -37,24 +37,6 @@ def compute_for_k(k: int) -> int:
     return total
 
 def main():
-    """
-    Purpose
-    Computes the sum of the perimeters of all integer-sided triangles where the area/perimeter ratio is a positive integer <= 1000.
-
-    Method / Math Rationale
-    For each integer k from 1 to 1000, find all positive integers d <= e <= f such that d*e*f = 4*k**2*(d+e+f).
-    This parametrizes the Heronian triangles with area/perimeter = k.
-    Loop over d=1 to floor(sqrt(12)*k)+1, e from max(d, 4*k**2//d +1) to the largest e where d*e**2 -8*k**2*e -4*k**2*d <=0
-    (found via binary search to avoid floating-point issues), compute f = 4*k**2*(d+e) / (d*e - 4*k**2), check if integer and >=e.
-    Perimeter = 2*(d+e+f). Sum all such perimeters.
-
-    Complexity
-    Time: O(sum_{k=1}^{1000} k^2 log k) ≈ O(10^9) operations, parallelized over k.
-    Space: O(1) per process.
-
-    References
-    https://projecteuler.net/problem=283
-    """
     max_k = 1000
     total_sum = 0
     with ProcessPoolExecutor() as executor:

@@ -2,25 +2,6 @@
 import math
 
 def main():
-    """
-    Purpose
-    -------
-    Solves Project Euler problem 385: computes the sum of areas A(n) for n=1000000000, where A(n) is the sum of areas of all integer-coordinate triangles with vertices in [-n,n] x [-n,n] such that the foci of their Steiner inellipse are at (+/-sqrt(13), 0).
-
-    Method / Math Rationale
-    ------------------------
-    Using Marden's theorem, the condition on foci leads to the vertices satisfying sum z_i = 0 and sum z_i z_j = -39 for complex z_i representing vertices. This translates to sum x=0, sum y=0, sum x y=0, sum(x^2 - y^2)=78. Parameterizing via two vertices determines the third. The conditions reduce to Diophantine equations d^2 - 3 k^2 = e for specific e, solved using recurrences from the fundamental unit of Q(sqrt(3)). For each solution and each direction (s', t'), check if coordinates are integers and within bounds, accumulate contributions accounting for multiplicities.
-
-    Complexity
-    ----------
-    O(log n) due to generating O(log n) terms in each Pell-like sequence up to size proportional to n.
-
-    References
-    ----------
-    https://projecteuler.net/problem=385
-    https://en.wikipedia.org/wiki/Steiner_inellipse
-    https://en.wikipedia.org/wiki/Marden%27s_theorem
-    """
     n = 1000000000
     cases = [
         {"D": 1, "e": 117, "st_list": [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, 0), (1, 1)], "classes": [

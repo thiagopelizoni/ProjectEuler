@@ -161,22 +161,6 @@ def generate_states():
     return list(seen)
 
 def main():
-    """
-    Purpose
-    Solve Project Euler problem 298: compute the expected value of |L - R| after 50 turns in the memory game.
-
-    Method / Math Rationale
-    Uses dynamic programming over reachable states of the memories' configurations, tracking the probability distribution over the score difference for each state.
-    The state is defined by the current sizes of the memories and the set of matched positions between them.
-    Transitions are computed for each possible type of number called (shared, only in Larry, only in Robin, outside).
-    The expected value is the weighted sum of |d| over all probabilities at the final turn.
-
-    Complexity
-    O(T * S * D * K) where T=50 turns, S≈439 states, D=101 differences, K≈10 transitions per state; highly efficient.
-
-    References
-    https://projecteuler.net/problem=298
-    """
     states = generate_states()
     num_states = len(states)
     state_id = {states[i]: i for i in range(num_states)}
