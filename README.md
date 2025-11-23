@@ -242,6 +242,7 @@
 * [Problem 242](https://projecteuler.net/problem=242) | [Solution](src/problem_242.py)
 * [Problem 243](https://projecteuler.net/problem=243) | [Solution](src/problem_243.py)
 * [Problem 244](https://projecteuler.net/problem=244) | [Solution](src/problem_244.py)
+* [Problem 246](https://projecteuler.net/problem=246) | [Solution](src/problem_246.py)
 * [Problem 247](https://projecteuler.net/problem=247) | [Solution](src/problem_247.py)
 * [Problem 248](https://projecteuler.net/problem=248) | [Solution](src/problem_248.py)
 * [Problem 249](https://projecteuler.net/problem=249) | [Solution](src/problem_249.py)
