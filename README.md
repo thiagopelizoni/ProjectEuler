@@ -463,3 +463,4 @@
 * [Problem 522](https://projecteuler.net/problem=522) | [Solution](src/problem_522.py)
 * [Problem 523](https://projecteuler.net/problem=523) | [Solution](src/problem_523.py)
 * [Problem 525](https://projecteuler.net/problem=525) | [Solution](src/problem_525.py)
+* [Problem 527](https://projecteuler.net/problem=527) | [Solution](src/problem_527.py)
