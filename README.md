@@ -480,3 +480,4 @@
 * [Problem 546](https://projecteuler.net/problem=546) | [Solution](src/problem_546.py)
 * [Problem 548](https://projecteuler.net/problem=548) | [Solution](src/problem_548.py)
 * [Problem 549](https://projecteuler.net/problem=549) | [Solution](src/problem_549.py)
+* [Problem 552](https://projecteuler.net/problem=552) | [Solution](src/problem_552.py)
