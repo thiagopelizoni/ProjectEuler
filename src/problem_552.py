@@ -1,3 +1,4 @@
+# Problem: https://projecteuler.net/problem=552
 import numpy as np
 from numba import njit, prange
 
@@ -37,7 +38,7 @@ def mod_inv(a, m):
     return mod_pow(a, m - 2, m)
 
 @njit(parallel=True, fastmath=True, cache=True)
-def solve_552(limit):
+def solve(limit):
     primes = get_primes(limit)
     M = len(primes)
     A_mod = np.ones(M, dtype=np.int64)
@@ -75,7 +76,7 @@ def solve_552(limit):
 
 def main():
     LIMIT = 300000
-    print(solve_552(LIMIT))
+    print(solve(LIMIT))
 
 if __name__ == "__main__":
     main()
